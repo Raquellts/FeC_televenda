@@ -1,0 +1,37 @@
+.button_secondary {
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--secondary-color);
+  position: relative;
+  border: none;
+  background: none;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.button_secondary:focus,
+.button_secondary:hover {
+  color: var(--primary-color);
+}
+
+.button_secondary:focus:after,
+.button_secondary:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.button_secondary:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}

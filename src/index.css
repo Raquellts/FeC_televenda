@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*--------------- CORPO ----------------*/
+/*--------------- DIVS GERAIS ----------------*/
+
+.full-div {
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.flex-account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex_end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  width: auto;
+  height: 350px;
+}
+
+.logo_filter {
+  filter: brightness(0) saturate(100%) invert(71%) sepia(19%) saturate(1153%)
+    hue-rotate(192deg) brightness(91%) contrast(89%);
+}

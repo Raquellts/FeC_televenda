@@ -28,8 +28,8 @@ const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
 
   const textareaClasses = `${
     readonly
-      ? "cursor-not-allowed bg-container ring-0 outline-none text-text placeholder-primary rounded-2xl block p-2.5 "
-      : "bg-container focus:bg-gray-700 ring-0 outline-none border-b-2 border-transparent text-text placeholder-primary rounded-2xl focus:border-primary hover:border-tertiary block p-2.5 "
+      ? "bg-container ring-0 outline-none text-text placeholder-primary rounded-2xl block p-2.5 "
+      : "bg-container focus:bg-gray-700 ring-0 outline-none border-b-2 border-transparent text-text placeholder-primary rounded-2xl focus:border-primary hover:border-tertiary block p-2.5"
   } ${className}`;
 
   return (

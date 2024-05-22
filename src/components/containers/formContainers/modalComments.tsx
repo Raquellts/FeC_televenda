@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { USERInterface } from "../CNPJInterface";
 import SVGCancel from "../../SVGs/CIRCLE/SVGCancel";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
@@ -10,16 +10,23 @@ const ModalComments: React.FC<{
   setData: React.Dispatch<React.SetStateAction<USERInterface>>;
   comments: string;
 }> = ({ cnpj, data, setData, comments }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [textareaValue, setTextareaValue] = useState(comments);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); //modal comments
+  const [isConfirmSave, setConfirmSaveOpen] = useState(false); //modal confirmation of changes
+  const [textareaValue, setTextareaValue] = useState(comments); // comments on text area
 
-  const handleCommentChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleCommentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setTextareaValue(event.target.value);
   };
 
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleSave = () => {
+    // Show confirmation modal
+    setConfirmSaveOpen(true);
+  };
+
+  const handleConfirmSave = () => {
+    // Save changes
     setData({
       ...data,
       cnpjInfo: data?.cnpjInfo.map((c) => {
@@ -33,12 +40,13 @@ const ModalComments: React.FC<{
         }
       }),
     });
-    setIsEditing(false);
+    setIsModalOpen(false);
+    setConfirmSaveOpen(false);
   };
 
-  const toggleEditing = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setIsEditing((prevIsEditing) => !prevIsEditing);
+  const handleCancelSave = () => {
+    // Close confirmation modal
+    setConfirmSaveOpen(false);
   };
 
   return (
@@ -46,7 +54,7 @@ const ModalComments: React.FC<{
       <ButtonTertiary
         buttonContent="Comentários"
         onClick={() => setIsModalOpen(true)}
-        className="py-0.5 border-primary hover:bg-primary hover:border-secondary hover:text-background"
+        className="py-0.5 text-text bg-accent border-background hover:bg-primary hover:border-secondary hover:text-background"
       />
       <div
         id="static-modal"
@@ -62,57 +70,63 @@ const ModalComments: React.FC<{
             <h3 className="text-xl font-semibold">Comentarios</h3>
             <button
               type="button"
-              className="block text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center"
+              className="flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center"
               onClick={() => setIsModalOpen(false)}
             >
+              <span className="mx-1">Voltar</span>
               <SVGCancel
                 width={24}
                 height={24}
                 fill_one="none"
                 fill_two="currentColor"
               />
-              <span className="sr-only">Close modal</span>
             </button>
           </div>
           <div className="flex flex-col items-center w-full">
-            {isEditing ? (
-              <div className="flex flex-col items-center w-full">
-                <div className="w-full rounded-xl pb-4">
-                  <TextareaPrimary
-                    name="comments"
-                    value={textareaValue}
-                    onChange={handleCommentChange}
-                    className="w-full rounded-xl"
-                    minRows={3}
-                    maxRows={8}
-                  />
-                </div>
-
-                <ButtonTertiary
-                  buttonContent="Save"
-                  onClick={handleSubmit}
-                  className="w-1/2 py-2 bg-green-600 text-text border-green-700 hover:bg-green-400 my-1 "
+            <div className="flex flex-col items-center w-full">
+              <div className="w-full rounded-xl pb-4">
+                <TextareaPrimary
+                  name="comments"
+                  value={textareaValue}
+                  onChange={handleCommentChange}
+                  className="w-full rounded-xl"
+                  minRows={3}
+                  maxRows={8}
                 />
               </div>
-            ) : (
-              <TextareaPrimary
-                readonly={true}
-                name="comments"
-                value={comments}
-                className="w-full mb-4 rounded-xl"
-                minRows={4}
-                maxRows={8}
+
+              <ButtonTertiary
+                buttonContent="Salvar alterações"
+                onClick={handleSave}
+                className={`${
+                  isConfirmSave ? "hidden" : ""
+                } w-1/2 py-2 bg-accent text-text border-accent hover:bg-secondary my-1 `}
               />
+            </div>
+
+            {/* Confirmation modal */}
+            {isModalOpen && (
+              <div className={`${isConfirmSave ? "" : "hidden"} modal`}>
+                <div className="flex flex-col items-center justify-center w-full mb-3">
+                  <p>Tem certeza que deseja salvar as alterações?</p>
+                  <p className="text-xs">
+                    ( Isso é <span className="uppercase">irreversível</span> )
+                  </p>
+                </div>
+                <div className="flex items-center justify-center w-full">
+                  <ButtonTertiary
+                    buttonContent="Salvar"
+                    onClick={handleConfirmSave}
+                    className="w-1/2 py-2 mx-1 bg-green-600 text-text border-green-700 hover:bg-green-400 my-1 "
+                  />
+                  <ButtonTertiary
+                    buttonContent="Cancelar"
+                    onClick={handleCancelSave}
+                    className="w-1/2 py-2 mx-1 bg-red-600 text-text border-red-700 hover:bg-red-400 my-1 "
+                  />
+                </div>
+              </div>
             )}
-            <ButtonTertiary
-              buttonContent={isEditing ? "Close" : "Edit"}
-              onClick={toggleEditing}
-              className={`w-1/2 py-2 ${
-                isEditing
-                  ? "bg-red-600 border-red-700 hover:bg-red-400 hover:border-red-600"
-                  : "bg-tertiary border-accent hover:bg-primary"
-              } text-text`}
-            />
           </div>
         </div>
       </div>

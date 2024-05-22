@@ -1,0 +1,19 @@
+      Marca
+Modelo
+Versão
+Quantidade
+VALOR ANUNCIADO
+LINK DO ANÚNCIO
+Forma Pagamento
+USADO NA TROCA
+SEGURO
+TIPO DE COMPRA
+MOTIVO DA COMPRA
+NECESSIDADE - PRAZO
+PARTICIPANTE DE CAMPANHA
+Negociação
+idModeloVersaoERP
+urlVersao
+usuarioLogado
+telefoneUsuarioLogado
+emailUsuarioLogado

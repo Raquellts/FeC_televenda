@@ -33,21 +33,21 @@ const InfosCnpj = () => {
     <>
       {data?.cnpjInfo.map((cnpj) => {
         return (
-          <div className="flex">
+          <div className="flex" key={cnpj.cnpj}>
             <form
-              className={`w-80 px-3 py-2 my-0.5 ml-0.5 bg-container rounded-s-2xl font-oswald text-text`}
+              className={`w-70 px-3 py-2 my-0.5 ml-0.5 bg-container rounded-s-2xl font-oswald text-text`}
             >
               <div
                 className={`flex justify-between items-center ${style.cnpj_name}`}
               >
-                <div className="flex justify-start">
+                <div className="flex justify-start uppercase text-primary">
                   <SVGCompany
                     width={width_svg}
                     height={height_svg}
                     fill_one="none"
                     fill_two={primaryColor_svg}
                   />
-                  <p className="ml-1 uppercase truncate ...">{cnpj.name}</p>
+                  <p className="ml-1 truncate ...">{cnpj.name}</p>
                 </div>
                 <ModalComments
                   comments={cnpj.comments}
@@ -57,8 +57,8 @@ const InfosCnpj = () => {
                 />
               </div>
 
-              <div className="flex flex-wrap md:flex-row">
-                <div className="flex items-center my-1">
+              <div className="flex flex-wrap">
+                <div className="flex items-center mb-1">
                   <SVGPhoneCall
                     width={width_svg}
                     height={height_svg}
@@ -69,7 +69,7 @@ const InfosCnpj = () => {
                   <p className={`mx-1 ${style.cnpj_contact}`}>{cnpj.contact}</p>
                 </div>
 
-                <div className="flex items-center my-1">
+                <div className="flex items-center mb-1">
                   <SVGEmail
                     width={width_svg}
                     height={height_svg}
@@ -82,14 +82,16 @@ const InfosCnpj = () => {
 
               <div className="flex opacity-70 text-xs">
                 <p className="ml-8 truncate ...">{cnpj.activity}</p>
-                <p className="ml-6">{cnpj.dateForCall}</p>
               </div>
             </form>
             <form className={`w-10 my-0.5 bg-container`}>
               <SelectStatus cnpj={cnpj} data={data} setData={setData} />
             </form>
+            <form className={`w-10 my-0.5 bg-container`}>
+              <p className="ml-6">{cnpj.dateForCall}</p>
+            </form>
             <form className={`w-10 my-0.5 mr-0.5 bg-container rounded-e-2xl`}>
-              <SelectStatus cnpj={cnpj} data={data} setData={setData} />
+              <a href={`/form`}> iala</a>
             </form>
           </div>
         );
@@ -98,4 +100,4 @@ const InfosCnpj = () => {
   );
 };
 
-export default InfosCnpj;
+export default InfosCnpj; //---- consegue fazer um botão aqui que me leve para um formulario contendo todas as informações do cnpj?

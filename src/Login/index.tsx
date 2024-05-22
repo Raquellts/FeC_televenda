@@ -44,7 +44,10 @@ function Login() {
     <div className="full-div overflow-hidden flex items-center justify-center lg:justify-start">
       <Background />
 
-      <div className="bg-background lg:h-100 h-95 xl:w-2/5 lg:w-1/2 sm:w-5/6 w-90vw lg:m-0 flex-account rounded-2xl lg:rounded-none z-10">
+      <div
+        className="bg-background sm:h-full md:h-95 lg:h-100
+      xl:w-2/5 lg:w-1/2 md:w-90 w-100 lg:m-0 flex-account md:rounded-2xl lg:rounded-none z-10"
+      >
         <p>{error ? error : null}</p>
 
         <form

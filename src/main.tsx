@@ -9,29 +9,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProtectRoute from "./midleware/ProtectRoute";
 
 //componentes
-import Signin from "./SignIn/index";
 import Login from "./Login/index";
-import RecoveryPassword from "./recoverypassword/index";
-import FogotPassword from "./forgotpassword/index";
 import Page404 from "./404/index";
 import Home from "./Home/index";
+import Form from "./Form/Index";
 
 const router = createBrowserRouter([
   {
-    path: "/signin",
-    element: <Signin />,
-  },
-  {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/recoverypassword",
-    element: <RecoveryPassword />,
-  },
-  {
-    path: "/forgotpassword",
-    element: <FogotPassword />,
   },
   {
     path: "*",
@@ -40,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/form",
+    element: <Form />,
   },
   {
     path: "/",

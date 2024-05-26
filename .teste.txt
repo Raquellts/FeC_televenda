@@ -1,16 +1,16 @@
-      Marca
+Marca
 Modelo
 Versão
 Quantidade
-VALOR ANUNCIADO
-LINK DO ANÚNCIO
+Valor anunciado
+Link do anúncio
 Forma Pagamento
-USADO NA TROCA
-SEGURO
-TIPO DE COMPRA
-MOTIVO DA COMPRA
-NECESSIDADE - PRAZO
-PARTICIPANTE DE CAMPANHA
+Usado na troca
+Seguro
+Tipo de compra
+Motivo da compra
+Prazo
+Participante da campanha
 Negociação
 idModeloVersaoERP
 urlVersao

@@ -12,8 +12,11 @@ import InputPrimary from "../components/containers/formContainers/InputPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 //styles
 import "../assets/font.css";
+import ButtonTheme from "../themeButton";
+import { Etheme, themes } from "../themeConsts";
 
 function Login() {
+  const [theme, setTheme] = useState(themes.activeTheme);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -41,12 +44,16 @@ function Login() {
   };
 
   return (
-    <div className="full-div overflow-hidden flex items-center justify-center lg:justify-start">
+    <div
+      className={`full-div overflow-hidden flex items-center justify-center lg:justify-start`}
+    >
       <Background />
 
       <div
-        className="bg-background sm:h-full md:h-95 lg:h-100
-      xl:w-2/5 lg:w-1/2 md:w-90 w-100 lg:m-0 flex-account md:rounded-2xl lg:rounded-none z-10"
+        className={`${
+          theme === Etheme.light ? "bg-background" : "bg-dark-background"
+        } sm:h-full md:h-95 lg:h-100
+      xl:w-2/5 lg:w-1/2 md:w-90 w-100 lg:m-0 flex-account md:rounded-2xl lg:rounded-none z-10`}
       >
         <p>{error ? error : null}</p>
 
@@ -60,7 +67,11 @@ function Login() {
             className="h-44 lg:hidden my-5 logo_filter"
           />
 
-          <p className="mb-5 uppercase text-primary font-oswald header-style">
+          <p
+            className={`${
+              theme === Etheme.light ? "text-primary" : "text-dark-primary"
+            } mb-5 uppercase font-oswald header-style`}
+          >
             Entrar
           </p>
 
@@ -72,6 +83,8 @@ function Login() {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
+            theme={{ theme: theme }}
+            className="w-full"
           />
 
           <InputPrimary
@@ -82,26 +95,23 @@ function Login() {
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
+            theme={{ theme: theme }}
+            className="w-full"
           />
 
           <div className="flex flex-row font-oswald">
-            <ButtonPrimary buttonContent="Entrar" />
-
-            {/* REMOVER 01: se precisar recuperar senha e criar conta VVVV */}
-            {/* 01. <ButtonSecondary href="/signin" buttonContent="Esqueci a senha!" />*/}
+            <ButtonPrimary buttonContent="Entrar" theme={{ theme: theme }} />
           </div>
 
-          {/* 01. <p className="my-5 text-color-1 font-oswald">
-            Não tem uma conta?
-            <ButtonSecondary href="/signin" buttonContent="CRIAR CONTA" />
-          </p>*/}
-
-          {/* REMOVER 02: se não precisar de recuperar senha e criar conta, apenas falar com o suporte VVVV */}
-          <p className="my-5">
+          <p className="mx-5 flex items-center justify-center">
             <ButtonSecondary
               href="/getlogin"
               buttonContent="Esqueci ou não tenho um login!"
+              theme={{ theme: theme }}
             />
+            <div>
+              <ButtonTheme theme={theme} setTheme={setTheme} />
+            </div>
           </p>
         </form>
       </div>

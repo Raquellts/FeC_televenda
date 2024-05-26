@@ -2,7 +2,6 @@
   font-size: 14px;
   font-family: inherit;
   cursor: pointer;
-  color: var(--secondary-color);
   position: relative;
   border: none;
   background: none;
@@ -11,9 +10,18 @@
   transition-property: color;
 }
 
-.button_secondary:focus,
-.button_secondary:hover {
+.button_secondary {
+  color: var(--secondary-color);
+}
+
+.button_secondary.light:focus,
+.button_secondary.light:hover {
   color: var(--primary-color);
+}
+
+.button_secondary.dark:focus,
+.button_secondary.dark:hover {
+  color: var(--accent-color);
 }
 
 .button_secondary:focus:after,
@@ -30,8 +38,15 @@
   position: absolute;
   width: 0%;
   height: 2px;
-  background-color: var(--primary-color);
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
+}
+
+.button_secondary.light:after {
+  background-color: var(--primary-color);
+}
+
+.button_secondary.dark:after {
+  background-color: var(--tertiary-color);
 }

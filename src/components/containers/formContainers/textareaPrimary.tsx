@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Etheme } from "../../../themeConsts";
+import useUpdateTheme from "../../consts/updateTheme";
 
 interface TextareaPrimaryProps {
   name: string;
@@ -6,9 +8,9 @@ interface TextareaPrimaryProps {
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   className?: string;
-  readonly?: boolean;
   minRows?: number;
   maxRows?: number;
+  theme: { theme: Etheme };
 }
 
 const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
@@ -17,28 +19,29 @@ const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
   placeholder,
   onChange,
   className,
-  readonly,
   minRows,
   maxRows,
+  theme,
 }) => {
+  /*THEME*/ const themes = theme.theme;
+  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
+  /*THEME*/ useUpdateTheme(theme, setNewtheme);
+
   const textareaStyle = {
     minHeight: `${minRows ? minRows * 2 : 4}rem`,
     maxHeight: `${maxRows ? maxRows * 2 : 8}rem`,
   };
 
-  const textareaClasses = `${
-    readonly
-      ? "bg-container ring-0 outline-none text-text placeholder-primary rounded-2xl block p-2.5 "
-      : "bg-container focus:bg-gray-700 ring-0 outline-none border-b-2 border-transparent text-text placeholder-primary rounded-2xl focus:border-primary hover:border-tertiary block p-2.5"
-  } ${className}`;
-
   return (
     <textarea
-      readOnly={readonly}
       name={name}
       placeholder={placeholder}
       required
-      className={textareaClasses}
+      className={`${
+        newtheme === Etheme.light
+          ? "bg-container focus:bg-gray-700 text-text focus:border-primary hover:border-tertiary"
+          : "bg-dark-container focus:bg-white text-dark-text focus:border-dark-primary hover:border-dark-tertiary"
+      } ring-0 outline-none border-b-2 border-transparent placeholder-primary rounded-2xl block px-2.5 pt-1 ${className}`}
       style={textareaStyle}
       value={value}
       onChange={onChange}

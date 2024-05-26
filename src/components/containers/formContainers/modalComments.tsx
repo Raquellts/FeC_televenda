@@ -1,15 +1,22 @@
 import { useState } from "react";
-import { USERInterface } from "../CNPJInterface";
+import { USERInterface } from "../../../../InterfaceCNPJ";
 import SVGCancel from "../../SVGs/CIRCLE/SVGCancel";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
 import TextareaPrimary from "./textareaPrimary";
+import { Etheme } from "../../../themeConsts";
+import useUpdateTheme from "../../consts/updateTheme";
 
 const ModalComments: React.FC<{
+  theme: { theme: Etheme };
   cnpj: { cnpj: string };
   data: USERInterface;
   setData: React.Dispatch<React.SetStateAction<USERInterface>>;
   comments: string;
-}> = ({ cnpj, data, setData, comments }) => {
+}> = ({ cnpj, data, setData, comments, theme }) => {
+  /*THEME*/ const themes = theme.theme;
+  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
+  /*THEME*/ useUpdateTheme(theme, setNewtheme);
+
   const [isModalOpen, setIsModalOpen] = useState(false); //modal comments
   const [isConfirmSave, setConfirmSaveOpen] = useState(false); //modal confirmation of changes
   const [textareaValue, setTextareaValue] = useState(comments); // comments on text area
@@ -63,17 +70,25 @@ const ModalComments: React.FC<{
         aria-hidden="true"
         className={`${
           isModalOpen ? "" : "hidden"
-        } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50`}
+        } font-medium overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50`}
       >
-        <div className="relative p-4 w-95 max-w-2xl max-h-95 bg-container text-text rounded-lg shadow">
-          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+        <div
+          className={`${
+            newtheme === Etheme.light
+              ? "bg-container text-text"
+              : "bg-dark-container text-dark-text"
+          } relative p-4 w-95 max-w-2xl max-h-95 rounded-lg shadow`}
+        >
+          <div
+            className={`flex items-center justify-between pl-1 pb-1 border-b rounded-t`}
+          >
             <h3 className="text-xl font-semibold">Comentarios</h3>
             <button
               type="button"
-              className="flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center"
+              className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide`}
               onClick={() => setIsModalOpen(false)}
             >
-              <span className="mx-1">Voltar</span>
+              <span className="mx-1 uppercase">Voltar</span>
               <SVGCancel
                 width={24}
                 height={24}
@@ -86,6 +101,7 @@ const ModalComments: React.FC<{
             <div className="flex flex-col items-center w-full">
               <div className="w-full rounded-xl pb-4">
                 <TextareaPrimary
+                  theme={theme}
                   name="comments"
                   value={textareaValue}
                   onChange={handleCommentChange}
@@ -100,7 +116,7 @@ const ModalComments: React.FC<{
                 onClick={handleSave}
                 className={`${
                   isConfirmSave ? "hidden" : ""
-                } w-1/2 py-2 bg-accent text-text border-accent hover:bg-secondary my-1 `}
+                } w-1/2 py-2 bg-accent text-text border-accent hover:bg-secondary my-1 tracking-wide`}
               />
             </div>
 
@@ -117,12 +133,12 @@ const ModalComments: React.FC<{
                   <ButtonTertiary
                     buttonContent="Salvar"
                     onClick={handleConfirmSave}
-                    className="w-1/2 py-2 mx-1 bg-green-600 text-text border-green-700 hover:bg-green-400 my-1 "
+                    className="w-1/2 py-2 mx-1 bg-green-600 text-text border-green-700 hover:bg-green-400 my-1 tracking-wide uppercase"
                   />
                   <ButtonTertiary
                     buttonContent="Cancelar"
                     onClick={handleCancelSave}
-                    className="w-1/2 py-2 mx-1 bg-red-600 text-text border-red-700 hover:bg-red-400 my-1 "
+                    className="w-1/2 py-2 mx-1 bg-red-600 text-text border-red-700 hover:bg-red-400 my-1 tracking-wide uppercase"
                   />
                 </div>
               </div>

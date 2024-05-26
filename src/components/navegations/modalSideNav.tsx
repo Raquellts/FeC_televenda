@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Etheme } from "../../themeConsts";
 import SideNavbar from "./sideNavbar";
 import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
 import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
+import useUpdateTheme from "../consts/updateTheme";
 
-function ModalSideNav() {
+const ModalSideNav = (theme: { theme: Etheme }) => {
+  /*THEME*/ const themes = theme.theme;
+  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
+  /*THEME*/ useUpdateTheme(theme, setNewtheme);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -44,7 +50,11 @@ function ModalSideNav() {
         aria-label="Sidebar"
       >
         {true && (
-          <div className="md:hidden bg-container w-50 flex items-center justify-center">
+          <div
+            className={`${
+              newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
+            } md:hidden w-50 flex items-center justify-center`}
+          >
             <button
               type="button"
               className="bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-xl px-30 py-2 mt-3 text-center"
@@ -59,10 +69,10 @@ function ModalSideNav() {
             </button>
           </div>
         )}
-        <SideNavbar />
+        <SideNavbar theme={newtheme} />
       </aside>
     </>
   );
-}
+};
 
 export default ModalSideNav;

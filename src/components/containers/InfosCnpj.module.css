@@ -4,10 +4,18 @@
 }
 
 .cnpj_contact {
-  background-color: var(--background-color);
-  color: var(--text-color);
   border-radius: 5px;
   padding: 0px 5px;
   font-weight: 400;
   font-size: 15px;
+}
+
+.cnpj_contact.light {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.cnpj_contact.dark {
+  background-color: var(--tertiary-color);
+  color: var(--text-color);
 }

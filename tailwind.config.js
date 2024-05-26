@@ -7,7 +7,19 @@ export const content = [
 export const theme = {
   extend: {
     colors: {
-      dark: { background: "#ffffff" },
+      dark: {
+        text: "#1F2937",
+        subtext: "#112a46",
+        background: "#d2dbf2",
+        container: "#e7edfb",
+
+        darkest: "#141c25",
+        accent: "#244aaa",
+
+        primary: "#4e6ebf",
+        secondary: "#708dd9",
+        tertiary: "#8ea4dc",
+      },
       text: "#F3F5FA",
       subtext: "#112a46",
       background: "#1F2937",
@@ -54,19 +66,4 @@ export const theme = {
       "90vh": "90vh",
     },
   },
-};
-
-// Theme toggle function
-let currentTheme = "light";
-
-export const toggleTheme = () => {
-  if (currentTheme === "light") {
-    document.documentElement.classList.remove("light");
-    document.documentElement.classList.add("dark");
-    currentTheme = "dark";
-  } else {
-    document.documentElement.classList.remove("dark");
-    document.documentElement.classList.add("light");
-    currentTheme = "light";
-  }
 };

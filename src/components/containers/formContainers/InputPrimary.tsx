@@ -1,38 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { Etheme } from "../../../themeConsts";
+import useUpdateTheme from "../../consts/updateTheme";
 
 interface InputPrimaryProps {
-  readonly?: boolean;
   name: string;
   type: string;
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  theme: { theme: Etheme };
 }
-
 const InputPrimary: React.FC<InputPrimaryProps> = ({
-  readonly,
   name,
   type,
   placeholder,
   value,
   onChange,
   className,
+  theme,
 }) => {
-  const textareaClasses = `${
-    readonly
-      ? "bg-container ring-0 outline-none text-text placeholder-primary rounded-2xl block p-2.5 my-2"
-      : "bg-container focus:bg-gray-700 ring-0 outline-none border-b-2 border-transparent text-text placeholder-primary rounded-2xl focus:border-primary hover:border-tertiary block p-2.5 my-2"
-  } ${className}`;
+  /*THEME*/ const themes = theme.theme;
+  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
+  /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
   return (
     <input
-      readOnly={readonly}
       name={name}
       type={type}
       placeholder={placeholder}
-      required
-      className={textareaClasses}
+      className={`${
+        newtheme === Etheme.light
+          ? "bg-container placeholder-primary focus:bg-gray-700 focus:border-primary hover:border-tertiary text-text placeholder-primary"
+          : "bg-dark-container placeholder-dark-primary focus:bg-white focus:border-dark-primary hover:border-dark-tertiary text-dark-text placeholder-dark-primary"
+      } ring-0 outline-none border-b-2 border-transparent rounded-2xl block p-2.5 my-2 w-fit ${className}`}
       value={value}
       onChange={onChange}
     />

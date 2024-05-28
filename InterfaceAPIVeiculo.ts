@@ -5,10 +5,6 @@ export type Imarca = {
   codigo: string;
 };
 
-export type Imarcas = {
-  marcas: Imarca[];
-};
-
 //MODELOS --------------------------------------------------------------------------------------
 export type Imodelo = {
   codigo: number;

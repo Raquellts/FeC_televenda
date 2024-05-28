@@ -12,11 +12,16 @@ import Login from "./Login/index";
 import Page404 from "./404/index";
 import Home from "./Home/index";
 import Form from "./Form/Index";
+import GetLogin from "./getlogin/index";
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/GetLogin",
+    element: <GetLogin />,
   },
   {
     path: "*",

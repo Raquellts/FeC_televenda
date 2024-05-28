@@ -12,7 +12,6 @@
 
 .font-playfair {
   font-family: "Playfair Display", serif;
-  font-weight: 400;
   font-style: normal;
 }
 
@@ -23,4 +22,17 @@
 
 .small-style {
   font-size: 16px;
+}
+
+.font-style-xm {
+  font-weight: 200;
+}
+.font-style-sm {
+  font-weight: 300;
+}
+.font-style-md {
+  font-weight: 400;
+}
+.font-style-lg {
+  font-weight: 500;
 }

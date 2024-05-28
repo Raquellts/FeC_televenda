@@ -49,3 +49,25 @@ select {
   cursor: inherit;
   line-height: inherit;
 }
+
+/*--------------- COLORS ----------------*/
+
+.GREEN {
+  color: #00b400;
+}
+
+.RED {
+  color: #ff0000;
+}
+
+.YELLOW {
+  color: #c6a500;
+}
+
+.GREY {
+  color: #808080;
+}
+
+.PURPLE {
+  color: #708dd9;
+}

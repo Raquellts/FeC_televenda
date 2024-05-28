@@ -21,14 +21,14 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
       type={"submit"}
       className={`${
         newtheme === Etheme.light
-          ? "bg-tertiary hover:from-secondary hover:to-tertiary hover:border-accent"
-          : "bg-dark-tertiary hover:from-dark-secondary hover:to-dark-tertiary hover:border-dark-accent"
-      } flex-1 rounded-l-2xl h-10 p-2 my-2 lg:my-5 border-b-2 border-transparent text-center font-oswald bg-gradient-to-r ${
+          ? "bg-tertiary hover:bg-secondary hover:border-tertiary"
+          : "bg-dark-secondary hover:bg-tertiary hover:border-accent"
+      } flex-1 rounded-l-2xl h-10 p-2 my-2 lg:my-5 border-b-2 border-transparent text-center font-oswald ${
         style.button_primary
       }
       `}
     >
-      <span className={`${style.button_content}`}>{buttonContent}</span>
+      <span>{buttonContent}</span>
     </button>
   );
 };

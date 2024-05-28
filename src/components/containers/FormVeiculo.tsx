@@ -24,12 +24,7 @@ const FormVeiculo = ({ theme }: { theme: { theme: Etheme } }) => {
               newtheme === Etheme.light ? "text-text" : "text-dark-text"
             }`}
           >
-            <label className="flex items-center">
-              Marca: {cnpj.veiculos.map((veiculo) => veiculo.marca)}
-              <option>marca aqui</option>
-            </label>
-
-            <SelectTipo />
+            <SelectTipo theme={newtheme} />
           </form>
         </>
       )}

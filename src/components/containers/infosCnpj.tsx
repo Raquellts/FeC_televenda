@@ -13,6 +13,7 @@ import ModalComments from "./formContainers/modalComments";
 import style from "./infosCnpj.module.css";
 import SVGBadge from "../SVGs/USER/SVGBadge";
 import useUpdateTheme from "../consts/updateTheme";
+import Status from "./formContainers/status";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -44,7 +45,11 @@ const InfosCnpj = (theme: { theme: Etheme }) => {
       {data?.cnpjInfo.map((cnpj) => {
         return (
           <div
-            className="flex shadow-md mb-1.5 ml-1 rounded-2xl"
+            className={`${
+              newtheme === Etheme.light
+                ? "divide-background"
+                : "divide-dark-background"
+            } flex shadow-md mb-1.5 ml-1 rounded-2xl divide-x`}
             key={cnpj.cnpj}
           >
             {/* PRIMEIRA parte do container VVV */}
@@ -148,23 +153,7 @@ const InfosCnpj = (theme: { theme: Etheme }) => {
                 newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
               }`}
             >
-              <p
-                className={`ml-6 text-text w-100 h-100 ${
-                  cnpj.status === "PENDING"
-                    ? newtheme === Etheme.light
-                      ? "bg-container"
-                      : "bg-dark-container"
-                    : cnpj.status === "APPROVED"
-                    ? "bg-green-600"
-                    : cnpj.status === "REJECTED"
-                    ? "bg-red-600"
-                    : cnpj.status === "SUSPENDED"
-                    ? "bg-gray-600"
-                    : ""
-                }`}
-              >
-                {cnpj.status}
-              </p>
+              <Status status={cnpj.status} />
             </form>
 
             {/* TERCEIRA parte do container VVV */}

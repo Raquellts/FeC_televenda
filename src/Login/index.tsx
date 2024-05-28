@@ -103,13 +103,13 @@ function Login() {
             <ButtonPrimary buttonContent="Entrar" theme={{ theme: theme }} />
           </div>
 
-          <p className="mx-5 flex items-center justify-center">
+          <p className="flex items-center justify-center">
             <ButtonSecondary
               href="/getlogin"
               buttonContent="Esqueci ou não tenho um login!"
               theme={{ theme: theme }}
             />
-            <div>
+            <div className="fixed bottom-3 right-4">
               <ButtonTheme theme={theme} setTheme={setTheme} />
             </div>
           </p>

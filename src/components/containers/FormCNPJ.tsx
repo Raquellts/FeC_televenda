@@ -19,7 +19,7 @@ const FormCNPJ = (theme: { theme: Etheme }) => {
     <div
       className={`${
         newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-      } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full`}
+      } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full bg-opacity-50`}
     >
       <div className="divide-y divide-secondary divide-opacity-50 p-2">
         {cnpj && (
@@ -30,7 +30,7 @@ const FormCNPJ = (theme: { theme: Etheme }) => {
                 newtheme === Etheme.light ? "text-text" : "text-dark-text"
               }`}
             >
-              <label className="flex w-50  items-center">
+              <label className="flex w-50 items-center">
                 Name:
                 <TextareaPrimary
                   theme={theme}
@@ -106,7 +106,6 @@ const FormCNPJ = (theme: { theme: Etheme }) => {
               </label>
             </form>
             <FormVeiculo
-              marcas={[]}
               theme={{
                 theme: themes,
               }}

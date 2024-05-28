@@ -32,9 +32,9 @@ const ButtonTheme: React.FC<ButtonThemeProps> = ({ theme, setTheme }) => {
       type="button"
       className={`${
         theme === Etheme.light
-          ? "bg-background hover:text-black hover:from-secondary hover:to-tertiary hover:border-accent hover:text-background"
-          : "bg-dark-background hover:text-white hover:bg-dark-primary hover:from-dark-secondary hover:to-dark-tertiary hover:border-dark-accent"
-      } border-background text-primary border-b-2 border-tertiary rounded-full px-2 py-2 mt-3 text-center bg-gradient-to-r`}
+          ? "bg-background hover:text-black hover:bg-tertiary hover:border-accent hover:text-background"
+          : "bg-dark-background hover:text-white hover:bg-secondary hover:bg-dark-tertiary hover:border-dark-accent"
+      } border-background text-primary border-b-2 border-tertiary rounded-full px-2 py-2 mt-3 text-center`}
       onClick={toggleTheme}
     >
       {theme === Etheme.light ? (

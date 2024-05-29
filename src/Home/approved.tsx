@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Etheme, themes } from "../themeConsts";
-import InfosCnpj from "../components/containers/infosCnpj";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/containers/separated/cabecalho";
+import InfosAPPROVED from "../components/containers/Infos_APPROVED";
 
 const Home: React.FC = () => {
   const [theme, setTheme] = useState(themes.activeTheme);
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         >
           <Cabecalho theme={theme} />
         </div>
-        <InfosCnpj theme={theme} />
+        <InfosAPPROVED theme={theme} />
       </div>
       <div className="fixed bottom-5 right-4">
         <ButtonTheme theme={theme} setTheme={setTheme} />

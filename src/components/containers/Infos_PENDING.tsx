@@ -8,7 +8,7 @@ import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../consts/updateTheme";
 import InfoCnpjItem from "./separated/InfoCnpjItem";
 
-const InfosCnpj = (theme: { theme: Etheme }) => {
+const InfosPENDING = (theme: { theme: Etheme }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -22,17 +22,19 @@ const InfosCnpj = (theme: { theme: Etheme }) => {
   return (
     <div className={`${newtheme}`}>
       {data?.cnpjInfo.map((cnpj) => {
-        return (
-          <InfoCnpjItem
-            cnpj={cnpj}
-            theme={theme}
-            data={data}
-            setData={setData}
-          />
-        );
+        if (cnpj.status === "PENDING") {
+          return (
+            <InfoCnpjItem
+              cnpj={cnpj}
+              theme={theme}
+              data={data}
+              setData={setData}
+            />
+          );
+        }
       })}
     </div>
   );
 };
 
-export default InfosCnpj;
+export default InfosPENDING;

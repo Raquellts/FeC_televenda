@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Etheme } from "../../themeConsts";
+import useUpdateTheme from "../consts/updateTheme";
+// SVGs
 import SVGCompany from "../SVGs/INFO/SVGCompany";
 import SVGAddClient from "../SVGs/USER/SVGAddClient";
 import SVGLogout from "../SVGs/USER/SVGLogout";
-import useUpdateTheme from "../consts/updateTheme";
+import SVGCircle from "../SVGs/CIRCLE/SVGCircle";
+import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
+import SVGCheck from "../SVGs/CIRCLE/SVGCheck";
+import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -25,6 +30,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
       <div className="h-90 md:h-full flex flex-col justify-between divide-y divide-tertiary font-oswald uppercase">
         <ul>
           <li>
+            {/*----- HOME - TODAS AS EMPRESAS ------*/}
             <a
               href="/home"
               className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
@@ -36,12 +42,13 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_two={fill_Two_svg}
               />
               <span className="hidden md:block md:visible ml-3">
-                Lista de empresas
+                Todas as empresas
               </span>
             </a>
+            {/*----- ADD CLEINTE - ADICIONAR CLIENTE NOVO ------*/}
             <a
               href="#"
-              className="flex items-center md:justify-start justify-center p-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGAddClient
                 width={width_svg}
@@ -53,8 +60,69 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 Adicionar cliente
               </span>
             </a>
+            {/*----- PENDING - PENDENTES AINDA NÃO LIGADOS ------*/}
+            <a
+              href="/Pending"
+              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+            >
+              <SVGCircle
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+                Pendentes
+              </span>
+            </a>
+            {/*----- SUSPEND - SUSPENDERAM A COMPRA ------*/}
+            <a
+              href="/Suspended"
+              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+            >
+              <SVGMenu
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+                Suspensos
+              </span>
+            </a>
+            {/*-----  APPROVED - APROVARAM A COMPRA ------*/}
+            <a
+              href="/Approved"
+              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+            >
+              <SVGCheck
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+                Compras Aprovadas
+              </span>
+            </a>
+            {/*-----  REJECTED - REJEITARAM A COMPRA ------*/}
+            <a
+              href="/Rejected"
+              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+            >
+              <SVGCancel
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+                Recusas
+              </span>
+            </a>
           </li>
         </ul>
+        {/*----------------- RODAPÉ DA SIDEBAR ------------------*/}
         <ul>
           <li>
             <a

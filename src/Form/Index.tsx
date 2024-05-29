@@ -3,7 +3,7 @@ import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import SVGBadge from "../components/SVGs/USER/SVGBadge";
 import ButtonTheme from "../themeButton";
-import FormCNPJ from "../components/containers/FormCNPJ";
+import FormCNPJ from "../components/containers/FormClienteCNPJ";
 
 function Form() {
   const [theme, setTheme] = useState(themes.activeTheme);
@@ -27,17 +27,16 @@ function Form() {
               fill_one="none"
               fill_two="currentColor"
             />
-            <p className="ml-1 mt-1 uppercase">Lista de empresas</p>
+            <p className="ml-1 mt-1 uppercase">Formulario</p>
           </span>
-
-          <div className="flex-grow border-t border-primary ml-2 md:mr-[3rem] mt-3 opacity-50"></div>
-
-          <div className="fixed top-0 right-4">
-            <ButtonTheme theme={theme} setTheme={setTheme} />
-          </div>
+          <div className="flex-grow border-t border-primary ml-2 mt-3 opacity-50"></div>
+          {/*divisória ^^^^ */}
         </div>
 
         <FormCNPJ theme={theme} />
+      </div>
+      <div className="fixed bottom-5 right-4">
+        <ButtonTheme theme={theme} setTheme={setTheme} />
       </div>
     </div>
   );

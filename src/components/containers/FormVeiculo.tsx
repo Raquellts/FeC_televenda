@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { CNPJInterface } from "../../../InterfaceCNPJ";
 import { Etheme } from "../../themeConsts";
 import { useState, useEffect } from "react";
-import SelectTipo from "./formContainers/selectTipo";
+import SelectTipo from "./separated/selectTipo";
 
 const FormVeiculo = ({ theme }: { theme: { theme: Etheme } }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);

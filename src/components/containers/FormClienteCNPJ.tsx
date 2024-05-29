@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import { useLocation } from "react-router-dom";
 import { CNPJInterface } from "../../../InterfaceCNPJ";
-import InputPrimary from "./formContainers/InputPrimary";
-import TextareaPrimary from "./formContainers/textareaPrimary";
+import InputPrimary from "./separated/InputPrimary";
+import TextareaPrimary from "./separated/textareaPrimary";
 import FormVeiculo from "./FormVeiculo";
 import useUpdateTheme from "../consts/updateTheme";
 

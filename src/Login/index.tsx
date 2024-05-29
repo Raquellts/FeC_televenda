@@ -8,7 +8,7 @@ import ApiError from "../APIError";
 import logo from "../assets/E-statesat.svg";
 import Background from "../components/backgrounds/Background";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
-import InputPrimary from "../components/containers/formContainers/InputPrimary";
+import InputPrimary from "../components/containers/separated/InputPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 //styles
 import "../assets/font.css";

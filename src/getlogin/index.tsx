@@ -5,7 +5,7 @@ import { Etheme, themes } from "../themeConsts";
 //css styles
 import "../assets/font.css";
 import { useState } from "react";
-import InputPrimary from "../components/containers/formContainers/InputPrimary";
+import InputPrimary from "../components/containers/separated/InputPrimary";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 

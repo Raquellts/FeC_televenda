@@ -14,9 +14,15 @@ import ButtonSecondary from "../components/buttons/ButtonSecondary";
 import "../assets/font.css";
 import ButtonTheme from "../themeButton";
 import { Etheme, themes } from "../themeConsts";
+import SVGUser from "../components/SVGs/USER/SVGUser";
+import SVGKey from "../components/SVGs/USER/SVGKey";
+
+/*SVG CONSTS*/ const fill_Two_svg = "currentColor";
+/*SVG CONSTS*/ const width_svg = 24;
+/*SVG CONSTS*/ const height_svg = 24;
 
 function Login() {
-  const [theme, setTheme] = useState(themes.activeTheme);
+  /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -61,12 +67,14 @@ function Login() {
           onSubmit={handlesubmit}
           className="flex-account md:p-20 p-10 text-center overflow-hidden"
         >
+          {/*------------- LOGO DE TELA MENOR --- LG:HIDDEN -------------*/}
           <img
             src={logo}
             alt="logo"
             className="h-44 lg:hidden my-5 logo_filter"
           />
 
+          {/*------------- HEADER DE LOGIN --- ENTRAR -------------*/}
           <p
             className={`${
               theme === Etheme.light ? "text-primary" : "text-dark-primary"
@@ -75,40 +83,82 @@ function Login() {
             Entrar
           </p>
 
-          <InputPrimary
-            name=""
-            type="email"
-            placeholder="email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            theme={{ theme: theme }}
-            className="w-full"
-          />
+          {/*------------- IMPUT DE EMAIL --- SVG USER -------------*/}
+          <div
+            className={`${
+              theme === Etheme.light ? "text-primary" : "text-dark-primary"
+            } flex items-center`}
+          >
+            <div
+              className={`${
+                theme === Etheme.light ? "bg-container" : "bg-dark-container"
+              } p-2.5 rounded-s-2xl`}
+            >
+              <SVGUser
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+            </div>
+            <InputPrimary
+              name=""
+              type="email"
+              placeholder="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              theme={{ theme: theme }}
+              className="w-full right-rounded"
+            />
+          </div>
 
-          <InputPrimary
-            name=""
-            type="password"
-            placeholder="senha"
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-            theme={{ theme: theme }}
-            className="w-full"
-          />
+          {/*------------- IMPUT DE SENHA --- SVG KEY -------------*/}
+          <div
+            className={`${
+              theme === Etheme.light ? "text-primary" : "text-dark-primary"
+            } flex items-center`}
+          >
+            <div
+              className={`${
+                theme === Etheme.light ? "bg-container" : "bg-dark-container"
+              } p-2.5 rounded-s-2xl`}
+            >
+              <SVGKey
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+            </div>
+            <InputPrimary
+              name=""
+              type="password"
+              placeholder="senha"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              theme={{ theme: theme }}
+              className="w-full right-rounded"
+            />
+          </div>
 
+          {/*------------- BOTÃO DE LOGIN --- ENTRAR -------------*/}
           <div className="flex flex-row font-oswald">
             <ButtonPrimary buttonContent="Entrar" theme={{ theme: theme }} />
           </div>
 
+          {/*------------- BOTÃO DE ESQUECI A SENHA -------------*/}
           <p className="flex items-center justify-center">
             <ButtonSecondary
               href="/getlogin"
               buttonContent="Esqueci ou não tenho um login!"
               theme={{ theme: theme }}
             />
+
+            {/*-----------//THEME --- BOTÃO DE MUDAR O TEMA ----------*/}
             <div className="fixed bottom-3 right-4">
               <ButtonTheme theme={theme} setTheme={setTheme} />
             </div>

@@ -3,7 +3,7 @@ import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import SVGBadge from "../components/SVGs/USER/SVGBadge";
 import ButtonTheme from "../themeButton";
-import FormCNPJ from "../components/containers/FormClienteCNPJ";
+import FormCNPJ from "../components/containers/separated/Form Cliente/FormClienteCNPJ";
 
 function Form() {
   const [theme, setTheme] = useState(themes.activeTheme);
@@ -14,7 +14,7 @@ function Form() {
       } Flex min-h-screen h-full`}
     >
       <ModalSideNav theme={theme} />
-      <div className="px-4 md:ml-64">
+      <div className="px-4 lg:ml-64">
         <div className="pb-3 pt-4 flex justify-between items-center w-full min-w-screen">
           <span
             className={`${

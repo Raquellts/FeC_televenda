@@ -7,12 +7,14 @@ interface ButtonSecondaryProps {
   href: string;
   buttonContent: string;
   theme: { theme: Etheme };
+  children?: JSX.Element;
 }
 
 const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
   href,
   buttonContent,
   theme,
+  children,
 }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -27,7 +29,7 @@ const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
       }`}
       href={href}
     >
-      {buttonContent}
+      {buttonContent} {children}
     </a>
   );
 };

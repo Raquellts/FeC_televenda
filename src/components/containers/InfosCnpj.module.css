@@ -1,17 +1,26 @@
+/* --------------- STYLE NOME DA EMPRESA ---------------- */
 .cnpj_name {
   font-weight: 400;
   font-size: 15px;
 }
 
+/* --------------- STYLE CONTATO --- TELEFONES EMAILS ---------------- */
 .cnpj_contact {
   border-radius: 5px;
   padding: 0px 5px;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14px;
 }
 
+/* --------------- STYLE ATIVIDADES ---------------- */
+.cnpj_atividade {
+  font-weight: 300;
+  font-size: 11px;
+}
+
+/*--------------- THEME ---------------*/
 .cnpj_contact.light {
-  background-color: var(--background-color);
+  background-color: #1d2f5a;
   color: var(--text-color);
 }
 

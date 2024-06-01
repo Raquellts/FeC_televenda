@@ -6,11 +6,13 @@ import useUpdateTheme from "../consts/updateTheme";
 type ButtonPrimaryProps = {
   buttonContent: string;
   theme: { theme: Etheme };
+  children?: JSX.Element;
 };
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
   buttonContent,
   theme,
+  children,
 }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -28,6 +30,8 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
       }
       `}
     >
+      {" "}
+      {children}
       <span>{buttonContent}</span>
     </button>
   );

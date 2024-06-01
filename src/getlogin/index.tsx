@@ -8,6 +8,11 @@ import { useState } from "react";
 import InputPrimary from "../components/containers/separated/InputPrimary";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
+import SVGEmail from "../components/SVGs/CONTACT/SVGEmail";
+
+/*SVG CONSTS*/ const fill_Two_svg = "currentColor";
+/*SVG CONSTS*/ const width_svg = 24;
+/*SVG CONSTS*/ const height_svg = 24;
 
 function GetLogin() {
   const [theme, setTheme] = useState(themes.activeTheme);
@@ -27,6 +32,7 @@ function GetLogin() {
           onSubmit={handlesubmit}
           className="flex-account md:p-20 p-10 text-center overflow-hidden"
         >
+          {/*------------- HEADER --- Esqueci minha senha -------------*/}
           <p
             className={`${
               theme === Etheme.light ? "text-primary" : "text-dark-primary"
@@ -35,12 +41,13 @@ function GetLogin() {
             Esqueci minha senha
           </p>
           <div className="flex-col font-oswald">
+            {/*------------- SELECT DE MOTIVOS ---------------*/}
             <select
               className={`${
                 theme === Etheme.light
                   ? "text-primary bg-container"
                   : "text-dark-primary bg-dark-container"
-              } w-full pl-3 text rounded-full`}
+              } w-full h-11 pl-3 text border-rounded`}
               defaultValue=""
             >
               <option value="" disabled hidden className="">
@@ -60,19 +67,44 @@ function GetLogin() {
               </option>
             </select>
           </div>
-          <InputPrimary
-            name=""
-            type="email"
-            placeholder="email"
-            value={""}
-            onChange={() => ""}
-            theme={{ theme: theme }}
-            className="w-full"
-          />
+
+          {/*------------- IMPUT DE EMAIL --- SVG USER -------------*/}
+          <div
+            className={`${
+              theme === Etheme.light ? "text-primary" : "text-dark-primary"
+            } flex items-center`}
+          >
+            <div
+              className={`${
+                theme === Etheme.light ? "bg-container" : "bg-dark-container"
+              } p-2.5 rounded-s-2xl`}
+            >
+              <SVGEmail
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+            </div>
+
+            <InputPrimary
+              name=""
+              type="email"
+              placeholder="email"
+              value={""}
+              onChange={() => ""}
+              theme={{ theme: theme }}
+              className="w-full right-rounded"
+            />
+          </div>
+
+          {/*------------- BOTÃO DE ENVIAR -------------*/}
           <div className="flex flex-row font-oswald">
             <ButtonPrimary buttonContent="Enviar" theme={{ theme: theme }} />
           </div>
-          <p className="flex items-center justify-center">
+
+          {/*------------- BOTÃO DE VOLTAR --- voltar para o login -------------*/}
+          <div className="flex items-center justify-center">
             <ButtonSecondary
               href="/login"
               buttonContent="Voltar para o login!"
@@ -81,7 +113,7 @@ function GetLogin() {
             <div className="fixed bottom-3 right-4">
               <ButtonTheme theme={theme} setTheme={setTheme} />
             </div>
-          </p>
+          </div>
         </form>
       </div>
     </div>

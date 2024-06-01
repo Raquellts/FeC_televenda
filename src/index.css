@@ -23,10 +23,6 @@
   justify-content: flex-end;
 }
 
-:hover {
-  transition: all 0.3s;
-}
-
 .logo {
   width: auto;
   height: 350px;
@@ -61,7 +57,7 @@ select {
 }
 
 .YELLOW {
-  color: #c6a500;
+  color: #e0a500;
 }
 
 .GREY {
@@ -70,4 +66,28 @@ select {
 
 .PURPLE {
   color: #708dd9;
+}
+
+.TEXT_WHITE {
+  color: white !important;
+}
+
+.TEXT_BLACK {
+  color: black !important;
+}
+
+/*--------------- ROUNDED ----------------*/
+
+.border-rounded:not(.right-rounded):not(.left-rounded) {
+  border-radius: 1rem !important;
+}
+
+.border-rounded.right-rounded {
+  border-top-right-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important;
+}
+
+.border-rounded.left-rounded {
+  border-top-left-radius: 1rem !important;
+  border-bottom-left-radius: 1rem !important;
 }

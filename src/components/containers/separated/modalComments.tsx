@@ -5,6 +5,7 @@ import ButtonTertiary from "../../buttons/ButtonTertiary";
 import TextareaPrimary from "./textareaPrimary";
 import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../consts/updateTheme";
+import SVGComments from "../../SVGs/INFO/SVGComments";
 
 const ModalComments: React.FC<{
   theme: { theme: Etheme };
@@ -58,11 +59,24 @@ const ModalComments: React.FC<{
 
   return (
     <div>
+      {/*------ botão para abrir o modal ------*/}
       <ButtonTertiary
-        buttonContent="Comentários"
+        buttonContent=""
         onClick={() => setIsModalOpen(true)}
-        className="py-0.5 text-text bg-accent border-background hover:bg-primary hover:border-secondary hover:text-background"
-      />
+        className="py-0.5 text-text bg-accent border-background hover:bg-primary hover:border-secondary hover:text-background flex"
+      >
+        <div className="flex">
+          <SVGComments
+            width={16}
+            height={16}
+            fill_one="none"
+            fill_two="currentColor"
+          />
+          <span className="ml-1 hidden md:block font-oswald">Comentários</span>
+        </div>
+      </ButtonTertiary>
+
+      {/*------ abertura do modal ------*/}
       <div
         id="static-modal"
         data-modal-backdrop="static"
@@ -82,6 +96,7 @@ const ModalComments: React.FC<{
           <div
             className={`flex items-center justify-between pl-1 pb-1 border-b rounded-t`}
           >
+            {/*------ header ------*/}
             <h3 className="text-xl font-semibold">Comentarios</h3>
             <button
               type="button"
@@ -97,6 +112,8 @@ const ModalComments: React.FC<{
               />
             </button>
           </div>
+
+          {/*------ conteudo ------*/}
           <div className="flex flex-col items-center w-full">
             <div className="flex flex-col items-center w-full">
               <div className="w-full rounded-xl pb-4">
@@ -111,6 +128,7 @@ const ModalComments: React.FC<{
                 />
               </div>
 
+              {/*------ footer - botao salvar ------*/}
               <ButtonTertiary
                 buttonContent="Salvar alterações"
                 onClick={handleSave}
@@ -120,7 +138,7 @@ const ModalComments: React.FC<{
               />
             </div>
 
-            {/* Confirmation modal */}
+            {/* modal para confirmação do salvamento */}
             {isModalOpen && (
               <div className={`${isConfirmSave ? "" : "hidden"} modal`}>
                 <div className="flex flex-col items-center justify-center w-full mb-3">
@@ -131,12 +149,12 @@ const ModalComments: React.FC<{
                 </div>
                 <div className="flex items-center justify-center w-full">
                   <ButtonTertiary
-                    buttonContent="Salvar"
+                    buttonContent="✔ Salvar"
                     onClick={handleConfirmSave}
                     className="w-1/2 py-2 mx-1 bg-green-600 text-text border-green-700 hover:bg-green-400 my-1 tracking-wide uppercase"
                   />
                   <ButtonTertiary
-                    buttonContent="Cancelar"
+                    buttonContent="✖ Cancelar"
                     onClick={handleCancelSave}
                     className="w-1/2 py-2 mx-1 bg-red-600 text-text border-red-700 hover:bg-red-400 my-1 tracking-wide uppercase"
                   />

@@ -3,7 +3,7 @@ import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/containers/separated/cabecalho";
-import InfosREJECTED from "../components/containers/Infos_REJECTED";
+import InfosCnpj from "../components/containers/infosCnpj";
 
 const Home: React.FC = () => {
   const [theme, setTheme] = useState(themes.activeTheme);
@@ -28,7 +28,7 @@ const Home: React.FC = () => {
       } Flex h-full min-h-screen`}
     >
       <ModalSideNav theme={theme} />
-      <div className="px-4 md:ml-64">
+      <div className="px-4 lg:ml-64">
         <div
           className={`pb-1 pt-4 ${
             isScrolled
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         >
           <Cabecalho theme={theme} />
         </div>
-        <InfosREJECTED theme={theme} />
+        <InfosCnpj statustext="REJECTED" theme={theme} />
       </div>
       <div className="fixed bottom-5 right-4">
         <ButtonTheme theme={theme} setTheme={setTheme} />

@@ -7,24 +7,18 @@ export type Imarca = {
 
 //MODELOS --------------------------------------------------------------------------------------
 export type Imodelo = {
-  codigo: number;
   nome: string;
-};
-export type Imodelos = {
-  modelos: Imodelo[];
+  codigo: number;
 };
 
 export type Iano = {
-  codigo: string;
   nome: string;
-};
-export type Ianos = {
-  anos: Iano[];
+  codigo: string;
 };
 
 export type IgetModelos = {
-  Anos: Ianos;
-  Modelos: Imodelos;
+  anos: Iano[];
+  modelos: Imodelo[];
 };
 
 //INFORMACOES ------------------------------------------------------------------------------

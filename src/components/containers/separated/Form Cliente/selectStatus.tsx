@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
-import { USERInterface } from "../../../../InterfaceCNPJ";
-import { Etheme } from "../../../themeConsts";
-import useUpdateTheme from "../../consts/updateTheme";
+import { USERInterface } from "../../../../../InterfaceCNPJ";
+import { Etheme } from "../../../../themeConsts";
+import useUpdateTheme from "../../../consts/updateTheme";
 
 const SelectComponent: React.FC<{
   theme: { theme: Etheme };

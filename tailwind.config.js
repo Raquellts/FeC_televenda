@@ -10,8 +10,8 @@ export const theme = {
       dark: {
         text: "#1F2937",
         subtext: "#112a46",
-        background: "#d2dbf2",
-        container: "#e7edfb",
+        background: "#dfe9ff",
+        container: "#f4f7ff",
 
         darkest: "#141c25",
         accent: "#244aaa",
@@ -64,6 +64,8 @@ export const theme = {
       "80vh": "80vh",
       "90vw": "90vw",
       "90vh": "90vh",
+      //html elements
+      inputsize: "43px",
     },
   },
 };

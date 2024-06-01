@@ -28,7 +28,7 @@ const Home: React.FC = () => {
       } Flex h-full min-h-screen`}
     >
       <ModalSideNav theme={theme} />
-      <div className="px-4 md:ml-64">
+      <div className="px-4 lg:ml-64">
         <div
           className={`pb-1 pt-4 ${
             isScrolled
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         >
           <Cabecalho theme={theme} />
         </div>
-        <InfosCnpj theme={theme} />
+        <InfosCnpj statustext={null} theme={theme} />
       </div>
       <div className="fixed bottom-5 right-4">
         <ButtonTheme theme={theme} setTheme={setTheme} />

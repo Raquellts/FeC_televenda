@@ -31,9 +31,9 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
       placeholder={placeholder}
       className={`${
         newtheme === Etheme.light
-          ? "bg-container placeholder-primary focus:bg-gray-700 focus:border-primary hover:border-tertiary text-text placeholder-primary"
-          : "bg-dark-container placeholder-dark-primary focus:bg-white focus:border-dark-primary hover:border-dark-tertiary text-dark-text placeholder-dark-primary"
-      } ring-0 outline-none border-b-2 border-transparent rounded-2xl block p-2.5 my-2 w-fit font-oswald ${className}`}
+          ? "bg-container focus:bg-gray-700 focus:border-primary hover:border-tertiary placeholder-text text-text"
+          : "bg-dark-container focus:bg-white focus:border-dark-primary hover:border-dark-tertiary placeholder-dark-text text-dark-text"
+      } placeholder-opacity-70 hover:placeholder-opacity-100 text-opacity-70 hover:text-opacity-100 ring-0 outline-none border-b-2 border-transparent border-rounded block p-2.5 my-2 w-fit font-oswald ${className}`}
       value={value}
       onChange={onChange}
     />

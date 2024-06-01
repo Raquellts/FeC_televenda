@@ -25,15 +25,15 @@ const SideNavbar = (theme: { theme: Etheme }) => {
         newtheme === Etheme.light
           ? "text-primary bg-container"
           : "text-dark-primary bg-dark-container"
-      } h-full w-50 md:w-full px-3 py-4 shadow-md`}
+      } h-full w-50 lg:w-full px-3 py-4 shadow-md`}
     >
-      <div className="h-90 md:h-full flex flex-col justify-between divide-y divide-tertiary font-oswald uppercase">
+      <div className="h-90 lg:h-full flex flex-col justify-between divide-y divide-tertiary font-oswald uppercase">
         <ul>
           <li>
             {/*----- HOME - TODAS AS EMPRESAS ------*/}
             <a
               href="/home"
-              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGCompany
                 width={width_svg}
@@ -41,14 +41,14 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block md:visible ml-3">
+              <span className="hidden lg:block lg:visible ml-3">
                 Todas as empresas
               </span>
             </a>
             {/*----- ADD CLEINTE - ADICIONAR CLIENTE NOVO ------*/}
             <a
               href="#"
-              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGAddClient
                 width={width_svg}
@@ -56,14 +56,14 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
                 Adicionar cliente
               </span>
             </a>
             {/*----- PENDING - PENDENTES AINDA NÃO LIGADOS ------*/}
             <a
               href="/Pending"
-              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGCircle
                 width={width_svg}
@@ -71,14 +71,14 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
                 Pendentes
               </span>
             </a>
             {/*----- SUSPEND - SUSPENDERAM A COMPRA ------*/}
             <a
               href="/Suspended"
-              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGMenu
                 width={width_svg}
@@ -86,14 +86,14 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
                 Suspensos
               </span>
             </a>
             {/*-----  APPROVED - APROVARAM A COMPRA ------*/}
             <a
               href="/Approved"
-              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGCheck
                 width={width_svg}
@@ -101,14 +101,14 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
                 Compras Aprovadas
               </span>
             </a>
             {/*-----  REJECTED - REJEITARAM A COMPRA ------*/}
             <a
               href="/Rejected"
-              className="flex items-center md:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGCancel
                 width={width_svg}
@@ -116,7 +116,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
                 Recusas
               </span>
             </a>
@@ -127,7 +127,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
           <li>
             <a
               href="/login"
-              className="flex items-center md:justify-start justify-center p-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGLogout
                 width={width_svg}
@@ -135,7 +135,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_one="none"
                 fill_two={fill_Two_svg}
               />
-              <span className="hidden md:block flex-1 ms-3 whitespace-nowrap">
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
                 Logout
               </span>
             </a>

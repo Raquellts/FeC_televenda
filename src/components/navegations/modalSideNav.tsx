@@ -6,6 +6,7 @@ import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
 import useUpdateTheme from "../consts/updateTheme";
 
 const ModalSideNav = (theme: { theme: Etheme }) => {
+  const screenSize = 1024;
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -29,12 +30,12 @@ const ModalSideNav = (theme: { theme: Etheme }) => {
 
   return (
     <>
-      {windowWidth < 768 && (
+      {windowWidth < screenSize && (
         <button
           onClick={toggleSidebar}
           aria-controls="separator-sidebar"
           type="button"
-          className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
           <SVGMenu width={20} height={20} fill_one="none" fill_two="white" />
           <span className="">Menu</span>
@@ -43,7 +44,7 @@ const ModalSideNav = (theme: { theme: Etheme }) => {
       <aside
         id="separator-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
-          isSidebarOpen || windowWidth >= 768
+          isSidebarOpen || windowWidth >= screenSize
             ? "translate-x-0"
             : "-translate-x-full"
         }`}
@@ -53,7 +54,7 @@ const ModalSideNav = (theme: { theme: Etheme }) => {
           <div
             className={`${
               newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-            } md:hidden w-50 flex items-center justify-center`}
+            } lg:hidden w-50 flex items-center justify-center`}
           >
             <button
               type="button"

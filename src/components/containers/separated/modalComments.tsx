@@ -57,6 +57,12 @@ const ModalComments: React.FC<{
     setConfirmSaveOpen(false);
   };
 
+  const handleCloseModal = () => {
+    // Update the comments state with the latest value
+    setTextareaValue(comments);
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       {/*------ botão para abrir o modal ------*/}
@@ -101,7 +107,7 @@ const ModalComments: React.FC<{
             <button
               type="button"
               className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide`}
-              onClick={() => setIsModalOpen(false)}
+              onClick={handleCloseModal}
             >
               <span className="mx-1 uppercase">Voltar</span>
               <SVGCancel

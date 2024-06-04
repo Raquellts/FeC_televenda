@@ -1,75 +1,64 @@
-import { ChangeEvent, useState } from "react";
-import { USERInterface } from "../../../../../InterfaceCNPJ";
+import { useState } from "react";
+import { CNPJInterface } from "../../../../../InterfaceCNPJ";
 import { Etheme } from "../../../../themeConsts";
 import useUpdateTheme from "../../../consts/updateTheme";
 
-const SelectComponent: React.FC<{
+interface SelectStatusProps {
+  cnpj: CNPJInterface;
   theme: { theme: Etheme };
-  cnpj: { cnpj: string };
-  data: USERInterface;
-  setData: React.Dispatch<React.SetStateAction<USERInterface>>;
-}> = ({ cnpj, data, setData, theme }) => {
+}
+
+const SelectStatus: React.FC<SelectStatusProps> = ({ cnpj, theme }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
-  const [selectedStatus, setSelectedStatus] = useState(
-    data?.cnpjInfo.find((c) => c.cnpj === cnpj.cnpj)?.status || ""
-  );
+  const [clicked, setClicked] = useState(false);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setSelectedStatus(value);
-    setData({
-      ...data,
-      cnpjInfo: data?.cnpjInfo.map((c) => {
-        if (c.cnpj === cnpj.cnpj) {
-          return {
-            ...c,
-            status: value,
-          };
-        } else {
-          return c;
-        }
-      }),
-    });
+  const handleClick = () => {
+    setClicked(!clicked);
   };
 
+  /*CLASSES REPETIDAS*/ const spanSelects =
+    "w-full rounded-2xl border-b-2 border-transparent hover:border-tertiary";
+  /*CLASSES REPETIDAS*/ const classSelects = `${
+    newtheme === Etheme.light
+      ? "text-text bg-container"
+      : "text-dark-text bg-dark-container"
+  } w-full text-opacity-70 md:h-[115px] hover:text-opacity-100 rounded-2xl h-inputsize text-center`;
+
   return (
-    <div
-      className={`flex flex-col space-y-4 p-5 ${
-        newtheme === Etheme.light ? "text-text" : "text-dark-text"
-      }`}
-    >
-      {["PENDING", "APPROVED", "REJECTED", "SUSPENDED"].map((option) => (
-        <label
-          key={option}
-          className="relative flex items-center cursor-pointer"
-        >
-          <input
-            className="sr-only peer"
-            name="futuristic-radio"
-            type="radio"
-            value={option}
-            checked={selectedStatus === option}
-            onChange={handleChange}
-          />
-          <div
-            className={`w-6 h-6 bg-transparent border-2 border-${
-              selectedStatus === option ? "red-500" : "gray-300"
-            } rounded-full peer-checked:bg-red-500 peer-checked:border-red-500 peer-hover:shadow-lg peer-hover:shadow-red-500/50 peer-checked:shadow-lg peer-checked:shadow-red-500/50 transition duration-300 ease-in-out`}
-          ></div>
-          <span
-            className={`ml-2 text-${
-              selectedStatus === option ? "white" : "gray-500"
+    cnpj &&
+    cnpj.status && (
+      <div>
+        <label className={`flex items-center my-2 font-oswald ${spanSelects}`}>
+          <select
+            className={`w-full truncate ${classSelects} ${
+              clicked ? "p-3" : "p-0"
             }`}
+            onClick={handleClick}
           >
-            {option}
-          </span>
+            <option value="PENDING">Pendente</option>
+            <option value="APPROVED">Aprovado</option>
+            <option value="REJECTED">Rejeitado</option>
+            <option value="SUSPENDED">Suspenso</option>
+
+            <option value="" disabled selected>
+              {cnpj.status === "PENDING"
+                ? "Pendente"
+                : cnpj.status === "APPROVED"
+                ? "Aprovado"
+                : cnpj.status === "REJECTED"
+                ? "Rejeitado"
+                : cnpj.status === "SUSPENDED"
+                ? "Suspenso"
+                : "Sem status"}
+            </option>
+          </select>
         </label>
-      ))}
-    </div>
+      </div>
+    )
   );
 };
 
-export default SelectComponent;
+export default SelectStatus;

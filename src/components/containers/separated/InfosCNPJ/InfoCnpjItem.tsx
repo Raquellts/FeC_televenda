@@ -61,7 +61,7 @@ const InfoCnpjItem = ({
               fill_one="none"
               fill_two={fill_Two_svg}
             />
-            <p className="ml-1 truncate font-style-xlg">{cnpj.name}</p>
+            <p className="ml-1 truncate font-style-xlg">{cnpj.name_cnpj}</p>
 
             {/* --------------- MODAL DE COMENTARIOS ---------------- */}
           </div>

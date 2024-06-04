@@ -1,12 +1,14 @@
 export type USERInterface = {
-  user: string;
+  user_email: string;
+  user_name: string;
   id: number;
   cnpjInfo: CNPJInterface[];
 };
 
 export type CNPJInterface = {
   cnpj: string;
-  name: string;
+  name_cnpj: string;
+  name_client: string;
   email: string;
   contact: string;
   activity: string;
@@ -14,6 +16,7 @@ export type CNPJInterface = {
   dateForCall: string;
   comments: string;
   veiculos: VeiculoInterface[];
+  vendedor: Vendedor;
 };
 
 export type VeiculoInterface = {
@@ -29,9 +32,9 @@ export type VeiculoInterface = {
   tipo_de_compra: string;
   motivo_da_compra: string;
   prazo: string;
-  participante_da_campanha: string;
-  idodeloVersaoERP: string;
-  urlVersao: string;
+};
+
+export type Vendedor = {
   usuarioLogado: string;
   telefoneUsuarioLogado: string;
   emailUsuarioLogado: string;

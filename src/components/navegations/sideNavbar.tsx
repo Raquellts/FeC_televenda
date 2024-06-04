@@ -9,6 +9,7 @@ import SVGCircle from "../SVGs/CIRCLE/SVGCircle";
 import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
 import SVGCheck from "../SVGs/CIRCLE/SVGCheck";
 import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
+import SVGUser from "../SVGs/USER/SVGUser";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -45,7 +46,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 Todas as empresas
               </span>
             </a>
-            {/*----- ADD CLEINTE - ADICIONAR CLIENTE NOVO ------*/}
+            {/*----- ADD CLINTE - ADICIONAR CLIENTE NOVO ------*/}
             <a
               href="#"
               className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
@@ -125,6 +126,22 @@ const SideNavbar = (theme: { theme: Etheme }) => {
         {/*----------------- RODAPÉ DA SIDEBAR ------------------*/}
         <ul>
           <li>
+            {/*----- USUARIOS - VER TABELA DOS USUARIOS ------*/}
+            <a
+              href="/Users"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+            >
+              <SVGUser
+                width={width_svg}
+                height={height_svg}
+                fill_one="none"
+                fill_two={fill_Two_svg}
+              />
+              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
+                Usuarios
+              </span>
+            </a>
+            {/*----- LOGOUT - VOLTAR AO LOGIN ------*/}
             <a
               href="/login"
               className="flex items-center lg:justify-start justify-center p-2 rounded-lg hover:text-text hover:bg-tertiary group"

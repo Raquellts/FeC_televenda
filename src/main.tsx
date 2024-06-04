@@ -16,7 +16,8 @@ import Suspended from "./Home/suspended";
 import Approved from "./Home/approved";
 import Rejected from "./Home/rejected";
 import Form from "./Form/Index";
-import GetLogin from "./getlogin/index";
+import GetLogin from "./GetLogin/index";
+import Users from "./Users";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/form",
     element: <Form />,
+  },
+  {
+    path: "/Users",
+    element: <Users />,
   },
   {
     path: "/",

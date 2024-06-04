@@ -1,0 +1,9 @@
+--- PAGINAÇÃO DOS CNPJS --- vai ficar 1 milhão de cnpj em uma pagina só? NÂO, fazer PAGINAÇÃO
+
+--- GERADOR DE PDF -- baixar PDFMAKE ( npm i pdfmake ) e fazer uma pasta nos componentes PDFS
+    cada um deles precisa de um arquivo .tsx com os dados para a impressão
+
+--- ADICIONAR FORM VEICULOS + -- e se o cliente quiser outro veiculo? criar botão para
+    adicionar outro veiculo
+
+--- CRIAR CAMPO QUANTIDADE DE VEICULOS -- se o comprador quiser 17 fusca tem que marcar lá

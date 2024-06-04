@@ -20,6 +20,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/components/containers", "APIVeiculos.ts"],
+  "include": [
+    "src",
+    "src/components/containers",
+    "APIVeiculos.ts",
+    "**/*.js",
+    "**/*.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

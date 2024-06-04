@@ -4,6 +4,8 @@ import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/containers/separated/cabecalho";
 import InfosCnpj from "../components/containers/infosCnpj";
+import ButtonTertiary from "../components/buttons/ButtonTertiary";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [theme, setTheme] = useState(themes.activeTheme);
@@ -46,6 +48,14 @@ const Home: React.FC = () => {
       </div>
       <div className="fixed bottom-5 right-4">
         <ButtonTheme theme={theme} setTheme={setTheme} />
+      </div>
+      <div className={`fixed left-4 bottom-6 lg:pl-64 justify-start`}>
+        <ButtonTertiary
+          onClick={() => {}}
+          className={`flex flex-row items-center border-transparent bg-tertiary text-text hover:border-secondary hover:bg-primary font-oswald px-3 py-2 text-[20px]`}
+        >
+          <Link to="/Home">{"<<"}</Link>
+        </ButtonTertiary>
       </div>
     </div>
   );

@@ -7,12 +7,14 @@ type ButtonPrimaryProps = {
   buttonContent: string;
   theme: { theme: Etheme };
   children?: JSX.Element;
+  className?: string;
 };
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
   buttonContent,
   theme,
   children,
+  className,
 }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -27,7 +29,7 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
           : "bg-dark-secondary hover:bg-tertiary hover:border-accent"
       } flex-1 rounded-l-2xl h-10 p-2 my-2 lg:my-5 border-b-2 border-transparent text-center font-oswald ${
         style.button_primary
-      }
+      } ${className}
       `}
     >
       {" "}

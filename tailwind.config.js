@@ -66,6 +66,7 @@ export const theme = {
       "90vh": "90vh",
       //html elements
       inputsize: "43px",
+      svgOnInput: "0.660rem",
     },
   },
 };

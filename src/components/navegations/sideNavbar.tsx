@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../consts/updateTheme";
+import Cookies from "js-cookie";
 // SVGs
 import SVGCompany from "../SVGs/INFO/SVGCompany";
 import SVGAddClient from "../SVGs/USER/SVGAddClient";
@@ -19,6 +20,11 @@ const SideNavbar = (theme: { theme: Etheme }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
+
+  const handleLogout = () => {
+    Cookies.remove("Token");
+    window.location.reload();
+  };
 
   return (
     <div
@@ -144,6 +150,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
             {/*----- LOGOUT - VOLTAR AO LOGIN ------*/}
             <a
               href="/login"
+              onClick={handleLogout}
               className="flex items-center lg:justify-start justify-center p-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGLogout

@@ -5,10 +5,10 @@ import { CNPJInterface } from "../../../../../InterfaceCNPJ";
 import useUpdateTheme from "../../../consts/updateTheme";
 import PDFComponent from "../../PDFS/PDFItemCNPJ";
 import FormClienteCNPJ from "./FormClienteCNPJ";
-import FormVeiculo from "./FormVeiculo";
 import FormVendedor from "./FormVendedor";
 import SelectStatus from "./selectStatus";
 import ButtonTertiary from "../../../buttons/ButtonTertiary";
+import NewFormVeiculo from "./NewFormVeiculo";
 
 const CompleteForm = (theme: { theme: Etheme }) => {
   const location = useLocation();
@@ -41,7 +41,7 @@ const CompleteForm = (theme: { theme: Etheme }) => {
           </div>
         </div>
         <div className={`pb-6`}>
-          <FormVeiculo theme={theme} cnpj={cnpj} />
+          <NewFormVeiculo theme={theme} cnpj={cnpj} />
         </div>
         <div className={`pb-6`}>
           <FormVendedor theme={theme} cnpj={cnpj} />

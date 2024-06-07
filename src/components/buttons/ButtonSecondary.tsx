@@ -8,6 +8,7 @@ interface ButtonSecondaryProps {
   buttonContent: string;
   theme: { theme: Etheme };
   children?: JSX.Element;
+  className?: string;
 }
 
 const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
@@ -15,6 +16,7 @@ const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
   buttonContent,
   theme,
   children,
+  className,
 }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -26,7 +28,7 @@ const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
         newtheme === Etheme.light ? style.light : style.dark
       } text-color-2 button-secondary font-oswald justify-center rounded-r-2xl h-8 p-2 text-center my-3 lg:my-6 small-style ${
         style.button_secondary
-      }`}
+      } ${className}`}
       href={href}
     >
       {buttonContent} {children}

@@ -1,22 +1,21 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import Login from "../Login/index";
 
 const ProtectedRoute = ({
-  Component,
+  component: Component,
   ...rest
 }: {
-  Component: React.ComponentType;
+  component: React.ComponentType;
 }) => {
   const isAuthenticated = !!Cookies.get("Token");
 
   if (!isAuthenticated) {
-    return <Login />;
+    return <Navigate to="/login" replace />;
   }
 
   return (
     <Routes>
-      <Route {...rest} element={<Component />} />
+      <Route path="*" {...rest} element={<Component />} />
     </Routes>
   );
 };

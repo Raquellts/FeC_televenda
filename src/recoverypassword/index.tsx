@@ -9,6 +9,7 @@ import ButtonTheme from "../themeButton";
 import { Etheme, themes } from "../themeConsts";
 import SVGKey from "../components/SVGs/USER/SVGKey";
 import SVGAsterisk from "../components/SVGs/SYMBOLS/SVGAsterisk";
+import baseURL from "../API/API_utils";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -31,7 +32,7 @@ function RecoveryPassword() {
           password: password,
           token: token,
         };
-        const data = await axios.post(url_api + "changepassword", dados);
+        const data = await axios.post(baseURL + "/auth/reset-password", dados);
 
         if (data) {
           navigate("/login");
@@ -143,7 +144,7 @@ function RecoveryPassword() {
                 name=""
                 type="text"
                 placeholder="token"
-                value={confirmPassword}
+                value={token}
                 onChange={(event) => setToken(event.target.value)}
                 theme={{ theme: theme }}
                 className="w-full right-rounded"

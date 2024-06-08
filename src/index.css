@@ -23,14 +23,15 @@
   justify-content: flex-end;
 }
 
+/*--------------- logos ----------------*/
 .logo {
   width: auto;
   height: 350px;
 }
 
-.logo_filter {
-  filter: brightness(0) saturate(100%) invert(71%) sepia(19%) saturate(1153%)
-    hue-rotate(192deg) brightness(91%) contrast(89%);
+.logoDev {
+  width: auto;
+  height: 20px;
 }
 
 select {
@@ -90,4 +91,21 @@ select {
 .border-rounded.left-rounded {
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
+}
+
+/*--------------- FILTERS ----------------*/
+
+.logo_filter {
+  filter: brightness(0) saturate(100%) invert(71%) sepia(19%) saturate(1153%)
+    hue-rotate(192deg) brightness(91%) contrast(89%);
+}
+
+.light_filter {
+  filter: brightness(0) saturate(100%) invert(9%) sepia(24%) saturate(1271%)
+    hue-rotate(175deg) brightness(93%) contrast(84%);
+}
+
+.dark_filter {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(102%) contrast(102%);
 }

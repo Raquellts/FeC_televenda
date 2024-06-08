@@ -8,6 +8,8 @@ import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 import InputPrimary from "../components/containers/separated/InputPrimary";
 import SVGEmail from "../components/SVGs/CONTACT/SVGEmail";
+import { postForgotPassword } from "../API/API_cnpj";
+import LoadingSVG from "../components/SVGs/loadingSVG";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -15,10 +17,31 @@ import SVGEmail from "../components/SVGs/CONTACT/SVGEmail";
 
 function ForgotPassword() {
   /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
-  const handlesubmit = (event: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [msg, setMsg] = useState({ msg: "" });
+  const [form, setForm] = useState({
+    email: "",
+  });
+
+  const handleClick = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
+    await handlesubmit(event); // Pass the event object
   };
 
+  const handlesubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const datamsg = await postForgotPassword(form);
+    setMsg(datamsg);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  };
+  console.log(msg);
   return (
     <div
       className={`full-div overflow-hidden flex items-center justify-center`}
@@ -60,18 +83,38 @@ function ForgotPassword() {
               />
             </div>
             <InputPrimary
-              name=""
+              name="email"
               type="email"
               placeholder="email"
-              value={""}
-              onChange={() => {}}
+              value={form.email}
+              onChange={handleChange}
               theme={{ theme: theme }}
               className="w-full right-rounded"
             />
           </div>
           <div className="w-100">
-            <ButtonPrimary buttonContent="Enviar" theme={{ theme: theme }} />
+            {msg.msg ? (
+              <p className="my-5 text-secondary font-oswald">{msg.msg}</p>
+            ) : (
+              <>
+                {isLoading ? (
+                  <div className="w-100 flex flex-col justify-center items-center">
+                    <LoadingSVG />
+                    <p className="my-5 text-secondary font-oswald mt-[0px]">
+                      Enviando
+                    </p>
+                  </div>
+                ) : (
+                  <ButtonPrimary
+                    onClick={handleClick}
+                    buttonContent="Enviar"
+                    theme={{ theme: theme }}
+                  />
+                )}
+              </>
+            )}
           </div>
+
           <p className="my-5 text-secondary font-oswald">
             Retornar para:
             <ButtonSecondary

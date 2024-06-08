@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axiosWithAuth from "../midleware/axiosWithAuth";
 import ApiError from "../APIError";
-import baseURL from "../../API_cnpj";
+import baseURL from "../API/API_utils";
 //components
-import logo from "../assets/E-statesat.svg";
+import logo from "../assets/SVG/LOGO FILLED.svg";
+import logoDeveloper from "../assets/SVG/stat&sat.svg";
 import Background from "../components/backgrounds/Background";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import InputPrimary from "../components/containers/separated/InputPrimary";
@@ -16,6 +17,7 @@ import ButtonTheme from "../themeButton";
 import { Etheme, themes } from "../themeConsts";
 import SVGUser from "../components/SVGs/USER/SVGUser";
 import SVGKey from "../components/SVGs/USER/SVGKey";
+import Tooltip from "../components/containers/separated/tooltip";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -40,7 +42,7 @@ function Login() {
     try {
       const data = await axiosWithAuth.post(baseURL + "/auth/login", formData);
       if (data) {
-        Cookies.set("Token", data.data.token, { expires: 1 });
+        Cookies.set("Token", data.data.token, { expires: 4 });
         navigate("/");
       }
     } catch (err: unknown) {
@@ -155,6 +157,7 @@ function Login() {
               buttonContent="Entrar"
               theme={{ theme: theme }}
               className="w-full"
+              type="submit"
             />
 
             {/* BOTOES recuperar senha e criar conta VVVV */}
@@ -181,10 +184,53 @@ function Login() {
           </div>
         </form>
       </div>
-      <div className="mx-auto hidden lg:block">
-        <img src={logo} alt="logo" className="logo" />
-
-        <p></p>
+      {/*--------- LOGOS ----------*/}
+      {/*--------- logo de tela grande ------*/}
+      <div className="mx-auto hidden lg:block mt-[8%] text-center">
+        <img
+          src={logo}
+          alt="logo"
+          className={`logo ${
+            theme === Etheme.light ? "light_filter" : "dark_filter"
+          }`}
+        />
+        <p
+          className={`font-inter text-3xl font-style-xlg ${
+            theme === Etheme.light ? "text-dark-text" : "text-text"
+          }`}
+        >
+          Freitas & Coutinho
+        </p>
+        <p
+          className={`font-montserrat font-style-lg ${
+            theme === Etheme.light ? "text-dark-text" : "text-text"
+          }`}
+        >
+          inteligência comercial
+        </p>
+        {/*--------- logo desenvolvedora ------*/}
+        <div className="flex flex-row items-center ms-[16%] mt-40">
+          <p
+            className={`font-oswald ${
+              theme === Etheme.light ? "text-dark-text" : "text-text"
+            }`}
+          >
+            Desenvolvido por
+          </p>
+          <Tooltip
+            message={`EMAIL: statesat@hotmail.com`}
+            theme={theme}
+            className="font-oswald font-style-lg"
+          >
+            <img
+              src={logoDeveloper}
+              alt="logo"
+              className={`logoDev ms-1 ${
+                theme === Etheme.light ? "light_filter" : "dark_filter"
+              }`}
+            />
+          </Tooltip>
+        </div>
       </div>
     </div>
   );

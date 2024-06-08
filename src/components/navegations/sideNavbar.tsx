@@ -39,7 +39,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
           <li>
             {/*----- HOME - TODAS AS EMPRESAS ------*/}
             <a
-              href="/home"
+              href="/"
               className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >
               <SVGCompany

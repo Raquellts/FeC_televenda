@@ -6,8 +6,8 @@ interface InputPrimaryProps {
   name: string;
   type: string;
   placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   theme: { theme: Etheme };
 }

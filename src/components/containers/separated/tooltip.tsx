@@ -27,7 +27,7 @@ export default function Tooltip({
           newtheme === Etheme.light
             ? "text-text bg-container"
             : "text-dark-text bg-dark-container"
-        } absolute top-0 scale-0 transition-all rounded p-2 text-xs group-hover:scale-100 z-50 ${className}`}
+        } absolute bottom-0 scale-0 transition-all rounded p-2 text-xs group-hover:scale-100 z-50 ${className}`}
       >
         {message}
       </span>

@@ -8,6 +8,9 @@ type ButtonPrimaryProps = {
   theme: { theme: Etheme };
   children?: JSX.Element;
   className?: string;
+  type?: "button" | "submit" | "reset" | undefined;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
@@ -15,6 +18,9 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
   theme,
   children,
   className,
+  type,
+  onClick,
+  disabled,
 }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -22,7 +28,9 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
 
   return (
     <button
-      type={"submit"}
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
       className={`${
         newtheme === Etheme.light
           ? "bg-tertiary hover:bg-secondary hover:border-tertiary"

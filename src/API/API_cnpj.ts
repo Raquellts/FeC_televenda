@@ -20,10 +20,10 @@ export const postCommonUser = async (data: CommonUser): Promise<User[]> => {
 };
 
 //ESQUECI A SENHA
-export const postForgotPassword = async (email: string) => {
+export const postForgotPassword = async (emailData: { email: string }) => {
   const response = await axios.post(
     baseURL + "/auth/forgot-password",
-    email,
+    emailData,
     config
   );
   const data: { msg: string } = response.data;

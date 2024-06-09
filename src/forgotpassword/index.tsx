@@ -6,7 +6,7 @@ import ButtonTheme from "../themeButton";
 import { useState } from "react";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
-import InputPrimary from "../components/containers/separated/InputPrimary";
+import InputPrimary from "../components/Elements_for_Forms/InputPrimary";
 import SVGEmail from "../components/SVGs/CONTACT/SVGEmail";
 import { postForgotPassword } from "../API/API_cnpj";
 import LoadingSVG from "../components/SVGs/loadingSVG";
@@ -114,6 +114,15 @@ function ForgotPassword() {
               </>
             )}
           </div>
+
+          <p className="my-5 text-secondary font-oswald">
+            Verificar Token e
+            <ButtonSecondary
+              href="/recovery"
+              buttonContent="CRIAR NOVA SENHA"
+              theme={{ theme: theme }}
+            />
+          </p>
 
           <p className="my-5 text-secondary font-oswald">
             Retornar para:

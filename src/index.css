@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* styles.css */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.titlebarSpace {
+  margin-top: 30px;
+}
 /*--------------- CORPO ----------------*/
 /*--------------- DIVS GERAIS ----------------*/
 
@@ -79,7 +95,7 @@ select {
 
 /*--------------- ROUNDED ----------------*/
 
-.border-rounded:not(.right-rounded):not(.left-rounded) {
+.border-rounded:not(.right-rounded):not(.left-rounded):not(.remove-rounded) {
   border-radius: 1rem !important;
 }
 
@@ -91,6 +107,10 @@ select {
 .border-rounded.left-rounded {
   border-top-left-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
+}
+
+.border-rounded.remove-rounded {
+  border-radius: 0 !important;
 }
 
 /*--------------- FILTERS ----------------*/

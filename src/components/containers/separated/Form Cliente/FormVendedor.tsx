@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Etheme } from "../../../../themeConsts";
 import { CNPJInterface } from "../../../../../InterfaceCNPJ";
-import InputPrimary from "../InputPrimary";
+import InputPrimary from "../../../Elements_for_Forms/InputPrimary";
 import useUpdateTheme from "../../../consts/updateTheme";
 
 interface FormVendedorProps {

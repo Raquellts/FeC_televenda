@@ -1,7 +1,7 @@
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
-import SVGpdf from "../../SVGs/INFO/SVGpdf";
+//import SVGpdf from "../../SVGs/INFO/SVGpdf";
 import { CNPJInterface } from "../../../../InterfaceCNPJ";
 import SVGpdfDownload from "../../SVGs/INFO/SVGpdfDownload";
 
@@ -312,12 +312,12 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
     return { openPdf, downloadPdf };
   };
 
-  const { openPdf, downloadPdf } = generatePDF();
+  const { downloadPdf } = generatePDF();
 
   // FUNCAO QUE ABRE OU BAIXA O PDF ------ BOTÕES
   return (
     <div className="flex flex-row">
-      <div className="px-1">
+      {/*<div className="px-1">
         <ButtonTertiary
           onClick={openPdf}
           className={`flex flex-row items-center border-transparent bg-blue-500 text-text hover:border-secondary hover:bg-primary font-oswald p-1`}
@@ -332,17 +332,17 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
             />
           </>
         </ButtonTertiary>
-      </div>
+      </div>*/}
 
       <ButtonTertiary
         onClick={downloadPdf}
         className={`flex flex-row items-center border-transparent bg-violet-700 text-text hover:border-secondary hover:bg-primary font-oswald p-1`}
       >
         <>
-          <p className="mx-1 text-sm hidden md:block">BAIXAR</p>
+          <p className="mx-1 hidden md:block">Download</p>
           <SVGpdfDownload
-            width={26}
-            height={26}
+            width={20}
+            height={20}
             fill_one="none"
             fill_two="currentColor"
           />

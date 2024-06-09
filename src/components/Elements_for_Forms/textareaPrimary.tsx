@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Etheme } from "../../../themeConsts";
-import useUpdateTheme from "../../consts/updateTheme";
+import { Etheme } from "../../themeConsts";
+import useUpdateTheme from "../consts/updateTheme";
 
 interface TextareaPrimaryProps {
+  required?: boolean;
   name: string;
   value: string;
   placeholder?: string;
@@ -14,6 +15,7 @@ interface TextareaPrimaryProps {
 }
 
 const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
+  required,
   name,
   value,
   placeholder,
@@ -33,9 +35,9 @@ const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
 
   return (
     <textarea
+      required={required}
       name={name}
       placeholder={placeholder}
-      required
       className={`${
         newtheme === Etheme.light
           ? "bg-container focus:bg-gray-700 focus:border-primary hover:border-tertiary placeholder-text"

@@ -25,7 +25,7 @@ const CompleteForm = (theme: { theme: Etheme }) => {
       } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full bg-opacity-50`}
     >
       {/*---- Botão de gerar PDF----*/}
-      <div className={`absolute right-0 top-0 mt-5 mr-4`}>
+      <div className={`fixed lg:ml-64 left-5 bottom-0 mb-6`}>
         <PDFComponent cnpj={cnpj} />
       </div>
       <div className={`divide-y divide-secondary divide-opacity-50 p-2`}>

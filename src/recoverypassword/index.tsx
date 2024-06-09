@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
-import InputPrimary from "../components/containers/separated/InputPrimary";
+import InputPrimary from "../components/Elements_for_Forms/InputPrimary";
 import ButtonTheme from "../themeButton";
 import { Etheme, themes } from "../themeConsts";
 import SVGKey from "../components/SVGs/USER/SVGKey";

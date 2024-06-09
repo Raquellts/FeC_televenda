@@ -1,0 +1,16 @@
+/* TitleBar.css */
+.title-bar {
+  z-index: 999;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  padding: 0 10px;
+  cursor: pointer;
+}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { USERInterface } from "../../../../InterfaceCNPJ";
 import SVGCancel from "../../SVGs/CIRCLE/SVGCancel";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
-import TextareaPrimary from "./textareaPrimary";
+import TextareaPrimary from "../../Elements_for_Forms/textareaPrimary";
 import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../consts/updateTheme";
 import SVGComments from "../../SVGs/INFO/SVGComments";

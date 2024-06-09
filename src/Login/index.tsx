@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import axiosWithAuth from "../midleware/axiosWithAuth";
+import axios from "axios";
 import ApiError from "../APIError";
 import baseURL from "../API/API_utils";
 //components
@@ -9,7 +8,7 @@ import logo from "../assets/SVG/LOGO FILLED.svg";
 import logoDeveloper from "../assets/SVG/stat&sat.svg";
 import Background from "../components/backgrounds/Background";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
-import InputPrimary from "../components/containers/separated/InputPrimary";
+import InputPrimary from "../components/Elements_for_Forms/InputPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 //styles
 import "../assets/font.css";
@@ -37,12 +36,13 @@ function Login() {
   });
   const navigate = useNavigate();
 
-  const handlesubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const data = await axiosWithAuth.post(baseURL + "/auth/login", formData);
+      const data = await axios.post(baseURL + "/auth/login", formData);
       if (data) {
-        Cookies.set("Token", data.data.token, { expires: 4 });
+        // Use Electron's IPC mechanism to set the cookie
+        window.electron.setCookie("Token", data.data.token, 4);
         navigate("/");
       }
     } catch (err: unknown) {
@@ -50,7 +50,6 @@ function Login() {
         const apiError = err as ApiError;
         setError(apiError.response.data.message);
       } else {
-        // Handle other types of errors or re-throw
         throw err;
       }
     }
@@ -70,7 +69,7 @@ function Login() {
         <p>{error ? error : null}</p>
 
         <form
-          onSubmit={handlesubmit}
+          onSubmit={handleSubmit}
           className="flex-account md:p-20 p-10 text-center overflow-hidden"
         >
           {/*------------- LOGO DE TELA MENOR --- LG:HIDDEN -------------*/}

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Etheme } from "../../../themeConsts";
-import useUpdateTheme from "../../consts/updateTheme";
+import { Etheme } from "../../themeConsts";
+import useUpdateTheme from "../consts/updateTheme";
 
 interface InputPrimaryProps {
+  required?: boolean;
   name: string;
   type: string;
   placeholder: string;
@@ -12,6 +13,7 @@ interface InputPrimaryProps {
   theme: { theme: Etheme };
 }
 const InputPrimary: React.FC<InputPrimaryProps> = ({
+  required,
   name,
   type,
   placeholder,
@@ -26,6 +28,7 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
 
   return (
     <input
+      required={required}
       name={name}
       type={type}
       placeholder={placeholder}

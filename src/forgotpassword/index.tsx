@@ -106,7 +106,7 @@ function ForgotPassword() {
                   </div>
                 ) : (
                   <ButtonPrimary
-                    onClick={handleClick}
+                    onClick={() => handleClick}
                     buttonContent="Enviar"
                     theme={{ theme: theme }}
                   />
@@ -114,15 +114,6 @@ function ForgotPassword() {
               </>
             )}
           </div>
-
-          <p className="my-5 text-secondary font-oswald">
-            Verificar Token e
-            <ButtonSecondary
-              href="/recovery"
-              buttonContent="CRIAR NOVA SENHA"
-              theme={{ theme: theme }}
-            />
-          </p>
 
           <p className="my-5 text-secondary font-oswald">
             Retornar para:

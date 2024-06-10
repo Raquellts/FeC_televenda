@@ -16,11 +16,7 @@ import RecoveryPassword from "./recoverypassword";
 import ForgotPassword from "./forgotpassword";
 
 //protected
-import Home from "./Home/index";
-import Pending from "./Home/pending";
-import Suspended from "./Home/suspended";
-import Approved from "./Home/approved";
-import Rejected from "./Home/rejected";
+import { Pending, Suspended, Approved, Rejected, All } from "./Home/filters";
 import Form from "./Form/Index";
 import Users from "./Users";
 
@@ -47,7 +43,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <ProtectRoute component={Home} />,
+    element: <ProtectRoute component={All} />,
   },
   {
     path: "/Pending",

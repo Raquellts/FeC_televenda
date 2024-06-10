@@ -1,9 +1,9 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
-//import SVGpdf from "../../SVGs/INFO/SVGpdf";
 import { CNPJInterface } from "../../../../InterfaceCNPJ";
 import SVGpdfDownload from "../../SVGs/INFO/SVGpdfDownload";
+import SVGpdf from "../../SVGs/INFO/SVGpdf";
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
@@ -312,31 +312,31 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
     return { openPdf, downloadPdf };
   };
 
-  const { downloadPdf } = generatePDF();
+  const { openPdf, downloadPdf } = generatePDF();
 
   // FUNCAO QUE ABRE OU BAIXA O PDF ------ BOTÕES
   return (
     <div className="flex flex-row">
-      {/*<div className="px-1">
+      <div className="px-1">
         <ButtonTertiary
           onClick={openPdf}
-          className={`flex flex-row items-center border-transparent bg-blue-500 text-text hover:border-secondary hover:bg-primary font-oswald p-1`}
+          className={`flex flex-row items-center border-transparent text-text hover:border-secondary hover:bg-primary font-oswald p-1 bg-blue-500`}
         >
           <>
-            <p className="mx-1 text-sm hidden md:block">VER PDF</p>
+            <p className="mx-1 hidden md:block">Ver PDF</p>
             <SVGpdf
-              width={26}
-              height={26}
+              width={20}
+              height={20}
               fill_one="none"
               fill_two="currentColor"
             />
           </>
         </ButtonTertiary>
-      </div>*/}
+      </div>
 
       <ButtonTertiary
         onClick={downloadPdf}
-        className={`flex flex-row items-center border-transparent bg-violet-700 text-text hover:border-secondary hover:bg-primary font-oswald p-1`}
+        className={`flex flex-row items-center border-transparent text-text hover:border-secondary hover:bg-primary font-oswald p-1 bg-violet-700`}
       >
         <>
           <p className="mx-1 hidden md:block">Download</p>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
-import CompleteForm from "../components/containers/separated/Form Cliente/CompleteFormulario";
+import CompleteForm from "./Components/CompleteFormulario";
 import Cabecalho from "../components/navegations/cabecalho";
 
 function Form() {

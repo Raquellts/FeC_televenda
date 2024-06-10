@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SVGDateConfirmed from "../../../SVGs/DATE/SVGDateConfirmed";
-import useUpdateTheme from "../../../consts/updateTheme";
-import { Etheme } from "../../../../themeConsts";
-import SVGDateNeed from "../../../SVGs/DATE/SVGDateNeed";
-import SVGDateNotNeed from "../../../SVGs/DATE/SVGDateNotNeed";
-import Tooltip from "../tooltip";
+import Tooltip from "../../../components/containers/separated/tooltip";
+import SVGDateConfirmed from "../../../components/SVGs/DATE/SVGDateConfirmed";
+import SVGDateNeed from "../../../components/SVGs/DATE/SVGDateNeed";
+import SVGDateNotNeed from "../../../components/SVGs/DATE/SVGDateNotNeed";
+import { Etheme } from "../../../themeConsts";
+import useUpdateTheme from "../../../components/consts/updateTheme";
 
 type DateProps = {
   status: string;

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CNPJInterface } from "../../../../../InterfaceCNPJ";
-import { Etheme } from "../../../../themeConsts";
-import useUpdateTheme from "../../../consts/updateTheme";
+import { CNPJInterface } from "../../../InterfaceCNPJ";
+import { Etheme } from "../../themeConsts";
+import useUpdateTheme from "../../components/consts/updateTheme";
 
 interface SelectStatusProps {
   cnpj: CNPJInterface;

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { CNPJInterface, USERInterface } from "../../../../../InterfaceCNPJ";
-import { Etheme } from "../../../../themeConsts";
-import SVGBadge from "../../../SVGs/USER/SVGBadge";
-import useUpdateTheme from "../../../consts/updateTheme";
-import ModalComments from "../modalComments";
+import { CNPJInterface, USERInterface } from "../../../../InterfaceCNPJ";
+import { Etheme } from "../../../themeConsts";
+import SVGBadge from "../../../components/SVGs/USER/SVGBadge";
 import Status from "./partStatus";
-import style from "../../infosCnpj.module.css";
-import SVGPhoneCall from "../../../SVGs/PHONE/SVGPhoneCall";
-import SVGEmail from "../../../SVGs/CONTACT/SVGEmail";
+import style from "../infosCnpj.module.css";
 import DateToCall from "./partDateCall";
 import EditButton from "./partEditButton";
-import ClipboardButton from "../../../buttons/Clipboard";
+import useUpdateTheme from "../../../components/consts/updateTheme";
+import ModalComments from "../../../components/containers/separated/modalComments";
+import SVGPhoneCall from "../../../components/SVGs/PHONE/SVGPhoneCall";
+import ClipboardButton from "../../../components/buttons/Clipboard";
+import SVGEmail from "../../../components/SVGs/CONTACT/SVGEmail";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import useUpdateTheme from "../../../consts/updateTheme";
-import { Etheme } from "../../../../themeConsts";
+import useUpdateTheme from "../../../components/consts/updateTheme";
+import { CNPJInterface } from "../../../../InterfaceCNPJ";
+import { Etheme } from "../../../themeConsts";
+import SVGEditFile from "../../../components/SVGs/INFO/SVGEditFile";
 import { Link } from "react-router-dom";
-import { CNPJInterface } from "../../../../../InterfaceCNPJ";
-import SVGEditFile from "../../../SVGs/INFO/SVGEditFile";
 
 type DateProps = {
   cnpj: CNPJInterface;

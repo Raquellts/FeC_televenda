@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 //Interfaces
-import { useDataState } from "../consts/dataUpdateCNPJ";
+import { useDataState } from "../../components/consts/dataUpdateCNPJ";
 import { Etheme } from "../../themeConsts";
 
 //styles
-import useUpdateTheme from "../consts/updateTheme";
-import InfoCnpjItem from "./separated/InfosCNPJ/InfoCnpjItem";
+import useUpdateTheme from "../../components/consts/updateTheme";
+import InfoCnpjItem from "./Components/InfoCnpjItem";
 
 const InfosCnpj = ({
   statustext,

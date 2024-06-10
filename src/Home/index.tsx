@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Etheme, themes } from "../themeConsts";
-import InfosCnpj from "../components/containers/infosCnpj";
+import InfosCnpj from "./Components/infosCnpj";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/navegations/cabecalho";
 
-const Home: React.FC = () => {
+interface HomeProps {
+  filter: string | null;
+  pageName: string;
+}
+
+const Home: React.FC<HomeProps> = ({ filter, pageName }) => {
   const [theme, setTheme] = useState(themes.activeTheme);
-  const filter = null;
-  const pageName = "Todas as empresas";
 
   return (
     <div

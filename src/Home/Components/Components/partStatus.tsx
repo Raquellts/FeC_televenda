@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import SVGPending from "../../../SVGs/CIRCLE/SVGCircle";
-import SVGApproved from "../../../SVGs/CIRCLE/SVGCheck";
-import SVGRejected from "../../../SVGs/CIRCLE/SVGCancel";
-import SVGSuspended from "../../../SVGs/CIRCLE/SVGMenu";
-import Tooltip from "../tooltip";
-import { Etheme } from "../../../../themeConsts";
-import useUpdateTheme from "../../../consts/updateTheme";
+import SVGPending from "../../../components/SVGs/CIRCLE/SVGCircle";
+import SVGApproved from "../../../components/SVGs/CIRCLE/SVGCheck";
+import SVGRejected from "../../../components/SVGs/CIRCLE/SVGCancel";
+import SVGSuspended from "../../../components/SVGs/CIRCLE/SVGMenu";
+import useUpdateTheme from "../../../components/consts/updateTheme";
+import { Etheme } from "../../../themeConsts";
+import Tooltip from "../../../components/containers/separated/tooltip";
 
 type StatusProps = {
   status: string;

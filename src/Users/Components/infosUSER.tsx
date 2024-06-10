@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 //Interfaces
-import { useDataState } from "../consts/dataUpdateCNPJ";
+import { useDataState } from "../../components/consts/dataUpdateCNPJ";
 import { Etheme } from "../../themeConsts";
 
 //styles
-import useUpdateTheme from "../consts/updateTheme";
-import InfoUSERItem from "./separated/Users LIst/InfoUSERItem";
+import useUpdateTheme from "../../components/consts/updateTheme";
+import InfoUSERItem from "./InfoUSERItem";
 
 const InfosUSER = ({ theme }: { theme: Etheme }) => {
   /*THEME*/ const themes = theme;

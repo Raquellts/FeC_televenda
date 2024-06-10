@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Etheme } from "../../../../themeConsts";
-import { CNPJInterface } from "../../../../../InterfaceCNPJ";
-import useUpdateTheme from "../../../consts/updateTheme";
+import { Etheme } from "../../themeConsts";
+import { CNPJInterface } from "../../../InterfaceCNPJ";
+import useUpdateTheme from "../../components/consts/updateTheme";
 import FormVeiculo from "./FormVeiculo";
 
 interface NewFormVeiculoProps {
@@ -9,7 +9,7 @@ interface NewFormVeiculoProps {
   theme: { theme: Etheme };
 }
 
-const NewFormVeiculo: React.FC<NewFormVeiculoProps> = ({ cnpj, theme }) => {
+const NewFormVeiculo: React.FC<NewFormVeiculoProps> = ({ theme }) => {
   // THEME
   const themes = theme.theme;
   const [newtheme, setNewtheme] = useState(themes);

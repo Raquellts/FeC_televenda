@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
-import InfosUSER from "../components/containers/infosUSER";
 import SVGUser from "../components/SVGs/USER/SVGUser";
+import InfosUSER from "./Components/infosUSER";
 
 const Home: React.FC = () => {
   const [theme, setTheme] = useState(themes.activeTheme);

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { url_api } from "../../variaveis_ambiente";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";

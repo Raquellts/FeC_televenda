@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { USERInterface } from "../../../../../InterfaceCNPJ";
-import { Etheme } from "../../../../themeConsts";
-import useUpdateTheme from "../../../consts/updateTheme";
-import style from "../../infosCnpj.module.css";
-import SVGEmail from "../../../SVGs/CONTACT/SVGEmail";
-import SVGUser from "../../../SVGs/USER/SVGUser";
+import style from "../..//Home/Components/InfosCnpj.module.css";
+import SVGEmail from "../../components/SVGs/CONTACT/SVGEmail";
+import SVGUser from "../../components/SVGs/USER/SVGUser";
+import { Etheme } from "../../themeConsts";
+import { USERInterface } from "../../../InterfaceCNPJ";
+import useUpdateTheme from "../../components/consts/updateTheme";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;

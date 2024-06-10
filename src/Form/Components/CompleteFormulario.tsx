@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Etheme } from "../../../../themeConsts";
+import { Etheme } from "../../themeConsts";
 import { useLocation } from "react-router-dom";
-import { CNPJInterface } from "../../../../../InterfaceCNPJ";
-import useUpdateTheme from "../../../consts/updateTheme";
-import PDFComponent from "../../PDFS/PDFItemCNPJ";
+import { CNPJInterface } from "../../../InterfaceCNPJ";
+import useUpdateTheme from "../../components/consts/updateTheme";
+import PDFComponent from "../../components/containers/PDFS/PDFItemCNPJ";
 import FormClienteCNPJ from "./FormClienteCNPJ";
 import FormVendedor from "./FormVendedor";
 import SelectStatus from "./selectStatus";
-import ButtonTertiary from "../../../buttons/ButtonTertiary";
+import ButtonTertiary from "../../components/buttons/ButtonTertiary";
 import NewFormVeiculo from "./NewFormVeiculo";
 
 const CompleteForm = (theme: { theme: Etheme }) => {
@@ -25,7 +25,7 @@ const CompleteForm = (theme: { theme: Etheme }) => {
       } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full bg-opacity-50`}
     >
       {/*---- Botão de gerar PDF----*/}
-      <div className={`fixed lg:ml-64 left-5 bottom-0 mb-6`}>
+      <div className={`fixed lg:ml-64 left-3 bottom-0 mb-6`}>
         <PDFComponent cnpj={cnpj} />
       </div>
       <div className={`divide-y divide-secondary divide-opacity-50 p-2`}>

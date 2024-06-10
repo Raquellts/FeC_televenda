@@ -9,7 +9,7 @@ interface NewFormVeiculoProps {
   theme: { theme: Etheme };
 }
 
-const NewFormVeiculo: React.FC<NewFormVeiculoProps> = ({ theme }) => {
+const NewFormVeiculo: React.FC<NewFormVeiculoProps> = ({ cnpj, theme }) => {
   // THEME
   const themes = theme.theme;
   const [newtheme, setNewtheme] = useState(themes);

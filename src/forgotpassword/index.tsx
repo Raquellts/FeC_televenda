@@ -106,7 +106,7 @@ function ForgotPassword() {
                   </div>
                 ) : (
                   <ButtonPrimary
-                    onClick={() => handleClick}
+                    onClick={handleClick}
                     buttonContent="Enviar"
                     theme={{ theme: theme }}
                   />

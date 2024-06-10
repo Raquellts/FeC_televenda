@@ -4,8 +4,7 @@ import cnpjlist from "../../../cnpj";
 
 export const useDataState = () => {
   const [data, setData] = useState<USERInterface>({
-    user_name: "",
-    user_email: "",
+    user: "",
     id: 0,
     cnpjInfo: [],
   });

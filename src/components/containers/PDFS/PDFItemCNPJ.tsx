@@ -1,5 +1,5 @@
-import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
 //import SVGpdf from "../../SVGs/INFO/SVGpdf";
 import { CNPJInterface } from "../../../../InterfaceCNPJ";

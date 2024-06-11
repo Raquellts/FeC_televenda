@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import style from "./buttonPrimary.module.css";
-import useUpdateTheme from "../consts/updateTheme";
+import useUpdateTheme from "../Hooks/updateTheme";
 
 type ButtonPrimaryProps = {
   buttonContent: string;
@@ -40,7 +40,6 @@ const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
       } ${className}
       `}
     >
-      {" "}
       {children}
       <span>{buttonContent}</span>
     </button>

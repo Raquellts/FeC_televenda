@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./titlebar.css";
-import useUpdateTheme from "../consts/updateTheme";
+import useUpdateTheme from "../Hooks/updateTheme";
 import { Etheme } from "../../themeConsts";
 
 const TitleBar = (theme: { theme: Etheme }) => {

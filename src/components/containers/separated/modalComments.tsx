@@ -1,17 +1,18 @@
 import { useState } from "react";
-import { USERInterface } from "../../../../InterfaceCNPJ";
 import SVGCancel from "../../SVGs/CIRCLE/SVGCancel";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
 import TextareaPrimary from "../../Elements_for_Forms/textareaPrimary";
 import { Etheme } from "../../../themeConsts";
-import useUpdateTheme from "../../consts/updateTheme";
+import useUpdateTheme from "../../Hooks/updateTheme";
 import SVGComments from "../../SVGs/INFO/SVGComments";
+import { Cnpj } from "../../../API/API_utils";
+import ConfirmationModal from "./confirmationModal";
 
 const ModalComments: React.FC<{
   theme: { theme: Etheme };
-  cnpj: { cnpj: string };
-  data: USERInterface;
-  setData: React.Dispatch<React.SetStateAction<USERInterface>>;
+  cnpj: { cnpj: number };
+  data: Cnpj[];
+  setData: React.Dispatch<React.SetStateAction<Cnpj[]>>;
   comments: string;
 }> = ({ cnpj, data, setData, comments, theme }) => {
   /*THEME*/ const themes = theme.theme;
@@ -35,9 +36,8 @@ const ModalComments: React.FC<{
 
   const handleConfirmSave = () => {
     // Save changes
-    setData({
-      ...data,
-      cnpjInfo: data?.cnpjInfo.map((c) => {
+    setData(
+      data.map((c) => {
         if (c.cnpj === cnpj.cnpj) {
           return {
             ...c,
@@ -46,8 +46,8 @@ const ModalComments: React.FC<{
         } else {
           return c;
         }
-      }),
-    });
+      })
+    );
     setIsModalOpen(false);
     setConfirmSaveOpen(false);
   };
@@ -145,28 +145,12 @@ const ModalComments: React.FC<{
             </div>
 
             {/* modal para confirmação do salvamento */}
-            {isModalOpen && (
-              <div className={`${isConfirmSave ? "" : "hidden"} modal`}>
-                <div className="flex flex-col items-center justify-center w-full mb-3">
-                  <p>Tem certeza que deseja salvar as alterações?</p>
-                  <p className="text-xs">
-                    ( Isso é <span className="uppercase">irreversível</span> )
-                  </p>
-                </div>
-                <div className="flex items-center justify-center w-full">
-                  <ButtonTertiary
-                    buttonContent="✔ Salvar"
-                    onClick={handleConfirmSave}
-                    className="w-1/2 py-2 mx-1 bg-green-600 text-text border-green-700 hover:bg-green-400 my-1 tracking-wide uppercase"
-                  />
-                  <ButtonTertiary
-                    buttonContent="✖ Cancelar"
-                    onClick={handleCancelSave}
-                    className="w-1/2 py-2 mx-1 bg-red-600 text-text border-red-700 hover:bg-red-400 my-1 tracking-wide uppercase"
-                  />
-                </div>
-              </div>
-            )}
+            <ConfirmationModal
+              theme={theme}
+              isOpen={isConfirmSave}
+              onConfirm={handleConfirmSave}
+              onCancel={handleCancelSave}
+            />
           </div>
         </div>
       </div>

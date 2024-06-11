@@ -1,6 +1,6 @@
 import React, { useState, MouseEvent } from "react";
 import { Etheme } from "../../themeConsts";
-import useUpdateTheme from "../consts/updateTheme";
+import useUpdateTheme from "../Hooks/updateTheme";
 import SVGClipboard from "../SVGs/INFO/SVGClipboard";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";

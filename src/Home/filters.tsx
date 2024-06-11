@@ -8,28 +8,28 @@ export const All = () => {
 };
 
 export const Pending = () => {
-  const filter = "PENDING";
+  const filter = 1;
   const pageName = "Pendentes";
 
   return <Home filter={filter} pageName={pageName} />;
 };
 
-export const Approved = () => {
-  const filter = "APPROVED";
-  const pageName = "Aprovadas";
+export const Confirmed = () => {
+  const filter = 2;
+  const pageName = "Confirmado";
 
   return <Home filter={filter} pageName={pageName} />;
 };
 
 export const Rejected = () => {
-  const filter = "REJECTED";
+  const filter = 3;
   const pageName = "Rejeitadas";
 
   return <Home filter={filter} pageName={pageName} />;
 };
 
 export const Suspended = () => {
-  const filter = "SUSPENDED";
+  const filter = 4;
   const pageName = "Suspensos";
 
   return <Home filter={filter} pageName={pageName} />;

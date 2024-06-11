@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import InputPrimary from "../../components/Elements_for_Forms/InputPrimary";
 import TextareaPrimary from "../../components/Elements_for_Forms/textareaPrimary";
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
 
 interface FormVeiculoProps {
   theme: { theme: Etheme };

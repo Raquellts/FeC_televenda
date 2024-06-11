@@ -5,7 +5,7 @@ interface ButtonSecondaryProps {
   buttonContent?: string;
   className?: string;
   children?: JSX.Element;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const ButtonTertiary: React.FC<ButtonSecondaryProps> = ({

@@ -1,18 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
-import InputPrimary from "../components/Elements_for_Forms/InputPrimary";
 import ButtonTheme from "../themeButton";
 import { Etheme, themes } from "../themeConsts";
-import SVGKey from "../components/SVGs/USER/SVGKey";
-import SVGAsterisk from "../components/SVGs/SYMBOLS/SVGAsterisk";
-import baseURL from "../API/API_utils";
-
-/*SVG CONSTS*/ const fill_Two_svg = "currentColor";
-/*SVG CONSTS*/ const width_svg = 24;
-/*SVG CONSTS*/ const height_svg = 24;
+import InputRecovery from "./Components/InputsRecovery";
+import hookHandleSubmit from "./Hooks/handleSubmit";
 
 function RecoveryPassword() {
   /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
@@ -21,138 +14,65 @@ function RecoveryPassword() {
   const [token, setToken] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errormessage, setErrorMessage] = useState("");
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    try {
-      if (password === confirmPassword) {
-        const dados = {
-          password: password,
-          token: token,
-        };
-        const data = await axios.post(baseURL + "/auth/reset-password", dados);
+  const handleSubmit = (event: React.FormEvent) => {
+    hookHandleSubmit(
+      event,
+      password,
+      confirmPassword,
+      token,
+      setErrorMessage,
+      setSuccess,
+      navigate
+    );
+  };
 
-        if (data) {
-          navigate("/login");
-        }
-      } else {
-        setErrorMessage("As senhas precisam ser iguais");
-      }
-    } catch (err: any) {
-      setErrorMessage(err.response.data.message);
-    }
+  const areInputsFilled = () => {
+    return password && confirmPassword && token;
   };
 
   return (
     <>
-      {errormessage && <p>{errormessage}</p>}{" "}
       <div
         className={`full-div overflow-hidden flex items-center justify-center`}
       >
         <div
           className={`${
             theme === Etheme.light ? "bg-background" : "bg-dark-background"
-          }  h-5/6 2xl:w-1/2 lg:w-2/3 sm:w-5/6 w-90vw flex-account rounded-2xl z-10`}
+          }  h-5/6 2xl:w-1/2 lg:w-2/3 sm:w-5/6 w-90vw flex-account justify-center items-center rounded-2xl z-10`}
         >
           <form
             onSubmit={handleSubmit}
-            className="flex-account md:p-20 p-10 text-center overflow-hidden"
+            className="flex-account text-center overflow-hidden w-full md:px-20 px-10"
           >
             <p className="mb-5 uppercase text-primary font-oswald header-style">
               Nova senha
             </p>
-
-            {/*------------- NOVA SENHA --- SVG KEY -------------*/}
-            <div
-              className={`${
-                theme === Etheme.light ? "text-primary" : "text-dark-primary"
-              } flex items-center`}
-            >
-              <div
-                className={`${
-                  theme === Etheme.light ? "bg-container" : "bg-dark-container"
-                } p-svgOnInput rounded-s-2xl`}
-              >
-                <SVGKey
-                  width={width_svg}
-                  height={height_svg}
-                  fill_one="none"
-                  fill_two={fill_Two_svg}
-                />
-              </div>
-              <InputPrimary
-                name="password"
-                type="password"
-                placeholder="nova senha"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                theme={{ theme: theme }}
-                className="w-full right-rounded"
-              />
-            </div>
-
-            {/*------------- REPETIR NOVA SENHA --- SVG KEY -------------*/}
-            <div
-              className={`${
-                theme === Etheme.light ? "text-primary" : "text-dark-primary"
-              } flex items-center`}
-            >
-              <div
-                className={`${
-                  theme === Etheme.light ? "bg-container" : "bg-dark-container"
-                } p-svgOnInput rounded-s-2xl`}
-              >
-                <SVGKey
-                  width={width_svg}
-                  height={height_svg}
-                  fill_one="none"
-                  fill_two={fill_Two_svg}
-                />
-              </div>
-              <InputPrimary
-                name="confirm-password"
-                type="password"
-                placeholder="confirmar senha"
-                value={confirmPassword}
-                onChange={(event) => setConfirmPassword(event.target.value)}
-                theme={{ theme: theme }}
-                className="w-full right-rounded"
-              />
-            </div>
-
-            {/*------------- TOKEN DE ACESSO --- SVG ASTERISK -------------*/}
-            <div
-              className={`${
-                theme === Etheme.light ? "text-primary" : "text-dark-primary"
-              } flex items-center`}
-            >
-              <div
-                className={`${
-                  theme === Etheme.light ? "bg-container" : "bg-dark-container"
-                } p-svgOnInput rounded-s-2xl`}
-              >
-                <SVGAsterisk
-                  width={width_svg}
-                  height={height_svg}
-                  fill_one="none"
-                  fill_two={fill_Two_svg}
-                />
-              </div>
-              <InputPrimary
-                name=""
-                type="text"
-                placeholder="token"
-                value={token}
-                onChange={(event) => setToken(event.target.value)}
-                theme={{ theme: theme }}
-                className="w-full right-rounded"
-              />
-            </div>
+            <InputRecovery
+              theme={{ theme: theme }}
+              password={password}
+              setPassword={setPassword}
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+              token={token}
+              setToken={setToken}
+              errormessage={errormessage}
+            />
 
             {/*------------- BOTÃO DE ENVIAR ----------*/}
             <div>
-              <ButtonPrimary buttonContent="Enviar" theme={{ theme: theme }} />
+              {success ? (
+                <p className="my-5 font-oswald text-green-500">Senha trocada</p>
+              ) : (
+                <ButtonPrimary
+                  type="submit"
+                  buttonContent={"Enviar"}
+                  theme={{ theme: theme }}
+                  disabled={success || !areInputsFilled()} // disable button when message is shown or inputs are not filled
+                />
+              )}
             </div>
 
             <p className="my-5">

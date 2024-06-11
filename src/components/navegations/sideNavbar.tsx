@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Etheme } from "../../themeConsts";
-import useUpdateTheme from "../consts/updateTheme";
+import useUpdateTheme from "../Hooks/updateTheme";
 import Cookies from "js-cookie";
 // SVGs
 import SVGCompany from "../SVGs/INFO/SVGCompany";

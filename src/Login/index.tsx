@@ -65,7 +65,7 @@ function Login() {
       <div
         className={`${
           theme === Etheme.light ? "bg-background" : "bg-dark-background"
-        } lg:h-100 h-90 xl:w-2/5 lg:w-1/2 sm:w-5/6 w-90vw lg:m-0 flex-account rounded-2xl lg:rounded-none z-10`}
+        } lg:h-100 h-90 xl:w-2/5 lg:w-1/2 sm:w-5/6 w-90vw lg:m-0 flex-account rounded-2xl lg:rounded-none z-10 justify-center`}
       >
         <p>{error ? error : null}</p>
 
@@ -110,7 +110,7 @@ function Login() {
             <InputPrimary
               name=""
               type="email"
-              placeholder="email ou usuário"
+              placeholder="Email ou Usuário"
               value={formData.username}
               onChange={(e) =>
                 setFormData({ ...formData, username: e.target.value })
@@ -141,7 +141,7 @@ function Login() {
             <InputPrimary
               name=""
               type="password"
-              placeholder="senha"
+              placeholder="Senha"
               value={formData.password}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
@@ -169,7 +169,7 @@ function Login() {
             />
           </div>
 
-          <p className="my-5 text-secondary font-oswald">
+          <p className="text-secondary font-oswald">
             Não tem uma conta?
             <ButtonSecondary
               href="/signin"

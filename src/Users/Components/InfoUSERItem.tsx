@@ -3,8 +3,8 @@ import style from "../..//Home/Components/InfosCnpj.module.css";
 import SVGEmail from "../../components/SVGs/CONTACT/SVGEmail";
 import SVGUser from "../../components/SVGs/USER/SVGUser";
 import { Etheme } from "../../themeConsts";
-import { USERInterface } from "../../../InterfaceCNPJ";
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
+import { Cnpj } from "../../API/API_utils";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -15,7 +15,7 @@ const InfoUSERItem = ({
   data,
 }: {
   theme: { theme: Etheme };
-  data: USERInterface;
+  data: Cnpj[];
 }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);

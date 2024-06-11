@@ -1,14 +1,14 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import ButtonTertiary from "../../buttons/ButtonTertiary";
-import { CNPJInterface } from "../../../../InterfaceCNPJ";
 import SVGpdfDownload from "../../SVGs/INFO/SVGpdfDownload";
 import SVGpdf from "../../SVGs/INFO/SVGpdf";
+import { Cnpj } from "../../../API/API_utils";
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 interface PDFInterface {
-  cnpj: CNPJInterface;
+  cnpj: Cnpj;
 }
 
 const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
@@ -88,7 +88,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
                 {
                   text: [
                     { text: "Empresa: ", style: "bold" },
-                    `${cnpj.name_cnpj}`,
+                    `${cnpj.razaoSocial}`,
                   ],
                   style: "cellStyle",
                   border: cellBorder,
@@ -96,7 +96,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
                 {
                   text: [
                     { text: "1 Telefone: ", style: "bold" },
-                    `${cnpj.contact}`,
+                    `${cnpj.phone1}`,
                   ],
                   style: "cellStyle",
                   border: cellBorder,
@@ -105,14 +105,14 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
                   text: [
                     { text: "Status da venda: ", style: "bold" },
                     `${
-                      cnpj.status === "PENDING"
+                      cnpj.status === 1
                         ? "Pendente"
-                        : cnpj.status === "APPROVED"
-                        ? "Aprovado"
-                        : cnpj.status === "REJECTED"
-                        ? "Rejeitado"
-                        : cnpj.status === "SUSPENDED"
+                        : cnpj.status === 2
+                        ? "Confirmado"
+                        : cnpj.status === 3
                         ? "Suspenso"
+                        : cnpj.status === 4
+                        ? "Rejeitado"
                         : "Sem status"
                     }`,
                   ],
@@ -126,7 +126,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
                 {
                   text: [
                     { text: "Cliente: ", style: "bold" },
-                    `${cnpj.name_client}`,
+                    `${cnpj.clientName}`,
                   ],
                   style: "cellStyle",
                   border: cellBorder,
@@ -134,7 +134,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
                 {
                   text: [
                     { text: "2 Telefone: ", style: "bold" },
-                    `${cnpj.contact}`,
+                    `${cnpj.phone2}`,
                   ],
                   style: "cellStyle",
                   border: cellBorder,
@@ -194,7 +194,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
                 {
                   text: [
                     { text: "Atividade principal: ", style: "bold" },
-                    `${cnpj.activity.toLowerCase()}`,
+                    `${cnpj.activity}`,
                   ],
                   style: "cellStyle",
                   border: cellBorder,
@@ -222,9 +222,9 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
             style: "tableStyle",
           },
         },
-        {
+        /* {
           //  TABELAS DE INFORMAÇÃO DO ---- VEICULO ----- MARCA, MODELO, VERSÃO
-          table: {
+         table: {
             widths: ["*", "*", "*"],
             body: cnpj.veiculos.map((veiculo) => {
               const arr = [];
@@ -295,7 +295,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
             }),
             style: "tableStyle",
           },
-        },
+        },*/
       ],
     };
 
@@ -306,7 +306,7 @@ const PDFComponent: React.FC<PDFInterface> = ({ cnpj }) => {
     const downloadPdf = () => {
       pdfMake
         .createPdf(docDefinition)
-        .download(`Proposta_${cnpj.name_cnpj}.pdf`);
+        .download(`Proposta_${cnpj.razaoSocial}.pdf`);
     };
 
     return { openPdf, downloadPdf };

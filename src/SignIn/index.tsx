@@ -21,6 +21,8 @@ function Signin() {
 
   const [formData, setFormData] = useState<CommonUser>({
     name: "",
+    username: "",
+    surname: "",
     email: "",
     password: "",
     supervisorId: "",
@@ -76,7 +78,7 @@ function Signin() {
         Supervisors={Supervisors}
         supervisor={supervisor}
       />
-      <div className="fixed bottom-3 right-4">
+      <div className="fixed bottom-3 right-4 z-10">
         <ButtonTheme theme={theme} setTheme={setTheme} />
       </div>
       {/*--------- LOGOS ----------*/}

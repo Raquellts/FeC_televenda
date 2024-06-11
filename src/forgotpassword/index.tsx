@@ -9,7 +9,6 @@ import ButtonSecondary from "../components/buttons/ButtonSecondary";
 import InputPrimary from "../components/Elements_for_Forms/InputPrimary";
 import SVGEmail from "../components/SVGs/CONTACT/SVGEmail";
 import { postForgotPassword } from "../API/API_cnpj";
-import LoadingSVG from "../components/SVGs/loadingSVG";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -17,22 +16,15 @@ import LoadingSVG from "../components/SVGs/loadingSVG";
 
 function ForgotPassword() {
   /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
-  const [isLoading, setIsLoading] = useState(false);
-  const [msg, setMsg] = useState({ msg: "" });
   const [form, setForm] = useState({
     email: "",
   });
-
-  const handleClick = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsLoading(true);
-    await handlesubmit(event); // Pass the event object
-  };
+  const [showMessage, setShowMessage] = useState(false);
 
   const handlesubmit = async (event: React.FormEvent) => {
+    setShowMessage(true);
     event.preventDefault();
-    const datamsg = await postForgotPassword(form);
-    setMsg(datamsg);
+    await postForgotPassword(form);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +33,11 @@ function ForgotPassword() {
       [event.target.name]: event.target.value,
     });
   };
-  console.log(msg);
+
+  const areInputsFilled = () => {
+    return form.email.match(/\S+@\S+\.\S+/);
+  };
+
   return (
     <div
       className={`full-div overflow-hidden flex items-center justify-center`}
@@ -83,9 +79,10 @@ function ForgotPassword() {
               />
             </div>
             <InputPrimary
+              required
               name="email"
               type="email"
-              placeholder="email"
+              placeholder="Email"
               value={form.email}
               onChange={handleChange}
               theme={{ theme: theme }}
@@ -93,28 +90,17 @@ function ForgotPassword() {
             />
           </div>
           <div className="w-100">
-            {msg.msg ? (
-              <p className="my-5 text-secondary font-oswald">{msg.msg}</p>
+            {showMessage ? (
+              <p className="my-5 font-oswald text-green-500">Email enviado</p>
             ) : (
-              <>
-                {isLoading ? (
-                  <div className="w-100 flex flex-col justify-center items-center">
-                    <LoadingSVG />
-                    <p className="my-5 text-secondary font-oswald mt-[0px]">
-                      Enviando
-                    </p>
-                  </div>
-                ) : (
-                  <ButtonPrimary
-                    onClick={() => handleClick}
-                    buttonContent="Enviar"
-                    theme={{ theme: theme }}
-                  />
-                )}
-              </>
+              <ButtonPrimary
+                disabled={showMessage || !areInputsFilled()} // disable button when message is shown or inputs are not filled
+                buttonContent="Enviar"
+                theme={{ theme: theme }}
+              />
             )}
           </div>
-
+          {/*-----------//RETORNAR PARA LOGIN ----------*/}
           <p className="my-5 text-secondary font-oswald">
             Retornar para:
             <ButtonSecondary

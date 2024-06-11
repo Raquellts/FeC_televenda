@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Etheme } from "../../themeConsts";
-import { CNPJInterface } from "../../../InterfaceCNPJ";
 import InputPrimary from "../../components/Elements_for_Forms/InputPrimary";
 import TextareaPrimary from "../../components/Elements_for_Forms/textareaPrimary";
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
+import { Cnpj } from "../../API/API_utils";
 
 interface ClienteCNPJProps {
-  cnpj: CNPJInterface;
+  cnpj: Cnpj;
   theme: { theme: Etheme };
 }
 
@@ -40,7 +40,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
               <TextareaPrimary
                 theme={theme}
                 name={""}
-                placeholder={cnpj.name_cnpj}
+                placeholder={cnpj.razaoSocial}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -67,7 +67,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.contact}
+                placeholder={cnpj.phone1}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -80,7 +80,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.contact}
+                placeholder={cnpj.phone2}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -106,7 +106,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={"date"}
-                placeholder={cnpj.dateForCall}
+                placeholder={cnpj.dateForCall || ""}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}

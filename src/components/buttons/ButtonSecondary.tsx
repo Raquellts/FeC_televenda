@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import style from "./buttonSecondary.module.css";
-import useUpdateTheme from "../consts/updateTheme";
+import useUpdateTheme from "../Hooks/updateTheme";
 
 interface ButtonSecondaryProps {
   href: string;

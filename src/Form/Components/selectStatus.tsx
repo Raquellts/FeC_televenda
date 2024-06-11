@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { CNPJInterface } from "../../../InterfaceCNPJ";
 import { Etheme } from "../../themeConsts";
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
+import { Cnpj } from "../../API/API_utils";
 
 interface SelectStatusProps {
-  cnpj: CNPJInterface;
+  cnpj: Cnpj;
   theme: { theme: Etheme };
 }
 
@@ -38,20 +38,20 @@ const SelectStatus: React.FC<SelectStatusProps> = ({ cnpj, theme }) => {
             }`}
             onClick={handleClick}
           >
-            <option value="PENDING">Pendente</option>
-            <option value="APPROVED">Aprovado</option>
-            <option value="REJECTED">Rejeitado</option>
-            <option value="SUSPENDED">Suspenso</option>
+            <option value={1}>Pendente</option>
+            <option value={2}>Aprovado</option>
+            <option value={3}>Suspenso</option>
+            <option value={4}>Rejeitado</option>
 
             <option value="" disabled selected>
-              {cnpj.status === "PENDING"
+              {cnpj.status === 1
                 ? "Pendente"
-                : cnpj.status === "APPROVED"
-                ? "Aprovado"
-                : cnpj.status === "REJECTED"
-                ? "Rejeitado"
-                : cnpj.status === "SUSPENDED"
+                : cnpj.status === 2
+                ? "Confirmado"
+                : cnpj.status === 3
                 ? "Suspenso"
+                : cnpj.status === 4
+                ? "Rejeitado"
                 : "Sem status"}
             </option>
           </select>

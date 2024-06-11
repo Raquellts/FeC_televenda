@@ -10,7 +10,8 @@ import ButtonPrimary from "../../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../../components/buttons/ButtonSecondary";
 //theme
 import { Etheme } from "../../themeConsts";
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
+import SVGBadge from "../../components/SVGs/USER/SVGBadge";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -55,7 +56,7 @@ const SigninForm: React.FC<signinInterface> = ({
           Registrar
         </p>
 
-        {/*INPUT DE NOME -------------- */}
+        {/*SELECT SUPERVISORES -------------- */}
         <select
           required
           name={"supervisorId"}
@@ -66,8 +67,11 @@ const SigninForm: React.FC<signinInterface> = ({
             newtheme === Etheme.light
               ? "bg-container focus:bg-gray-700 focus:border-primary hover:border-tertiary placeholder-text text-text"
               : "bg-dark-container focus:bg-white focus:border-dark-primary hover:border-dark-tertiary placeholder-dark-text text-dark-text"
-          } placeholder-opacity-70 hover:placeholder-opacity-100 text-opacity-70 hover:text-opacity-100 ring-0 outline-none border-b-2 border-transparent border-rounded block p-2.5 my-2 w-full font-oswald`}
+          } placeholder-opacity-70 hover:placeholder-opacity-100 text-opacity-70 hover:text-opacity-100 ring-0 outline-none border-rounded block p-2.5 my-2 w-full font-oswald text-center`}
         >
+          <option value="" disabled selected>
+            Supervisor
+          </option>
           {supervisor?.map((supervisor) => {
             return (
               <option
@@ -80,6 +84,8 @@ const SigninForm: React.FC<signinInterface> = ({
             );
           })}
         </select>
+
+        {/*INPUT DE NOME -------------- */}
         <div
           className={`${
             newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
@@ -101,20 +107,55 @@ const SigninForm: React.FC<signinInterface> = ({
             required
             name="name"
             type="text"
-            placeholder="nome"
+            placeholder="Nome"
             value={formData?.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full remove-rounded"
             theme={theme}
           />
+          {/*INPUT DE SOBRENOME -------------- */}
           <InputPrimary
             required
             name="surname"
             type="text"
-            placeholder="sobrenome"
-            value={formData?.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full right-rounded ms-[0.1rem] "
+            placeholder="Sobrenome"
+            value={formData?.surname}
+            onChange={(e) =>
+              setFormData({ ...formData, surname: e.target.value })
+            }
+            className="w-full right-rounded ms-[0.1rem]"
+            theme={theme}
+          />
+        </div>
+
+        {/*INPUT DE USERNAME -------------- */}
+        <div
+          className={`${
+            newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
+          } flex items-center`}
+        >
+          <div
+            className={`${
+              newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
+            } p-svgOnInput rounded-s-2xl`}
+          >
+            <SVGBadge
+              width={width_svg}
+              height={height_svg}
+              fill_one="none"
+              fill_two={fill_Two_svg}
+            />
+          </div>
+          <InputPrimary
+            required
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={formData?.username}
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
+            className="w-full right-rounded"
             theme={theme}
           />
         </div>
@@ -141,7 +182,7 @@ const SigninForm: React.FC<signinInterface> = ({
             required
             name="email"
             type="email"
-            placeholder="email"
+            placeholder="Email"
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
@@ -173,7 +214,7 @@ const SigninForm: React.FC<signinInterface> = ({
             required
             name="password"
             type="password"
-            placeholder="senha"
+            placeholder="Senha"
             value={formData.password}
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })

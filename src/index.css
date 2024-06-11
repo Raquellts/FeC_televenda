@@ -104,7 +104,7 @@ select {
 
 /*--------------- ROUNDED ----------------*/
 
-.border-rounded:not(.right-rounded):not(.left-rounded) {
+.border-rounded:not(.right-rounded):not(.left-rounded):not(.remove-rounded) {
   border-radius: 1rem !important;
 }
 
@@ -118,6 +118,9 @@ select {
   border-bottom-left-radius: 1rem !important;
 }
 
+.border-rounded.remove-rounded {
+  border-radius: 0 !important;
+}
 /*--------------- FILTERS ----------------*/
 
 .logo_filter {

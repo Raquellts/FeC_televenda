@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 
 //Interfaces
-import { useDataState } from "../../components/consts/dataUpdateCNPJ";
+import { useDataCnpj } from "../Hooks/dataUpdateCnpj";
 import { Etheme } from "../../themeConsts";
 
 //styles
-import useUpdateTheme from "../../components/consts/updateTheme";
-import InfoCnpjItem from "./Components/InfoCnpjItem";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
+import InfoCnpjItem from "./Interior_Components/InfoCnpjItem";
 
 const InfosCnpj = ({
-  statustext,
+  statusNumber,
   theme,
 }: {
-  statustext: string | null;
+  statusNumber: number | null;
   theme: Etheme;
 }) => {
   /*THEME*/ const themes = theme;
@@ -20,15 +20,15 @@ const InfosCnpj = ({
   /*THEME*/ useUpdateTheme({ theme }, setNewtheme);
 
   /*dataUpdateCNPJ > vvv*/ const { data, setData, handleDataUpdate } =
-    useDataState();
+    useDataCnpj();
   useEffect(() => {
     handleDataUpdate();
   }, [handleDataUpdate]);
 
   return (
     <div className={`${newtheme}`}>
-      {data?.cnpjInfo.map((cnpj) => {
-        if (!statustext || cnpj.status === statustext) {
+      {data?.map((cnpj) => {
+        if (!statusNumber || cnpj.status === statusNumber) {
           return (
             <InfoCnpjItem
               cnpj={cnpj}

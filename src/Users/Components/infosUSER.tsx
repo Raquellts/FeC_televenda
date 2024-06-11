@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 //Interfaces
-import { useDataState } from "../../components/consts/dataUpdateCNPJ";
+import { useDataCnpj } from "../../Home/Hooks/dataUpdateCnpj";
 import { Etheme } from "../../themeConsts";
 
 //styles
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
 import InfoUSERItem from "./InfoUSERItem";
 
 const InfosUSER = ({ theme }: { theme: Etheme }) => {
@@ -13,7 +13,7 @@ const InfosUSER = ({ theme }: { theme: Etheme }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme({ theme }, setNewtheme);
 
-  /*dataUpdateCNPJ > vvv*/ const { data, handleDataUpdate } = useDataState();
+  /*dataUpdateCNPJ > vvv*/ const { data, handleDataUpdate } = useDataCnpj();
   useEffect(() => {
     handleDataUpdate();
   }, [handleDataUpdate]);

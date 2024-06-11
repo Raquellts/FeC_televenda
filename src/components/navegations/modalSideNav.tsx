@@ -3,7 +3,7 @@ import { Etheme } from "../../themeConsts";
 import SideNavbar from "./sideNavbar";
 import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
 import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
-import useUpdateTheme from "../consts/updateTheme";
+import useUpdateTheme from "../Hooks/updateTheme";
 
 const ModalSideNav = (theme: { theme: Etheme }) => {
   const screenSize = 1024;

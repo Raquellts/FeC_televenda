@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useUpdateTheme from "../../consts/updateTheme";
+import useUpdateTheme from "../../Hooks/updateTheme";
 import { Etheme } from "../../../themeConsts";
 
 type TooltipProps = {

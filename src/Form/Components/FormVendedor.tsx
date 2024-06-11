@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Etheme } from "../../themeConsts";
-import { CNPJInterface } from "../../../InterfaceCNPJ";
 import InputPrimary from "../../components/Elements_for_Forms/InputPrimary";
-import useUpdateTheme from "../../components/consts/updateTheme";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
+import { Cnpj } from "../../API/API_utils";
 
 interface FormVendedorProps {
-  cnpj: CNPJInterface;
+  cnpj: Cnpj;
   theme: { theme: Etheme };
 }
 
@@ -38,7 +38,7 @@ const FormVendedor: React.FC<FormVendedorProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.vendedor.usuarioLogado}
+                placeholder={cnpj.userId}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -51,7 +51,7 @@ const FormVendedor: React.FC<FormVendedorProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.vendedor.emailUsuarioLogado}
+                placeholder={cnpj.userId}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -64,7 +64,7 @@ const FormVendedor: React.FC<FormVendedorProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.vendedor.telefoneUsuarioLogado}
+                placeholder={cnpj.userId}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}

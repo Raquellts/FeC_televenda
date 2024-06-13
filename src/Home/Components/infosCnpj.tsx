@@ -11,16 +11,19 @@ import InfoCnpjItem from "./Interior_Components/InfoCnpjItem";
 const InfosCnpj = ({
   statusNumber,
   theme,
+  user,
 }: {
   statusNumber: number | null;
   theme: Etheme;
+  user: number | null;
 }) => {
   /*THEME*/ const themes = theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme({ theme }, setNewtheme);
 
-  /*dataUpdateCNPJ > vvv*/ const { data, setData, handleDataUpdate } =
-    useDataCnpj();
+  /*dataUpdateCNPJ > vvv*/
+
+  const { data, setData, handleDataUpdate } = useDataCnpj();
   useEffect(() => {
     handleDataUpdate();
   }, [handleDataUpdate]);
@@ -35,6 +38,7 @@ const InfosCnpj = ({
               theme={{ theme: newtheme }}
               data={data}
               setData={setData}
+              user={user}
             />
           );
         }

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Etheme } from "../../themeConsts";
-import useUpdateTheme from "../../components/Hooks/updateTheme";
-import { Cnpj } from "../../API/API_utils";
+import { Etheme } from "../../../themeConsts";
+import useUpdateTheme from "../../../components/Hooks/updateTheme";
+import { Cnpj } from "../../../API/API_utils";
 
 interface SelectStatusProps {
   cnpj: Cnpj;
@@ -25,11 +25,10 @@ const SelectStatus: React.FC<SelectStatusProps> = ({ cnpj, theme }) => {
     newtheme === Etheme.light
       ? "text-text bg-container"
       : "text-dark-text bg-dark-container"
-  } w-full text-opacity-70 md:h-[115px] hover:text-opacity-100 rounded-2xl h-inputsize text-center`;
+  } w-full text-opacity-70 md:h-[110px] hover:text-opacity-100 rounded-2xl h-inputsize text-center`;
 
   return (
-    cnpj &&
-    cnpj.status && (
+    cnpj && (
       <div>
         <label className={`flex items-center my-2 font-oswald ${spanSelects}`}>
           <select

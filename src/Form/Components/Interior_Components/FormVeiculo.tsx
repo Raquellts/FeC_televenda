@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Etheme } from "../../themeConsts";
-import InputPrimary from "../../components/Elements_for_Forms/InputPrimary";
-import TextareaPrimary from "../../components/Elements_for_Forms/textareaPrimary";
-import useUpdateTheme from "../../components/Hooks/updateTheme";
+import { Etheme } from "../../../themeConsts";
+import InputPrimary from "../../../components/Elements_for_Forms/InputPrimary";
+import TextareaPrimary from "../../../components/Elements_for_Forms/textareaPrimary";
+import useUpdateTheme from "../../../components/Hooks/updateTheme";
 
 interface FormVeiculoProps {
   theme: { theme: Etheme };
@@ -18,6 +18,9 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
   /*CLASSES REPETIDAS*/ const labelSelects_sm =
     "flex w-full sm:w-1/2 md:w-1/3 lg:w-1/4 items-center";
   /*CLASSES REPETIDAS*/ const inputTextareas = "mx-2 w-full truncate";
+  /*CLASSES REPETIDAS*/ const spans = `${
+    newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
+  }`;
 
   return (
     <>
@@ -29,7 +32,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
       >
         {/*  ------------*/}
         <label className={labelSelects_md}>
-          <span>Marca:</span>
+          <span className={spans}>Marca:</span>
           <TextareaPrimary
             theme={theme}
             name={""}
@@ -44,7 +47,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  -----*/}
         <label className={labelSelects_md}>
-          <span>Modelo:</span>
+          <span className={spans}>Modelo:</span>
           <TextareaPrimary
             theme={theme}
             name={""}
@@ -59,7 +62,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  -----------*/}
         <label className={labelSelects_sm}>
-          <span>Ano:</span>
+          <span className={spans}>Ano:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -74,7 +77,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  -----------*/}
         <label className={labelSelects_sm}>
-          <span>Anuncio:</span>
+          <span className={spans}>Anuncio:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -89,7 +92,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  -----------*/}
         <label className={labelSelects_sm}>
-          <span>Forma de Pagamento:</span>
+          <span className={spans}>Forma de Pagamento:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -104,7 +107,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  -----------*/}
         <label className={labelSelects_sm}>
-          <span>Motivo da Compra:</span>
+          <span className={spans}>Motivo da Compra:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -119,7 +122,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  */}
         <label className={labelSelects_sm}>
-          <span>Prazo:</span>
+          <span className={spans}>Prazo:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -134,7 +137,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  */}
         <label className={labelSelects_sm}>
-          <span>Quantidade:</span>
+          <span className={spans}>Quantidade:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -149,7 +152,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  */}
         <label className={labelSelects_sm}>
-          <span>Seguro:</span>
+          <span className={spans}>Seguro:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -164,7 +167,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  */}
         <label className={labelSelects_sm}>
-          <span>Tipo de Compra:</span>
+          <span className={spans}>Tipo de Compra:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -179,7 +182,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  */}
         <label className={labelSelects_sm}>
-          <span>Usado na Troca:</span>
+          <span className={spans}>Usado na Troca:</span>
           <InputPrimary
             theme={theme}
             name={""}
@@ -194,7 +197,7 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
         </label>
         {/*  */}
         <label className={labelSelects_sm}>
-          <span>Valor Anunciado:</span>
+          <span className={spans}>Valor Anunciado:</span>
           <InputPrimary
             theme={theme}
             name={""}

@@ -31,12 +31,14 @@ const ModalSideNav = (theme: { theme: Etheme }) => {
   return (
     <>
       {windowWidth < screenSize && (
-        <div className="pt-3 pl-4">
+        <div
+          className={`pt-2 pl-3 fixed z-50 ${isSidebarOpen ? "hidden" : ""}`}
+        >
           <button
             onClick={toggleSidebar}
             aria-controls="separator-sidebar"
             type="button"
-            className="flex items-center p-2 bg-accent border-background text-text border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-xl text-center"
+            className={`flex items-center px-2 py-0.5 bg-accent border-background text-text border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-xl text-center`}
           >
             <SVGMenu
               width={20}

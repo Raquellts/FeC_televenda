@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Etheme } from "../../themeConsts";
-import InputPrimary from "../../components/Elements_for_Forms/InputPrimary";
-import TextareaPrimary from "../../components/Elements_for_Forms/textareaPrimary";
-import useUpdateTheme from "../../components/Hooks/updateTheme";
-import { Cnpj } from "../../API/API_utils";
+import { Etheme } from "../../../themeConsts";
+import InputPrimary from "../../../components/Elements_for_Forms/InputPrimary";
+import TextareaPrimary from "../../../components/Elements_for_Forms/textareaPrimary";
+import useUpdateTheme from "../../../components/Hooks/updateTheme";
+import { Cnpj } from "../../../API/API_utils";
 
 interface ClienteCNPJProps {
   cnpj: Cnpj;
@@ -20,11 +20,14 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
   /*CLASSES REPETIDAS*/ const labelSelects_sm =
     "flex w-full sm:w-1/2 md:w-1/3 lg:w-1/4 items-center";
   /*CLASSES REPETIDAS*/ const inputTextareas = "mx-2 w-full truncate";
+  /*CLASSES REPETIDAS*/ const spans = `${
+    newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
+  }`;
 
   return (
     <div>
       <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5">
-        Cliente
+        {cnpj.razaoSocial}
       </p>
       {cnpj && (
         <>
@@ -36,11 +39,11 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
           >
             {/* NOME DA EMPRESA ------------*/}
             <label className={labelSelects_md}>
-              <span>Nome:</span>
+              <span className={spans}>Nome:</span>
               <TextareaPrimary
                 theme={theme}
                 name={""}
-                placeholder={cnpj.razaoSocial}
+                placeholder={cnpj.clientName || ""}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -49,7 +52,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
             </label>
             {/* ATIVIDADES DA EMPRESA -----*/}
             <label className={labelSelects_md}>
-              <span>Atividades:</span>
+              <span className={spans}>Atividades:</span>
               <TextareaPrimary
                 theme={theme}
                 name={""}
@@ -62,12 +65,12 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
             </label>
             {/* TELEFONE 01 -----------*/}
             <label className={labelSelects_sm}>
-              <span>Telefone 01:</span>
+              <span className={spans}>Telefone 01:</span>
               <InputPrimary
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.phone1}
+                placeholder={cnpj.phone1 || ""}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -75,12 +78,12 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
             </label>
             {/* TELEFONE 02 -----------*/}
             <label className={labelSelects_sm}>
-              <span>Telefone 02:</span>
+              <span className={spans}>Telefone 02:</span>
               <InputPrimary
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.phone2}
+                placeholder={cnpj.phone2 || ""}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -88,12 +91,12 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
             </label>
             {/* EMAIL -----------*/}
             <label className={labelSelects_sm}>
-              <span>Email:</span>
+              <span className={spans}>Email:</span>
               <InputPrimary
                 theme={theme}
                 name={""}
                 type={"email"}
-                placeholder={cnpj.email}
+                placeholder={cnpj.email || ""}
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
@@ -101,7 +104,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
             </label>
             {/* PROXIMA LIGAÇÃO CASO ADIADA */}
             <label className={labelSelects_sm}>
-              <span>Proxima ligação:</span>
+              <span className={spans}>Proxima ligação:</span>
               <InputPrimary
                 theme={theme}
                 name={""}
@@ -110,6 +113,64 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 value={""}
                 onChange={() => {}}
                 className={inputTextareas}
+              />
+            </label>
+            {/* CNPJ EM NUMERO.TOSTRING() */}
+            <label className={labelSelects_sm}>
+              <span className={spans}>Cnpj:</span>
+              <InputPrimary
+                theme={theme}
+                name={""}
+                type={""}
+                placeholder={cnpj.cnpj.toString()}
+                value={""}
+                onChange={() => {}}
+                className={`${inputTextareas}`}
+              />
+            </label>
+            {/* CNAE EM NUMERO.TOSTRING() */}
+            <label className={labelSelects_sm}>
+              <span className={spans}>Cnae:</span>
+              <InputPrimary
+                theme={theme}
+                name={""}
+                type={""}
+                placeholder={cnpj.cnae.toString() || ""}
+                value={""}
+                onChange={() => {}}
+                className={inputTextareas}
+              />
+            </label>
+            {/* PORTE DA EMPRESA */}
+            <label className={labelSelects_sm}>
+              <span className={spans}>Porte:</span>
+              <InputPrimary
+                theme={theme}
+                name={""}
+                type={""}
+                placeholder={cnpj.porte || ""}
+                value={""}
+                onChange={() => {}}
+                className={inputTextareas}
+              />
+            </label>
+            {/* MATRIZ OU FILIAL */}
+            <label className={labelSelects_sm}>
+              <span className={spans}>Tipo:</span>
+              <InputPrimary
+                theme={theme}
+                name={""}
+                type={""}
+                placeholder={
+                  cnpj.identificadorMatrizFilial === 1
+                    ? "Matriz"
+                    : cnpj.identificadorMatrizFilial === 2
+                    ? "Filial"
+                    : "Sem porte"
+                }
+                value={""}
+                onChange={() => {}}
+                className={`${inputTextareas}`}
               />
             </label>
           </form>

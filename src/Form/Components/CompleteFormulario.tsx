@@ -2,13 +2,11 @@ import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import { useLocation } from "react-router-dom";
 import useUpdateTheme from "../../components/Hooks/updateTheme";
-import PDFComponent from "../../components/containers/PDFS/PDFItemCNPJ";
-import FormClienteCNPJ from "./FormClienteCNPJ";
-import FormVendedor from "./FormVendedor";
-import SelectStatus from "./selectStatus";
+import PDFComponent from "./PDFS/PDFItemCNPJ";
+import FormClienteCNPJ from "./Interior_Components/FormClienteCNPJ";
+import InfoTelemarking from "./Interior_Components/InfoTelemarking";
+import SelectStatus from "./Interior_Components/selectStatus";
 import ButtonTertiary from "../../components/buttons/ButtonTertiary";
-import NewFormVeiculo from "./NewFormVeiculo";
-import { Cnpj } from "../../API/API_utils";
 import ConfirmationModal from "../../components/containers/separated/confirmationModal";
 import SVGSave from "../../components/SVGs/SYMBOLS/SVGSave";
 import Tooltip from "../../components/containers/separated/tooltip";
@@ -19,58 +17,35 @@ import Tooltip from "../../components/containers/separated/tooltip";
 
 const CompleteForm = (theme: { theme: Etheme }) => {
   const location = useLocation();
-  const cnpj: Cnpj = location.state;
+  const { cnpj /*id*/ } = location.state;
 
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
   /*__________________ HOOK - HANDLE CLIENT-CNPJ SUBMIT ____________________*/
-
   /*HANDLE CLIENT_CNPJ SUBMIT vvv */
-  const [saveCNPJ, setsaveCNPJ] = useState(false); //modal confirmation of changes
-  const [confirmedCNPJ, setconfirmedCNPJ] = useState(false);
+  const [save, setsave] = useState(false); //modal confirmation of changes
+  const [confirmed, setconfirmed] = useState(false);
 
   const handleCNPJSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
     console.log(data);
-    setsaveCNPJ(false);
+    setsave(false);
     setTimeout(() => {
-      setconfirmedCNPJ(true);
+      setconfirmed(true);
     }, 1000);
   };
 
-  const handlesaveCNPJ = () => {
-    setsaveCNPJ(true);
+  const handlesave = () => {
+    setsave(true);
   };
 
-  const handleCancelsaveCNPJ = () => {
-    setsaveCNPJ(false);
-    setconfirmedCNPJ(false);
-  };
-
-  /*__________________ HOOK - HANDLE PEDIDO-VEICULO SUBMIT ____________________*/
-
-  /*HANDLE VEICULO_PEDIDO SUBMIT  */
-  const [saveVeiculo, setsaveVeiculo] = useState(false); //modal confirmation of changes
-  const [confirmedVeiculo, setconfirmedVeiculo] = useState(false);
-
-  const handleVeiculoSubmit = async () => {
-    setsaveVeiculo(false);
-    setTimeout(() => {
-      setconfirmedVeiculo(true);
-    }, 1000);
-  };
-
-  const handlesaveVeiculo = () => {
-    setsaveVeiculo(true);
-  };
-
-  const handleCancelsaveVeiculo = () => {
-    setsaveVeiculo(false);
-    setconfirmedVeiculo(false);
+  const handleCancelsave = () => {
+    setsave(false);
+    setconfirmed(false);
   };
 
   return (
@@ -92,110 +67,61 @@ const CompleteForm = (theme: { theme: Etheme }) => {
               <FormClienteCNPJ theme={theme} cnpj={cnpj} />
             </div>
             <div className={`w-80 md:w-10 pr-2`}>
-              <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5">
+              <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5 pb-2">
                 Status
               </p>
               <SelectStatus theme={theme} cnpj={cnpj} />
             </div>
+            <div className={`w-full flex justify-between items-end pb-4`}>
+              <div className={`w-full`}>
+                <InfoTelemarking theme={theme} />
+              </div>
+              {/*------ BOTÃO ATUALIZAR CLIENTE --- botão para abrir o modal ------*/}
 
-            {/*------ BOTÃO ATUALIZAR CLIENTE --- botão para abrir o modal ------*/}
-
-            <Tooltip
-              message="Atualizar informações do cliente"
-              theme={newtheme}
-              className="mb-9 text-center"
-            >
-              <ButtonTertiary
-                onClick={handlesaveCNPJ}
-                className={`${
-                  saveCNPJ ? "hidden" : ""
-                } border-transparent bg-green-700 text-text hover:border-secondary hover:bg-primary font-oswald px-4 py-2 text-[16px]`}
-              >
-                <div className="flex flex-row">
-                  <SVGSave
-                    fill_one={"none"}
-                    fill_two={fill_Two_svg}
-                    width={width_svg}
-                    height={height_svg}
-                  />
-                  <p>Atualizar</p>
-                </div>
-              </ButtonTertiary>
-            </Tooltip>
-
+              <div className={`px-4`}>
+                <Tooltip
+                  message="Atualizar informações do cliente"
+                  theme={newtheme}
+                  className={`${save ? "hidden" : ""} mb-9 text-center`}
+                >
+                  <ButtonTertiary
+                    onClick={handlesave}
+                    className={`${
+                      save ? "invisible" : ""
+                    } border-transparent bg-green-700 text-text hover:border-secondary hover:bg-primary font-oswald px-4 py-2 text-[16px]`}
+                  >
+                    <div className="flex flex-row">
+                      <SVGSave
+                        fill_one={"none"}
+                        fill_two={fill_Two_svg}
+                        width={width_svg}
+                        height={height_svg}
+                      />
+                      <p>Atualizar</p>
+                    </div>
+                  </ButtonTertiary>
+                </Tooltip>
+              </div>
+            </div>
             {/*------ MODAL CONFIRMAR ATUALIZACAO DE CLIENTE ------*/}
 
             <div className={`w-full lg:px-[35%] md:px-30 px-10`}>
               <ConfirmationModal
                 theme={theme}
-                isOpen={saveCNPJ}
-                onCancel={handleCancelsaveCNPJ}
+                isOpen={save}
+                onCancel={handleCancelsave}
               />
             </div>
 
             {/*------ MENSAGEM DE SUCESSO AO ATUALIZAR CLIENTE ------*/}
 
-            {confirmedCNPJ ? (
+            {confirmed ? (
               <p className={`text-green-500 text-size-xsm mr-1 mt-1.5`}>
                 Salvo com sucesso
               </p>
             ) : null}
           </div>
         </form>
-        <div className={`pb-6`}>
-          {/*------ FORMULARIO DOS VEICULOS/PEDIDOS ------*/}
-
-          <form onSubmit={handleVeiculoSubmit}>
-            <NewFormVeiculo theme={theme} cnpj={cnpj} />
-
-            {/*------ BOTÃO ATUALIZAR CLIENTE --- botão para abrir o modal ------*/}
-            <div>
-              <Tooltip
-                message="Atualizar informações do cliente"
-                theme={newtheme}
-                className="mb-9 text-center"
-              >
-                <ButtonTertiary
-                  onClick={handlesaveVeiculo}
-                  className={`${
-                    saveCNPJ ? "hidden" : ""
-                  } border-transparent bg-green-700 text-text hover:border-secondary hover:bg-primary font-oswald px-4 py-2 text-[16px]`}
-                >
-                  <div className="flex flex-row">
-                    <SVGSave
-                      fill_one={"none"}
-                      fill_two={fill_Two_svg}
-                      width={width_svg}
-                      height={height_svg}
-                    />
-                    <p>Atualizar</p>
-                  </div>
-                </ButtonTertiary>
-              </Tooltip>
-
-              {/*------ MODAL CONFIRMAR ATUALIZACAO DE CLIENTE ------*/}
-
-              <div className={`w-full lg:px-[35%] md:px-30 px-10`}>
-                <ConfirmationModal
-                  theme={theme}
-                  isOpen={saveVeiculo}
-                  onCancel={handleCancelsaveVeiculo}
-                />
-              </div>
-
-              {/*------ MENSAGEM DE SUCESSO AO ATUALIZAR CLIENTE ------*/}
-
-              {confirmedVeiculo ? (
-                <p className={`text-green-500 text-size-xsm mr-1 mt-1.5`}>
-                  Salvo com sucesso
-                </p>
-              ) : null}
-            </div>
-          </form>
-        </div>
-        <div className={`pb-6`}>
-          <FormVendedor theme={theme} cnpj={cnpj} />
-        </div>
       </div>
     </div>
   );

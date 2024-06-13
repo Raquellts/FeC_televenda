@@ -5,7 +5,7 @@ const ProtectedRoute = ({
   component: Component,
   ...rest
 }: {
-  component: React.ComponentType;
+  component: React.ComponentType<any>;
 }) => {
   const isAuthenticated = !!Cookies.get("Token");
 
@@ -19,5 +19,4 @@ const ProtectedRoute = ({
     </Routes>
   );
 };
-
 export default ProtectedRoute;

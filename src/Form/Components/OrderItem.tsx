@@ -4,18 +4,18 @@ import SVGEmail from "../../components/SVGs/CONTACT/SVGEmail";
 import SVGUser from "../../components/SVGs/USER/SVGUser";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../../components/Hooks/updateTheme";
-import { User } from "../../API/API_utils";
+import { CnpjOrder } from "../../API/API_utils";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
 /*SVG CONSTS*/ const height_svg = 20;
 
-const InfoUSERItem = ({
+const OrdemItem = ({
   theme,
-  data,
+  Order,
 }: {
   theme: { theme: Etheme };
-  data: User;
+  Order: CnpjOrder;
 }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -27,7 +27,7 @@ const InfoUSERItem = ({
           ? "divide-background"
           : "divide-dark-background"
       } flex shadow-md mb-1.5 ml-1 rounded-2xl divide-x`}
-      key={"infocnpjitem" + data.id}
+      key={"infocnpjitem" + Order}
     >
       {/* PRIMEIRA parte do container VVV */}
       <form
@@ -36,7 +36,7 @@ const InfoUSERItem = ({
             ? "bg-container text-text"
             : "bg-dark-container text-dark-text"
         } w-full px-2 py-2 rounded-2xl font-roboto`}
-        key={"form1" + data}
+        key={"form1" + Order.id}
       >
         {/* --------------- NOME DA EMPRESA --- SVG BADGE ---------------- */}
         <div
@@ -50,7 +50,7 @@ const InfoUSERItem = ({
             fill_one="none"
             fill_two={fill_Two_svg}
           />
-          <p className="ml-1 truncate font-style-xlg">{data.username}</p>
+          <p className="ml-1 truncate font-style-xlg">{Order.leadId}</p>
         </div>
 
         {/* --------------- LINHA DE CONTATO --- EMAILS ---------------- */}
@@ -67,7 +67,7 @@ const InfoUSERItem = ({
               newtheme === Etheme.light ? style.light : style.dark
             } ml-1 justify-start flex ${style.cnpj_contact}`}
           >
-            <span>{data.email}</span>
+            <span>{Order.status}</span>
           </p>
         </div>
 
@@ -78,7 +78,7 @@ const InfoUSERItem = ({
           }`}
         >
           <p className={`ml-6 font-inter truncate ${style.cnpj_atividade}`}>
-            {data.name}
+            {Order.userId}
           </p>
         </div>
       </form>
@@ -86,4 +86,4 @@ const InfoUSERItem = ({
   );
 };
 
-export default InfoUSERItem;
+export default OrdemItem;

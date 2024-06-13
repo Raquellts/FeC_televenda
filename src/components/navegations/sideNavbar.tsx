@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../Hooks/updateTheme";
 import Cookies from "js-cookie";
+//Components
+import logo from "../../assets/SVG/LOGO FOR WEB.svg";
+import logoDeveloper from "../assets/SVG/stat&sat.svg";
 // SVGs
 import SVGCompany from "../SVGs/INFO/SVGCompany";
-import SVGAddClient from "../SVGs/USER/SVGAddClient";
 import SVGLogout from "../SVGs/USER/SVGLogout";
 import SVGCircle from "../SVGs/CIRCLE/SVGCircle";
 import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
@@ -35,12 +37,21 @@ const SideNavbar = (theme: { theme: Etheme }) => {
       } h-full w-50 lg:w-full px-3 py-4 shadow-md`}
     >
       <div className="h-90 lg:h-full flex flex-col justify-between divide-y divide-tertiary font-oswald uppercase">
-        <ul>
+        <ul className="divide-y divide-tertiary">
+          <div className="flex justify-center items-center">
+            <img src={logo} alt="logo" className="h-14 my-5 logo_filter" />
+            <div className="hidden lg:block pl-2">
+              <p className={`font-oswald text-[20px]`}>Freitas & Coutinho</p>
+              <p className={`font-inter text-[11.8px] font-style-lg`}>
+                inteligência comercial
+              </p>
+            </div>
+          </div>
           <li>
             {/*----- HOME - TODAS AS EMPRESAS ------*/}
             <a
               href="/"
-              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
+              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group mt-5"
             >
               <SVGCompany
                 width={width_svg}
@@ -50,21 +61,6 @@ const SideNavbar = (theme: { theme: Etheme }) => {
               />
               <span className="hidden lg:block lg:visible ml-3">
                 Todas as empresas
-              </span>
-            </a>
-            {/*----- ADD CLINTE - ADICIONAR CLIENTE NOVO ------*/}
-            <a
-              href="#"
-              className="flex items-center lg:justify-start justify-center p-2 mb-2 rounded-lg hover:text-text hover:bg-tertiary group"
-            >
-              <SVGAddClient
-                width={width_svg}
-                height={height_svg}
-                fill_one="none"
-                fill_two={fill_Two_svg}
-              />
-              <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
-                Adicionar cliente
               </span>
             </a>
             {/*----- PENDING - PENDENTES AINDA NÃO LIGADOS ------*/}

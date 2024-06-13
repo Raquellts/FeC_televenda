@@ -1,8 +1,8 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import ButtonTertiary from "../../buttons/ButtonTertiary";
-import SVGpdfDownload from "../../SVGs/INFO/SVGpdfDownload";
-import SVGpdf from "../../SVGs/INFO/SVGpdf";
+import ButtonTertiary from "../../../components/buttons/ButtonTertiary";
+import SVGpdfDownload from "../../../components/SVGs/INFO/SVGpdfDownload";
+import SVGpdf from "../../../components/SVGs/INFO/SVGpdf";
 import { Cnpj } from "../../../API/API_utils";
 
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;

@@ -21,11 +21,13 @@ const InfoCnpjItem = ({
   theme,
   data,
   setData,
+  user,
 }: {
   cnpj: Cnpj;
   theme: { theme: Etheme };
   data: Cnpj[];
   setData: React.Dispatch<React.SetStateAction<Cnpj[]>>;
+  user: number | null;
 }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -174,7 +176,7 @@ const InfoCnpjItem = ({
         } rounded-e-2xl`}
         key={"form4" + cnpj.cnpj}
       >
-        <EditButton theme={newtheme} cnpj={cnpj} />
+        <EditButton theme={newtheme} cnpj={cnpj} user={user} id={cnpj.userId} />
       </form>
     </div>
   );

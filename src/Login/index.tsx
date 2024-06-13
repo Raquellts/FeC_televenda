@@ -37,12 +37,15 @@ function Login() {
   });
   const navigate = useNavigate();
 
+  const expirationDate = new Date();
+  expirationDate.setHours(expirationDate.getHours() + 4);
+
   const handlesubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       const data = await axiosWithAuth.post(baseURL + "/auth/login", formData);
       if (data) {
-        Cookies.set("Token", data.data.token, { expires: 4 });
+        Cookies.set("Token", data.data.token, { expires: expirationDate });
         navigate("/");
       }
     } catch (err: unknown) {

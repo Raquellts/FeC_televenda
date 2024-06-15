@@ -82,7 +82,7 @@ class EditButton extends React.Component<EditButtonProps, EditButtonState> {
                 fill_one={"none"}
                 fill_two={"currentColor"}
               />
-              <span className="hidden sm:block">Editar</span>
+              <span className="hidden sm:block">Criar</span>
             </>
           )}
         </Link>

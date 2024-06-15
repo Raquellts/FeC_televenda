@@ -64,14 +64,15 @@ export interface Cnpj {
   porte: string;
   phone2: string;
   email: string;
+  id: string;
 }
 
 export interface CnpjOrder {
   id: string;
   leadId: string;
-  userId: ObjectId;
+  userId: string;
   status: OrderStatus;
-  orderItem: Item[];
+  orderItem: Item;
 }
 
 export interface Item {
@@ -80,8 +81,8 @@ export interface Item {
   color: string;
   year: string;
   version: string;
-  dueDate: LocalDateTime;
-  amount: Long;
+  dueDate: string;
+  amount: number;
   payment: string;
   purchaseReason: string;
   maxPayment: string;
@@ -89,7 +90,4 @@ export interface Item {
   orderType: string;
 }
 
-type OrderStatus = "pending" | "approved" | "rejected";
-type LocalDateTime = string; // replace with actual LocalDateTime type
-type Long = number; // replace with actual Long type
-type ObjectId = string; // replace with actual ObjectId type
+type OrderStatus = "PENDING" | "CANCELLED" | "SUSPENDED" | "PAID";

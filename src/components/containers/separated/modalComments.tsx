@@ -7,6 +7,7 @@ import useUpdateTheme from "../../Hooks/updateTheme";
 import SVGComments from "../../SVGs/INFO/SVGComments";
 import { Cnpj } from "../../../API/API_utils";
 import ConfirmationModal from "./modalConfirmSave";
+import { postUpdateCnpj } from "../../../API/API_cnpj";
 
 const ModalComments: React.FC<{
   theme: { theme: Etheme };
@@ -34,6 +35,28 @@ const ModalComments: React.FC<{
     setConfirmSaveOpen(true);
   };
 
+  const handleCancelSave = () => {
+    // Close confirmation modal
+    setConfirmSaveOpen(false);
+  };
+
+  const handleCloseModal = () => {
+    // Update the comments state with the latest value
+    setTextareaValue(comments);
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (cnpj && cnpj.cnpj) {
+      postUpdateCnpj(cnpj.cnpj.toString(), {
+        comments: textareaValue,
+      }).then();
+    }
+    setTextareaValue(comments);
+    setIsModalOpen(false);
+  };
+
   const handleConfirmSave = () => {
     // Save changes
     setData
@@ -50,17 +73,6 @@ const ModalComments: React.FC<{
       : null;
     setIsModalOpen(false);
     setConfirmSaveOpen(false);
-  };
-
-  const handleCancelSave = () => {
-    // Close confirmation modal
-    setConfirmSaveOpen(false);
-  };
-
-  const handleCloseModal = () => {
-    // Update the comments state with the latest value
-    setTextareaValue(comments);
-    setIsModalOpen(false);
   };
 
   return (
@@ -151,6 +163,7 @@ const ModalComments: React.FC<{
               isOpen={isConfirmSave}
               onConfirm={handleConfirmSave}
               onCancel={handleCancelSave}
+              submitButton={handleSubmit}
             />
           </div>
         </div>

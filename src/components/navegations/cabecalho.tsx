@@ -19,7 +19,7 @@ const Cabecalho = ({ theme, pageName }: cabecalhoProps) => {
         newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
       } flex text-center items-center font-oswald mb-2`}
     >
-      <p className="w-90">{pageName}</p>
+      <p className="w-90 ml-10 uppercase">- {pageName} -</p>
 
       <div className="w-10">
         <TitleBar theme={themes} />

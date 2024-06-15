@@ -69,7 +69,7 @@ const SigninForm: React.FC<signinInterface> = ({
               : "bg-dark-container focus:bg-white focus:border-dark-primary hover:border-dark-tertiary placeholder-dark-text text-dark-text"
           } placeholder-opacity-70 hover:placeholder-opacity-100 text-opacity-70 hover:text-opacity-100 ring-0 outline-none border-rounded block p-2.5 my-2 w-full font-oswald text-center`}
         >
-          <option value="" disabled selected>
+          <option value="" disabled defaultChecked>
             Supervisor
           </option>
           {supervisor?.map((supervisor) => {

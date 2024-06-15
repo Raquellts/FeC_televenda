@@ -45,7 +45,7 @@ class InfoTelemarking extends React.Component<
       this.props.theme === Etheme.light
         ? "text-text opacity-80 mr-2"
         : "text-dark-text opacity-80 mr-2";
-    const Pclasses = "font-style-md";
+    const Pclasses = "font-style-xlg";
 
     return (
       <div>
@@ -56,7 +56,7 @@ class InfoTelemarking extends React.Component<
           <>
             {/*---- informações do Vendedor ----*/}
             <form
-              className={`flex flex-wrap w-100 px-5 py-2 my-0.5 ml-0.5 font-oswald ${
+              className={`flex flex-wrap w-100 px-5 py-2 my-0.5 ml-0.5 font-inter font-style-lg ${
                 this.props.theme === Etheme.light
                   ? "text-primary"
                   : "text-dark-primary"

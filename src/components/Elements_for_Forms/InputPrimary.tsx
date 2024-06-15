@@ -11,6 +11,8 @@ interface InputPrimaryProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   theme: { theme: Etheme };
+  min?: number;
+  max?: number;
 }
 const InputPrimary: React.FC<InputPrimaryProps> = ({
   required,
@@ -21,6 +23,8 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
   onChange,
   className,
   theme,
+  min,
+  max,
 }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -39,6 +43,8 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
       } placeholder-opacity-70 hover:placeholder-opacity-100 text-opacity-70 hover:text-opacity-100 ring-0 outline-none border-b-2 border-transparent border-rounded block p-2.5 my-2 w-fit font-oswald ${className}`}
       value={value}
       onChange={onChange}
+      min={min}
+      max={max}
     />
   );
 };

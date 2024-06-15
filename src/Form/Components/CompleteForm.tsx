@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Etheme } from "../../themeConsts";
-import { useLocation } from "react-router-dom";
 import useUpdateTheme from "../../components/Hooks/updateTheme";
 import PDFComponent from "./PDFS/PDFItemCNPJ";
 import FormCliente from "./FormCliente";
-import FormPedido from "./FormPedido";
+import { Cnpj } from "../../API/API_utils";
 
-const CompleteForm = (theme: { theme: Etheme }) => {
-  const location = useLocation();
-  const { cnpj } = location.state;
+interface CompleteFormProps {
+  theme: { theme: Etheme };
+  cnpj: Cnpj;
+}
 
+const CompleteForm: React.FC<CompleteFormProps> = ({ theme, cnpj }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -29,7 +30,6 @@ const CompleteForm = (theme: { theme: Etheme }) => {
           <FormCliente theme={theme} cnpj={cnpj} />
         </div>
       </div>
-      <FormPedido theme={theme} cnpj={cnpj} />
     </div>
   );
 };

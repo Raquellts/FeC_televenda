@@ -1,36 +1,23 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/navegations/cabecalho";
-import { CnpjOrder } from "../API/API_utils";
-import { getOrderByCnpjsId } from "../API/API_cnpj";
-import OrdemItem from "./Components/OrderItem";
 import CompleteForm from "./Components/CompleteForm";
+import { useLocation } from "react-router-dom";
+import MapOrders from "./Components/MapOrders";
 
-function Form(id: string) {
+function Form() {
   const [theme, setTheme] = useState(themes.activeTheme);
   const pageName = "Formulario do pedido";
-
-  // GET ORDER CNPJS vvv ___________
-
-  const [orders, setOrders] = useState<CnpjOrder[]>();
-
-  const handleOrders = useCallback(() => {
-    getOrderByCnpjsId(id).then((data) => {
-      setOrders([data]);
-    });
-  }, [id]);
-
-  useEffect(() => {
-    handleOrders();
-  }, [handleOrders]);
+  const location = useLocation();
+  const { cnpj } = location.state || {};
 
   return (
     <div
       className={`${
         theme === Etheme.light ? "bg-background" : "bg-dark-background"
-      } Flex min-h-screen h-full`}
+      } Flex min-h-screen h-full w-full`}
     >
       <ModalSideNav theme={theme} />
       {/* CABECALHO E TITLEBAR */}
@@ -42,18 +29,12 @@ function Form(id: string) {
         <Cabecalho theme={{ theme }} pageName={pageName} />
       </div>
       <div className="px-4 pb-4 lg:ml-64">
-        <CompleteForm theme={theme} />
+        {/* FORMULARIO DE PEDIDO*/}
+        <CompleteForm theme={{ theme }} cnpj={cnpj} />
         {/* LISTA DE PEDIDOS */}
-        {orders?.map((Order) =>
-          Order ? (
-            <div key={Order.id}>
-              <OrdemItem Order={Order} theme={{ theme }} />
-            </div>
-          ) : (
-            <p>teste testando</p>
-          )
-        )}
+        <MapOrders theme={theme} cnpj={cnpj} />
       </div>
+
       <div className="fixed bottom-5 right-4">
         <ButtonTheme theme={theme} setTheme={setTheme} />
       </div>

@@ -27,7 +27,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
   return (
     <div>
       <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5">
-        {cnpj.razaoSocial}
+        {cnpj && cnpj.razaoSocial}
       </p>
       {cnpj && (
         <>
@@ -116,7 +116,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                value={cnpj.cnpj.toString()}
+                value={cnpj.cnpj.toString() || ""}
                 onChange={() => {}}
                 className={`${inputTextareas}`}
               />

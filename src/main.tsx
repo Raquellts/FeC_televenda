@@ -18,6 +18,7 @@ import ForgotPassword from "./forgotpassword";
 //protected
 import { Pending, Suspended, Confirmed, Rejected, All } from "./Home/filters";
 import Form from "./Form/Index";
+import Order from "./Order/index";
 import Users from "./Users";
 
 //HashRoutes
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: "/form",
     element: <ProtectRoute component={Form} />,
+  },
+  {
+    path: "/order",
+    element: <ProtectRoute component={Order} />,
   },
   {
     path: "/Users",

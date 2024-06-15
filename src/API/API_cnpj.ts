@@ -1,5 +1,5 @@
 import axios from "axios";
-import baseURL, { Cnpj, CnpjOrder, CommonUser, User } from "./API_utils";
+import baseURL, { Cnpj, CnpjOrder, CommonUser, Item, User } from "./API_utils";
 import axiosWithAuth from "../midleware/axiosWithAuth";
 
 const config = {
@@ -50,8 +50,14 @@ export const getCnpjs = async (): Promise<Cnpj[]> => {
   return response.data.body;
 };
 
+//ATUALIZAR INFOS DECLIENTES-CNPJS ----- Lead
+export const postUpdateCnpj = async (id: string, data: any): Promise<any> => {
+  const response = await axiosWithAuth.put(baseURL + "/lead/" + id, data);
+  return response.data.body;
+};
+
 //PEGAR PEDIDOS DE CLIENTES-CNPJS ----- Order
-export const getOrderByCnpjsId = async (id: string): Promise<CnpjOrder> => {
+export const getOrderByCnpjsId = async (id: string): Promise<CnpjOrder[]> => {
   const response = await axiosWithAuth.get(baseURL + "/order/lead/" + id);
   return response.data.body;
 };
@@ -59,8 +65,8 @@ export const getOrderByCnpjsId = async (id: string): Promise<CnpjOrder> => {
 //CADASTRAR PEDIDOS DE CLIENTES-CNPJS ----- Order
 export const postOrderByCnpjsId = async (
   id: string,
-  data: CnpjOrder
-): Promise<CnpjOrder> => {
+  data: Item
+): Promise<Item> => {
   const response = await axiosWithAuth.post(baseURL + "/order/" + id, data);
   return response.data.body;
 };

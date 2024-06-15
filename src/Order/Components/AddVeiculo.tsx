@@ -1,29 +1,42 @@
 import React, { useState } from "react";
-import { Etheme } from "../../../themeConsts";
-import useUpdateTheme from "../../../components/Hooks/updateTheme";
+import { Etheme } from "../../themeConsts";
+import useUpdateTheme from "../../components/Hooks/updateTheme";
 import CompVeiculo from "./CompVeiculo";
-import { Cnpj } from "../../../API/API_utils";
-import ButtonTertiary from "../../../components/buttons/ButtonTertiary";
-import Tooltip from "../../../components/containers/separated/tooltip";
-import SVGPlus from "../../../components/SVGs/CIRCLE/SVGPlus";
+import ButtonTertiary from "../../components/buttons/ButtonTertiary";
+import Tooltip from "../../components/containers/separated/tooltip";
+import SVGPlus from "../../components/SVGs/CIRCLE/SVGPlus";
+import { Item } from "../../API/API_utils";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 18;
 /*SVG CONSTS*/ const height_svg = 18;
 
 interface AddVeiculo {
-  cnpj: Cnpj;
   theme: { theme: Etheme };
-  handleOrderChange: any;
+  addOrder: any;
 }
 
-const AddVeiculo: React.FC<AddVeiculo> = ({ theme, handleOrderChange }) => {
+const AddVeiculo: React.FC<AddVeiculo> = ({ theme, addOrder }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
+  const [items, setItems] = useState<Item[]>([]);
+
+  const handleAddItem = (newItem: Item) => {
+    setItems([...items, newItem]);
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const order = {
+      items: items,
+    };
+    addOrder(order);
+  };
+
   const [forms, setForms] = useState<JSX.Element[]>([
-    <CompVeiculo key={0} theme={theme} handleOrderChange={handleOrderChange} />,
+    <CompVeiculo key={0} theme={theme} addItem={handleAddItem} />,
   ]);
 
   const handleAddForm = () => {
@@ -32,7 +45,7 @@ const AddVeiculo: React.FC<AddVeiculo> = ({ theme, handleOrderChange }) => {
       <CompVeiculo
         key={prevForms.length}
         theme={theme}
-        handleOrderChange={handleOrderChange}
+        addItem={handleAddItem}
       />,
     ]);
   };
@@ -40,10 +53,10 @@ const AddVeiculo: React.FC<AddVeiculo> = ({ theme, handleOrderChange }) => {
   const handleRemoveForm = (index: number) => {
     setForms((prevForms) => prevForms.filter((_, i) => i !== index));
   };
-  useUpdateTheme(theme, setNewtheme);
 
   return (
-    <div
+    <form
+      onSubmit={handleSubmit}
       className={`${
         newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
       } shadow-md flex flex-col items-center justify-between p-2 rounded-2xl h-full bg-opacity-50`}
@@ -94,7 +107,7 @@ const AddVeiculo: React.FC<AddVeiculo> = ({ theme, handleOrderChange }) => {
           </ButtonTertiary>
         </Tooltip>
       </div>
-    </div>
+    </form>
   );
 };
 

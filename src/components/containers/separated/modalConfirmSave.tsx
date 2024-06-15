@@ -7,17 +7,23 @@ const ConfirmationModal: React.FC<{
   actionName?: string;
   theme: { theme: Etheme };
   isOpen: boolean;
-  onConfirm?: () => void;
+  onConfirm: () => void;
   onCancel: () => void;
-}> = ({ actionName, isOpen, onConfirm, onCancel, theme }) => {
+  submitButton?: any;
+}> = ({ actionName, isOpen, onConfirm, onCancel, submitButton, theme }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
   if (!isOpen) return null;
 
+  const handleClick = async () => {
+    await submitButton?.();
+    onConfirm?.();
+  };
+
   return (
-    <div
+    <form
       id="static-modal"
       data-modal-backdrop="static"
       tabIndex={-1}
@@ -51,7 +57,7 @@ const ConfirmationModal: React.FC<{
         <div className="flex items-center justify-center w-full">
           <ButtonTertiary
             buttonContent="✓ Salvar"
-            onClick={onConfirm}
+            onClick={handleClick}
             className="w-1/2 py-2 mx-1 bg-green-600 border-green-700 hover:bg-green-400 my-1 tracking-wide uppercase text-text"
           />
           <ButtonTertiary
@@ -61,7 +67,7 @@ const ConfirmationModal: React.FC<{
           />
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

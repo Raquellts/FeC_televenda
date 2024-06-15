@@ -42,7 +42,7 @@ const SelectStatus: React.FC<SelectStatusProps> = ({ cnpj, theme }) => {
             <option value={3}>Suspenso</option>
             <option value={4}>Rejeitado</option>
 
-            <option value="" disabled selected>
+            <option value="" disabled defaultChecked>
               {cnpj.status === 1
                 ? "Pendente"
                 : cnpj.status === 2

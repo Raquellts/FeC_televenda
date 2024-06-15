@@ -50,9 +50,18 @@ export const getCnpjs = async (): Promise<Cnpj[]> => {
   return response.data.body;
 };
 
-//PEDIDOS DE CLIENTES-CNPJS ----- Order
+//PEGAR PEDIDOS DE CLIENTES-CNPJS ----- Order
 export const getOrderByCnpjsId = async (id: string): Promise<CnpjOrder> => {
   const response = await axiosWithAuth.get(baseURL + "/order/lead/" + id);
+  return response.data.body;
+};
+
+//CADASTRAR PEDIDOS DE CLIENTES-CNPJS ----- Order
+export const postOrderByCnpjsId = async (
+  id: string,
+  data: CnpjOrder
+): Promise<CnpjOrder> => {
+  const response = await axiosWithAuth.post(baseURL + "/order/" + id, data);
   return response.data.body;
 };
 

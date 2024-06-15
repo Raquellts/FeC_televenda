@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { Etheme, themes } from "../themeConsts";
 import InfosCnpj from "./Components/infosCnpj";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/navegations/cabecalho";
-import { getCommonUser } from "../API/API_cnpj";
-import { User } from "../API/API_utils";
-
 interface HomeProps {
   filter: number | null;
   pageName: string;
@@ -14,21 +11,6 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ filter, pageName }) => {
   /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
-
-  //_____________________
-  // GETUSER vvv ___________
-
-  const [user, setUser] = useState<User>();
-
-  const handleDataUpdate = useCallback(() => {
-    getCommonUser().then((data) => {
-      setUser(data);
-    });
-  }, []);
-
-  useEffect(() => {
-    handleDataUpdate();
-  }, [handleDataUpdate]);
 
   return (
     <div
@@ -48,11 +30,11 @@ const Home: React.FC<HomeProps> = ({ filter, pageName }) => {
       </div>
 
       {/* INFOSCNPJ */}
-      {user && (
-        <div className="px-4 lg:ml-64">
-          <InfosCnpj statusNumber={filter} theme={theme} user={user.role} />
-        </div>
-      )}
+
+      <div className="px-4 lg:ml-64">
+        <InfosCnpj statusNumber={filter} theme={{ theme }} />
+      </div>
+
       {/* THEME BUTTON */}
       <div className="fixed bottom-5 right-4">
         <ButtonTheme theme={theme} setTheme={setTheme} />

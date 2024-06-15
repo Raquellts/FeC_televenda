@@ -1,50 +1,77 @@
-import { useEffect, useState } from "react";
-
-//Interfaces
-import { useDataCnpj } from "../Hooks/dataUpdateCnpj";
-import { Etheme } from "../../themeConsts";
-
-//styles
-import useUpdateTheme from "../../components/Hooks/updateTheme";
+import React from "react";
 import InfoCnpjItem from "./Interior_Components/InfoCnpjItem";
+import { Etheme, themes } from "../../themeConsts";
+import { Cnpj } from "../../API/API_utils";
+import { getCnpjs } from "../../API/API_cnpj";
 
-const InfosCnpj = ({
-  statusNumber,
-  theme,
-  user,
-}: {
+interface iInfosCnpj {
   statusNumber: number | null;
+  theme: { theme: Etheme };
+}
+
+interface iCnpj {
   theme: Etheme;
-  user: number | null;
-}) => {
-  /*THEME*/ const themes = theme;
-  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
-  /*THEME*/ useUpdateTheme({ theme }, setNewtheme);
+  data: Cnpj[];
+}
 
-  /*dataUpdateCNPJ > vvv*/
+class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
+  loading: boolean = false;
 
-  const { data, setData, handleDataUpdate } = useDataCnpj();
-  useEffect(() => {
-    handleDataUpdate();
-  }, [handleDataUpdate]);
+  constructor(props: iInfosCnpj) {
+    super(props);
 
-  return (
-    <div className={`${newtheme}`}>
-      {data?.map((cnpj) => {
-        if (!statusNumber || cnpj.status === statusNumber) {
-          return (
-            <InfoCnpjItem
-              cnpj={cnpj}
-              theme={{ theme: newtheme }}
-              data={data}
-              setData={setData}
-              user={user}
-            />
-          );
-        }
-      })}
-    </div>
-  );
-};
+    this.state = {
+      theme: themes.activeTheme,
+      data: [],
+    };
+  }
+
+  componentDidMount(): void {
+    if (this.loading === false) {
+      this.loading = true;
+      getCnpjs()
+        .then((data) => {
+          this.setState({ data });
+        })
+        .finally(() => (this.loading = false));
+    }
+  }
+
+  setTheme = (theme: Etheme) => {
+    this.setState({ theme });
+  };
+
+  handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedTheme = event.target.value as Etheme;
+    this.setTheme(selectedTheme);
+  };
+
+  render() {
+    const { statusNumber, theme } = this.props;
+    const { data } = this.state;
+
+    return (
+      <div className={`${theme}`}>
+        {data?.map((cnpj, index) => {
+          if (!statusNumber || cnpj.status === statusNumber) {
+            const handleDataUpdate = (updatedData: Cnpj[]) => {
+              this.setState({ data: updatedData });
+            };
+
+            return (
+              <InfoCnpjItem
+                cnpj={cnpj}
+                theme={theme}
+                data={data}
+                setData={handleDataUpdate}
+                key={"InfosCnpj" + index}
+              />
+            );
+          }
+        })}
+      </div>
+    );
+  }
+}
 
 export default InfosCnpj;

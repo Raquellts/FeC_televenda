@@ -6,14 +6,14 @@ import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../Hooks/updateTheme";
 import SVGComments from "../../SVGs/INFO/SVGComments";
 import { Cnpj } from "../../../API/API_utils";
-import ConfirmationModal from "./confirmationModal";
+import ConfirmationModal from "./modalConfirmSave";
 
 const ModalComments: React.FC<{
   theme: { theme: Etheme };
   cnpj: { cnpj: number };
-  data: Cnpj[];
-  setData: React.Dispatch<React.SetStateAction<Cnpj[]>>;
-  comments: string;
+  data?: Cnpj[];
+  setData?: React.Dispatch<React.SetStateAction<Cnpj[]>>;
+  comments: string | null;
 }> = ({ cnpj, data, setData, comments, theme }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -36,18 +36,18 @@ const ModalComments: React.FC<{
 
   const handleConfirmSave = () => {
     // Save changes
-    setData(
-      data.map((c) => {
-        if (c.cnpj === cnpj.cnpj) {
-          return {
-            ...c,
-            comments: textareaValue,
-          };
-        } else {
-          return c;
-        }
-      })
-    );
+    setData
+      ? data?.map((c) => {
+          if (c.cnpj === cnpj.cnpj) {
+            return {
+              ...c,
+              comments: textareaValue,
+            };
+          } else {
+            return c;
+          }
+        })
+      : null;
     setIsModalOpen(false);
     setConfirmSaveOpen(false);
   };
@@ -126,7 +126,7 @@ const ModalComments: React.FC<{
                 <TextareaPrimary
                   theme={theme}
                   name="comments"
-                  value={textareaValue}
+                  value={textareaValue || ""}
                   onChange={handleCommentChange}
                   className="w-full rounded-xl"
                   minRows={3}
@@ -146,6 +146,7 @@ const ModalComments: React.FC<{
 
             {/* modal para confirmação do salvamento */}
             <ConfirmationModal
+              actionName="Salvar Comentário"
               theme={theme}
               isOpen={isConfirmSave}
               onConfirm={handleConfirmSave}

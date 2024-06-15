@@ -4,9 +4,9 @@ import useUpdateTheme from "../Hooks/updateTheme";
 
 interface InputPrimaryProps {
   required?: boolean;
-  name: string;
-  type: string;
-  placeholder: string;
+  name?: string;
+  type?: string;
+  placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;

@@ -5,12 +5,12 @@ import TextareaPrimary from "../../../components/Elements_for_Forms/textareaPrim
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Cnpj } from "../../../API/API_utils";
 
-interface ClienteCNPJProps {
+interface CompClienteProps {
   cnpj: Cnpj;
   theme: { theme: Etheme };
 }
 
-const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
+const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -42,9 +42,8 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
               <span className={spans}>Nome:</span>
               <TextareaPrimary
                 theme={theme}
-                name={""}
-                placeholder={cnpj.clientName || ""}
-                value={""}
+                name={"clientName"}
+                value={cnpj.clientName || ""}
                 onChange={() => {}}
                 className={inputTextareas}
                 maxRows={1}
@@ -55,9 +54,8 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
               <span className={spans}>Atividades:</span>
               <TextareaPrimary
                 theme={theme}
-                name={""}
-                placeholder={cnpj.activity}
-                value={""}
+                name={"activity"}
+                value={cnpj.activity}
                 onChange={() => {}}
                 className={inputTextareas}
                 maxRows={1}
@@ -70,8 +68,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.phone1 || ""}
-                value={""}
+                value={cnpj.phone1 || ""}
                 onChange={() => {}}
                 className={inputTextareas}
               />
@@ -83,8 +80,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.phone2 || ""}
-                value={""}
+                value={cnpj.phone2 || ""}
                 onChange={() => {}}
                 className={inputTextareas}
               />
@@ -96,8 +92,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={"email"}
-                placeholder={cnpj.email || ""}
-                value={""}
+                value={cnpj.email || ""}
                 onChange={() => {}}
                 className={inputTextareas}
               />
@@ -109,8 +104,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={"date"}
-                placeholder={cnpj.dateForCall || ""}
-                value={""}
+                value={cnpj.dateForCall || ""}
                 onChange={() => {}}
                 className={inputTextareas}
               />
@@ -122,8 +116,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.cnpj.toString()}
-                value={""}
+                value={cnpj.cnpj.toString()}
                 onChange={() => {}}
                 className={`${inputTextareas}`}
               />
@@ -135,8 +128,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.cnae.toString() || ""}
-                value={""}
+                value={cnpj.cnae.toString() || ""}
                 onChange={() => {}}
                 className={inputTextareas}
               />
@@ -148,8 +140,7 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={cnpj.porte || ""}
-                value={""}
+                value={cnpj.porte || ""}
                 onChange={() => {}}
                 className={inputTextareas}
               />
@@ -161,14 +152,13 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
                 theme={theme}
                 name={""}
                 type={""}
-                placeholder={
+                value={
                   cnpj.identificadorMatrizFilial === 1
                     ? "Matriz"
                     : cnpj.identificadorMatrizFilial === 2
                     ? "Filial"
                     : "Sem porte"
                 }
-                value={""}
                 onChange={() => {}}
                 className={`${inputTextareas}`}
               />
@@ -180,4 +170,4 @@ const FormClienteCNPJ: React.FC<ClienteCNPJProps> = ({ cnpj, theme }) => {
   );
 };
 
-export default FormClienteCNPJ;
+export default CompCliente;

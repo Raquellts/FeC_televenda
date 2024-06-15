@@ -1,87 +1,92 @@
-import { useState } from "react";
-import { Etheme } from "../../themeConsts";
-import { useLocation } from "react-router-dom";
-import useUpdateTheme from "../../components/Hooks/updateTheme";
-import PDFComponent from "./PDFS/PDFItemCNPJ";
-import FormClienteCNPJ from "./Interior_Components/FormClienteCNPJ";
+import { Etheme, themes } from "../../themeConsts";
+import CompCliente from "./Interior_Components/CompCliente";
 import InfoTelemarking from "./Interior_Components/InfoTelemarking";
 import SelectStatus from "./Interior_Components/selectStatus";
 import ButtonTertiary from "../../components/buttons/ButtonTertiary";
-import ConfirmationModal from "../../components/containers/separated/confirmationModal";
+import ConfirmationModal from "../../components/containers/separated/modalConfirmSave";
 import SVGSave from "../../components/SVGs/SYMBOLS/SVGSave";
 import Tooltip from "../../components/containers/separated/tooltip";
+import { Cnpj } from "../../API/API_utils";
+import React from "react";
+import ModalComments from "../../components/containers/separated/modalComments";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 18;
 /*SVG CONSTS*/ const height_svg = 18;
 
-const CompleteForm = (theme: { theme: Etheme }) => {
-  const location = useLocation();
-  const { cnpj /*id*/ } = location.state;
+interface FormClienteProps {
+  theme: { theme: Etheme };
+  cnpj: Cnpj;
+}
 
-  /*THEME*/ const themes = theme.theme;
-  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
-  /*THEME*/ useUpdateTheme(theme, setNewtheme);
+interface FormClienteState {
+  theme: Etheme;
+  save: boolean;
+  confirmed: boolean;
+}
 
-  /*__________________ HOOK - HANDLE CLIENT-CNPJ SUBMIT ____________________*/
-  /*HANDLE CLIENT_CNPJ SUBMIT vvv */
-  const [save, setsave] = useState(false); //modal confirmation of changes
-  const [confirmed, setconfirmed] = useState(false);
+class FormCliente extends React.Component<FormClienteProps, FormClienteState> {
+  constructor(props: FormClienteProps) {
+    super(props);
 
-  const handleCNPJSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    const data = Object.fromEntries(formData);
-    console.log(data);
-    setsave(false);
-    setTimeout(() => {
-      setconfirmed(true);
-    }, 1000);
+    this.state = {
+      theme: themes.activeTheme,
+      save: false,
+      confirmed: false,
+    };
+  }
+
+  handlesave = () => {
+    this.setState({ save: true });
   };
 
-  const handlesave = () => {
-    setsave(true);
+  handleCancelsave = () => {
+    this.setState({ save: false, confirmed: false });
   };
 
-  const handleCancelsave = () => {
-    setsave(false);
-    setconfirmed(false);
+  setTheme = (theme: Etheme) => {
+    this.setState({ theme });
   };
 
-  return (
-    <div
-      className={`${
-        newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-      } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full bg-opacity-50`}
-    >
-      {/*---- Botão de gerar PDF----*/}
-      <div className={`fixed lg:ml-64 left-3 bottom-0 mb-6`}>
-        <PDFComponent cnpj={cnpj} />
-      </div>
-      <div className={`divide-y divide-secondary divide-opacity-50 p-2`}>
+  handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedTheme = event.target.value as Etheme;
+    this.setTheme(selectedTheme);
+  };
+
+  render() {
+    const { save, confirmed } = this.state;
+    const { theme, cnpj } = this.props;
+    const { handleCancelsave, handlesave } = this;
+    return (
+      <>
         {/*------ FORMULARIO DO CLIENTE/CNPJ ------*/}
 
-        <form onSubmit={handleCNPJSubmit}>
+        <form>
           <div className={`pb-6 flex flex-row flex-wrap w-100 justify-center`}>
             <div className={`w-full md:w-90`}>
-              <FormClienteCNPJ theme={theme} cnpj={cnpj} />
+              <CompCliente theme={theme} cnpj={cnpj} />
             </div>
             <div className={`w-80 md:w-10 pr-2`}>
               <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5 pb-2">
                 Status
               </p>
               <SelectStatus theme={theme} cnpj={cnpj} />
+              <ModalComments
+                theme={theme}
+                cnpj={cnpj}
+                comments={cnpj.comments}
+              />
             </div>
             <div className={`w-full flex justify-between items-end pb-4`}>
               <div className={`w-full`}>
-                <InfoTelemarking theme={theme} />
+                <InfoTelemarking theme={theme.theme} />
               </div>
               {/*------ BOTÃO ATUALIZAR CLIENTE --- botão para abrir o modal ------*/}
 
               <div className={`px-4`}>
                 <Tooltip
                   message="Atualizar informações do cliente"
-                  theme={newtheme}
+                  theme={theme.theme}
                   className={`${save ? "hidden" : ""} mb-9 text-center`}
                 >
                   <ButtonTertiary
@@ -107,6 +112,7 @@ const CompleteForm = (theme: { theme: Etheme }) => {
 
             <div className={`w-full lg:px-[35%] md:px-30 px-10`}>
               <ConfirmationModal
+                actionName="Atualizar informações do cliente"
                 theme={theme}
                 isOpen={save}
                 onCancel={handleCancelsave}
@@ -122,9 +128,9 @@ const CompleteForm = (theme: { theme: Etheme }) => {
             ) : null}
           </div>
         </form>
-      </div>
-    </div>
-  );
-};
+      </>
+    );
+  }
+}
 
-export default CompleteForm;
+export default FormCliente;

@@ -1,5 +1,4 @@
-import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { getSupervisor, postCommonUser } from "../API/API_cnpj.ts";
 import { User, CommonUser } from "../API/API_utils.ts";
 import ApiError from "../APIError";
@@ -12,88 +11,130 @@ import { Etheme, themes } from "../themeConsts";
 import ButtonTheme from "../themeButton";
 import SigninForm from "./Components/signin_Form.tsx";
 
-function Signin() {
-  /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
-  const [supervisor, setSupervisor] = useState<User[]>([]);
+interface State {
+  theme: Etheme;
+  supervisor: User[];
+  formData: CommonUser;
+  error: string;
+}
 
-  const [error, seterror] = useState("");
-  const navigate = useNavigate();
+class Signin extends React.Component<any, State> {
+  loading: boolean = false;
 
-  const [formData, setFormData] = useState<CommonUser>({
-    name: "",
-    username: "",
-    surname: "",
-    email: "",
-    password: "",
-    supervisorId: "",
-    role: 1,
-  });
+  constructor(props: any) {
+    super(props);
 
-  const Supervisors = useCallback(async () => {
-    const GetSupervisor = await getSupervisor();
-    setSupervisor(GetSupervisor);
-  }, []);
+    this.state = {
+      theme: themes.activeTheme,
+      supervisor: [],
+      formData: {
+        name: "",
+        username: "",
+        surname: "",
+        email: "",
+        password: "",
+        supervisorId: "",
+        role: 1,
+      },
+      error: "",
+    };
+  }
 
-  const handlesubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  Supervisors = () => {
+    return this.state.supervisor.map((supervisor, index) => {
+      return (
+        <option key={index} value={supervisor.id}>
+          {supervisor.name}
+        </option>
+      );
+    });
+  };
+
+  componentDidMount(): void {
+    if (this.loading === false) {
+      this.loading = true;
+      getSupervisor()
+        .then((data) => {
+          this.setState({ supervisor: data });
+        })
+        .finally(() => (this.loading = false));
+    }
+  }
+
+  handlesubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    seterror("");
 
     try {
-      if (formData) {
-        const data = await postCommonUser(formData);
+      if (this.state.formData) {
+        const data = await postCommonUser(this.state.formData);
         if (data) {
-          navigate("/login");
+          this.props.history.push("/login");
         }
       }
     } catch (err: unknown) {
       if (err instanceof Error && "response" in err) {
         const apiError = err as ApiError;
-        seterror(apiError.response.data.message);
+        this.setState({ error: apiError.response.data.message });
       } else {
         // Handle other types of errors or re-throw
         throw err;
       }
     }
   };
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
+
+  setFormData = (formData: CommonUser) => {
+    this.setState({
+      formData,
     });
   };
 
-  console.log(formData);
-  return (
-    <div
-      className={`full-div overflow-hidden flex items-center justify-center lg:justify-start`}
-    >
-      <Background />
-      <SigninForm
-        theme={{ theme }}
-        error={error}
-        formData={formData}
-        handleChange={handleChange}
-        handlesubmit={handlesubmit}
-        setFormData={setFormData}
-        Supervisors={Supervisors}
-        supervisor={supervisor}
-      />
-      <div className="fixed bottom-3 right-4 z-10">
-        <ButtonTheme theme={theme} setTheme={setTheme} />
-      </div>
-      {/*--------- LOGOS ----------*/}
-      {/*--------- logo de tela grande ------*/}
-      <div className="mx-auto hidden lg:block text-center">
-        <img
-          src={logo}
-          alt="logo"
-          className={`logo ${
-            theme === Etheme.light ? "light_filter" : "dark_filter"
-          }`}
+  setTheme = (theme: Etheme) => {
+    this.setState({ theme });
+  };
+
+  handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    this.setFormData({
+      ...this.state.formData,
+      [event.target.name]: event.target.value,
+    });
+
+    const selectedTheme = event.target.value as Etheme;
+    this.setTheme(selectedTheme);
+  };
+
+  render() {
+    return (
+      <div
+        className={`full-div overflow-hidden flex items-center justify-center lg:justify-start`}
+      >
+        <Background />
+        <SigninForm
+          theme={{ theme: this.state.theme }}
+          error={this.state.error}
+          formData={this.state.formData}
+          handleChange={this.handleChange}
+          handlesubmit={this.handlesubmit}
+          setFormData={this.setFormData}
+          Supervisors={this.Supervisors}
+          supervisor={this.state.supervisor}
         />
+        <div className="fixed bottom-3 right-4 z-10">
+          <ButtonTheme theme={this.state.theme} setTheme={this.setTheme} />
+        </div>
+        {/*--------- LOGOS ----------*/}
+        {/*--------- logo de tela grande ------*/}
+        <div className="mx-auto hidden lg:block text-center">
+          <img
+            src={logo}
+            alt="logo"
+            className={`logo ${
+              this.state.theme === Etheme.light ? "light_filter" : "dark_filter"
+            }`}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Signin;

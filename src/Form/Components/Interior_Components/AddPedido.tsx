@@ -14,14 +14,19 @@ import SVGPlus from "../../../components/SVGs/CIRCLE/SVGPlus";
 interface AddPedido {
   cnpj: Cnpj;
   theme: { theme: Etheme };
+  handleOrderChange: any;
 }
 
-const AddPedido: React.FC<AddPedido> = ({ theme, cnpj }) => {
+const AddPedido: React.FC<AddPedido> = ({ theme, cnpj, handleOrderChange }) => {
   // THEME
   const themes = theme.theme;
   const [newtheme, setNewtheme] = useState(themes);
   const [forms, setForms] = useState<JSX.Element[]>([
-    <AddVeiculo cnpj={cnpj} theme={theme} />,
+    <AddVeiculo
+      cnpj={cnpj}
+      theme={theme}
+      handleOrderChange={handleOrderChange}
+    />,
   ]);
 
   const handleRemoveForm = () => {
@@ -32,7 +37,7 @@ const AddPedido: React.FC<AddPedido> = ({ theme, cnpj }) => {
   const hasActivePedido = forms.length > 0;
 
   return (
-    <div
+    <form
       className={`w-full flex flex-col justify-center items-center font-oswald pt-5 ${
         newtheme === Etheme.dark ? "text-tertiary" : "text-dark-tertiary"
       }`}
@@ -43,7 +48,11 @@ const AddPedido: React.FC<AddPedido> = ({ theme, cnpj }) => {
           onClick={() =>
             setForms((prevForms) => [
               ...prevForms,
-              <AddVeiculo cnpj={cnpj} theme={theme} />,
+              <AddVeiculo
+                cnpj={cnpj}
+                theme={theme}
+                handleOrderChange={handleOrderChange}
+              />,
             ])
           }
           className={`flex justify-center border-transparent bg-blue-700 text-text hover:border-secondary hover:bg-primary font-oswald px-4 py-2 text-[16px]`}
@@ -82,7 +91,7 @@ const AddPedido: React.FC<AddPedido> = ({ theme, cnpj }) => {
           {form}
         </div>
       ))}
-    </div>
+    </form>
   );
 };
 export default AddPedido;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
-import FormVeiculo from "./FormVeiculo";
+import CompVeiculo from "./CompVeiculo";
 import { Cnpj } from "../../../API/API_utils";
 import ButtonTertiary from "../../../components/buttons/ButtonTertiary";
 import Tooltip from "../../../components/containers/separated/tooltip";
@@ -14,21 +14,26 @@ import SVGPlus from "../../../components/SVGs/CIRCLE/SVGPlus";
 interface AddVeiculo {
   cnpj: Cnpj;
   theme: { theme: Etheme };
+  handleOrderChange: any;
 }
 
-const AddVeiculo: React.FC<AddVeiculo> = ({ theme }) => {
+const AddVeiculo: React.FC<AddVeiculo> = ({ theme, handleOrderChange }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
   const [forms, setForms] = useState<JSX.Element[]>([
-    <FormVeiculo key={0} theme={theme} />,
+    <CompVeiculo key={0} theme={theme} handleOrderChange={handleOrderChange} />,
   ]);
 
   const handleAddForm = () => {
     setForms((prevForms) => [
       ...prevForms,
-      <FormVeiculo key={prevForms.length} theme={theme} />,
+      <CompVeiculo
+        key={prevForms.length}
+        theme={theme}
+        handleOrderChange={handleOrderChange}
+      />,
     ]);
   };
 

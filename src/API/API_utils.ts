@@ -23,6 +23,7 @@ export interface User {
   supervisorId: string | null;
   role: number;
   name: string | null;
+  lastName: string | null;
   createdAt: string;
   enabled: boolean;
   accountNonExpired: boolean;
@@ -73,7 +74,7 @@ export interface CnpjOrder {
   orderItem: Item[];
 }
 
-interface Item {
+export interface Item {
   brand: string;
   model: string;
   color: string;

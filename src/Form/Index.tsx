@@ -2,14 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import { Etheme, themes } from "../themeConsts";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
-import CompleteForm from "./Components/CompleteFormulario";
 import Cabecalho from "../components/navegations/cabecalho";
-import { Cnpj, CnpjOrder } from "../API/API_utils";
+import { CnpjOrder } from "../API/API_utils";
 import { getOrderByCnpjsId } from "../API/API_cnpj";
 import OrdemItem from "./Components/OrderItem";
-import AddPedido from "./Components/Interior_Components/AddPedido";
+import CompleteForm from "./Components/CompleteForm";
 
-function Form(id: string, cnpj: Cnpj) {
+function Form(id: string) {
   const [theme, setTheme] = useState(themes.activeTheme);
   const pageName = "Formulario do pedido";
 
@@ -44,7 +43,6 @@ function Form(id: string, cnpj: Cnpj) {
       </div>
       <div className="px-4 pb-4 lg:ml-64">
         <CompleteForm theme={theme} />
-        <AddPedido cnpj={cnpj} theme={{ theme }} />
         {/* LISTA DE PEDIDOS */}
         {orders?.map((Order) =>
           Order ? (

@@ -4,8 +4,8 @@ import useUpdateTheme from "../Hooks/updateTheme";
 
 interface TextareaPrimaryProps {
   required?: boolean;
-  name: string;
-  value: string;
+  name?: string;
+  value?: string;
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   className?: string;
@@ -40,9 +40,9 @@ const TextareaPrimary: React.FC<TextareaPrimaryProps> = ({
       placeholder={placeholder}
       className={`${
         newtheme === Etheme.light
-          ? "bg-container focus:bg-gray-700 focus:border-primary hover:border-tertiary placeholder-text"
-          : "bg-dark-container focus:bg-white focus:border-dark-primary hover:border-dark-tertiary placeholder-dark-text"
-      } placeholder-opacity-70 hover:placeholder-opacity-100 ring-0 outline-none border-b-2 border-transparent rounded-2xl block px-2.5 pt-2 ${className}`}
+          ? "bg-container focus:bg-gray-700 focus:border-primary hover:border-tertiary placeholder-text text-text"
+          : "bg-dark-container focus:bg-white focus:border-dark-primary hover:border-dark-tertiary placeholder-dark-text text-dark-text"
+      } placeholder-opacity-70 hover:placeholder-opacity-100 text-opacity-70 hover:text-opacity-100 ring-0 outline-none border-b-2 border-transparent rounded-2xl block px-2.5 pt-2 ${className}`}
       style={textareaStyle}
       value={value}
       onChange={onChange}

@@ -24,37 +24,40 @@ const InfoUSERItem = ({
     <div
       className={`${
         newtheme === Etheme.light
-          ? "divide-background"
-          : "divide-dark-background"
+          ? "divide-background text-primary"
+          : "divide-dark-background text-dark-primary"
       } flex shadow-md mb-1.5 ml-1 rounded-2xl divide-x`}
       key={"infocnpjitem" + data.id}
     >
       {/* PRIMEIRA parte do container VVV */}
       <form
         className={`${
-          newtheme === Etheme.light
-            ? "bg-container text-text"
-            : "bg-dark-container text-dark-text"
-        } w-full px-2 py-2 rounded-2xl font-roboto`}
-        key={"form1" + data}
+          newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
+        } w-80 px-2 py-2 rounded-s-2xl font-roboto`}
       >
-        {/* --------------- NOME DA EMPRESA --- SVG BADGE ---------------- */}
-        <div
-          className={`${
-            newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
-          } flex justify-start`}
-        >
+        {/* --------------- NOME E SOBRENOME --- USUARIO ---------------- */}
+        <div className={`flex justify-start items-center ml-1`}>
           <SVGUser
             width={width_svg}
             height={height_svg}
             fill_one="none"
             fill_two={fill_Two_svg}
           />
-          <p className="ml-1 truncate font-style-xlg">{data.username}</p>
+          <p className="ml-1 truncate font-style-xlg">
+            {data.name + " " + data.lastName}
+          </p>
+
+          <p className="ml-1 truncate text-[12px] font-style-xlg">
+            / username: {data.username}
+          </p>
         </div>
 
         {/* --------------- LINHA DE CONTATO --- EMAILS ---------------- */}
-        <div className="flex items-center ml-1">
+        <div
+          className={`${
+            newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
+          } flex items-center ml-1`}
+        >
           <SVGEmail
             width={width_svg}
             height={height_svg}
@@ -70,17 +73,26 @@ const InfoUSERItem = ({
             <span>{data.email}</span>
           </p>
         </div>
+      </form>
 
-        {/* --------------- LINHA DE ATIVIDADES --- CNAE DESC.. ---------------- */}
-        <div
-          className={`flex opacity-70 text-xs lowercase ${
-            newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-          }`}
-        >
-          <p className={`ml-6 font-inter truncate ${style.cnpj_atividade}`}>
-            {data.name}
-          </p>
-        </div>
+      {/* SEGUNDA parte do container VVV */}
+      {/*--- STATUS ---*/}
+      <form
+        className={`w-10 ${
+          newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
+        }`}
+      >
+        <p className="ml-1 truncate font-style-xlg">ALGUMA INFO</p>
+      </form>
+
+      {/* TERCEIRA parte do container VVV */}
+      {/*--- STATUS ---*/}
+      <form
+        className={`w-10 ${
+          newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
+        } rounded-e-2xl`}
+      >
+        <p className="ml-1 truncate font-style-xlg">ALGUMA INFO</p>
       </form>
     </div>
   );

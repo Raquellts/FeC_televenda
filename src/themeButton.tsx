@@ -6,7 +6,7 @@ import { Etheme } from "./themeConsts";
 
 type ButtonThemeProps = {
   theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<Etheme>>;
+  setTheme: any;
 };
 
 const ButtonTheme: React.FC<ButtonThemeProps> = ({ theme, setTheme }) => {

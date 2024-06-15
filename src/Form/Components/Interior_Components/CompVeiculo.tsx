@@ -4,11 +4,15 @@ import InputPrimary from "../../../components/Elements_for_Forms/InputPrimary";
 import TextareaPrimary from "../../../components/Elements_for_Forms/textareaPrimary";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 
-interface FormVeiculoProps {
+interface CompVeiculoProps {
   theme: { theme: Etheme };
+  handleOrderChange: any;
 }
 
-const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
+const CompVeiculo: React.FC<CompVeiculoProps> = ({
+  theme,
+  handleOrderChange,
+}) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -26,187 +30,152 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
     <>
       {/*---- informações do Veiculo ----*/}
       <form
+        onChange={handleOrderChange}
         className={`flex flex-wrap w-100 px-5 py-2 my-0.5 ml-0.5 font-oswald ${
           newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
         }`}
       >
-        {/*  ------------*/}
+        {/*  ------ MARCA ------*/}
         <label className={labelSelects_md}>
           <span className={spans}>Marca:</span>
           <TextareaPrimary
             theme={theme}
-            name={""}
-            placeholder={""}
+            name={"brand"}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
             maxRows={1}
           />
         </label>
-        {/*  -----*/}
+        {/* ----- MODELO -----*/}
         <label className={labelSelects_md}>
           <span className={spans}>Modelo:</span>
           <TextareaPrimary
             theme={theme}
-            name={""}
-            placeholder={""}
+            name={"model"}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
             maxRows={1}
           />
         </label>
-        {/*  -----------*/}
+        {/* ------ COR -----*/}
+        <label className={labelSelects_md}>
+          <span className={spans}>Cor:</span>
+          <TextareaPrimary
+            theme={theme}
+            name={"color"}
+            value={""}
+            onChange={handleOrderChange}
+            className={inputTextareas}
+            maxRows={1}
+          />
+        </label>
+        {/* ----- ANO ------*/}
         <label className={labelSelects_sm}>
           <span className={spans}>Ano:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"year"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  -----------*/}
+        {/* ------ VERSAO -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Anuncio:</span>
+          <span className={spans}>Versão:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"version"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  -----------*/}
+        {/* ----- DATA DE ENTREGA -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Forma de Pagamento:</span>
+          <span className={spans}>Data de Entrega:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"dueDate"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  -----------*/}
+        {/* ------ QUANTIA -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Motivo da Compra:</span>
+          <span className={spans}>Quantia:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"amount"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  */}
+        {/* ------ PAGAMENTO -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Prazo:</span>
+          <span className={spans}>Pagamento:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"payment"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  */}
+        {/* ------ MOTIVO DA COMPRA -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Quantidade:</span>
+          <span className={spans}>Motivo da compra:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"purchaseReason"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  */}
+        {/* ------ MAX. VALOR ACEITO -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Seguro:</span>
+          <span className={spans}>Max. valor aceito:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"maxPayment"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  */}
+        {/* ------ TROCA NA COMPRA -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Tipo de Compra:</span>
+          <span className={spans}>Troca na compra:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"tradeInValue"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
-        {/*  */}
+        {/* ------ TIPO DE COMPRA -------*/}
         <label className={labelSelects_sm}>
-          <span className={spans}>Usado na Troca:</span>
+          <span className={spans}>Tipo de compra:</span>
           <InputPrimary
             theme={theme}
-            name={""}
+            name={"orderType"}
             type={""}
-            placeholder={""}
             value={""}
-            onChange={() => {
-              ("");
-            }}
-            className={inputTextareas}
-          />
-        </label>
-        {/*  */}
-        <label className={labelSelects_sm}>
-          <span className={spans}>Valor Anunciado:</span>
-          <InputPrimary
-            theme={theme}
-            name={""}
-            type={""}
-            placeholder={""}
-            value={""}
-            onChange={() => {
-              ("");
-            }}
+            onChange={handleOrderChange}
             className={inputTextareas}
           />
         </label>
@@ -215,4 +184,4 @@ const FormVeiculo: React.FC<FormVeiculoProps> = ({ theme }) => {
   );
 };
 
-export default FormVeiculo;
+export default CompVeiculo;

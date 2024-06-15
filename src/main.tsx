@@ -20,6 +20,8 @@ import { Pending, Suspended, Confirmed, Rejected, All } from "./Home/filters";
 import Form from "./Form/Index";
 import Users from "./Users";
 
+//HashRoutes
+
 const router = createBrowserRouter([
   {
     path: "/login",

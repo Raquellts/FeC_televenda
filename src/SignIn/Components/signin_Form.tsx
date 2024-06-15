@@ -23,7 +23,7 @@ interface signinInterface {
   formData: CommonUser;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   handlesubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  setFormData: React.Dispatch<React.SetStateAction<CommonUser>>;
+  setFormData: any;
   Supervisors: () => void;
   supervisor: User[];
 }

@@ -1,5 +1,4 @@
-const baseURL = "http://192.168.1.108:8080";
-
+const baseURL: string = import.meta.env.VITE_BASE_URL_API;
 export default baseURL;
 
 /* Status 

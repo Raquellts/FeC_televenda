@@ -3,7 +3,6 @@ import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../../components/Hooks/updateTheme";
 import { CnpjOrder } from "../../API/API_utils";
 import OrderStatus from "./Interior_Components/OrderStatus";
-import orderItemView from "./Interior_Components/OrderItemView";
 import OrderItemView from "./Interior_Components/OrderItemView";
 
 const OrderItem = ({

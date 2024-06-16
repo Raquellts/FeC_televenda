@@ -47,7 +47,9 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
       {/*------ FORMULARIO DO CLIENTE/CNPJ ------*/}
 
       <form>
-        <div className={`pb-6 flex flex-row flex-wrap w-100 justify-center`}>
+        <div
+          className={`${newtheme}pb-6 flex flex-row flex-wrap w-100 justify-center`}
+        >
           <div className={`w-full md:w-90`}>
             <CompCliente theme={theme} cnpj={cnpj} />
           </div>

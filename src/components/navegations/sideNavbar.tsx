@@ -4,7 +4,6 @@ import useUpdateTheme from "../Hooks/updateTheme";
 import Cookies from "js-cookie";
 //Components
 import logo from "../../assets/SVG/LOGO FOR WEB.svg";
-import logoDeveloper from "../assets/SVG/stat&sat.svg";
 // SVGs
 import SVGCompany from "../SVGs/INFO/SVGCompany";
 import SVGLogout from "../SVGs/USER/SVGLogout";

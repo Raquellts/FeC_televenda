@@ -50,11 +50,12 @@ class MapOrders extends React.Component<MapOrdersProps, MapOrdersState> {
         <p>Pedidos Associados</p>
         {Order &&
           Order.map((order, index) => (
-            <div key={index} className="mt-4">
+            <div key={index} className="mt-4 w-full">
               <OrderItem
                 key={"mapOrders" + index}
                 Order={order}
                 theme={{ theme }}
+                Index={index}
               />
             </div>
           ))}

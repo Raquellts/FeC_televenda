@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Etheme } from "../../themeConsts";
-import style from "./buttonSecondary.module.css";
+import "./buttonSecondary.css";
 import useUpdateTheme from "../Hooks/updateTheme";
 
 interface ButtonSecondaryProps {
@@ -25,10 +25,8 @@ const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
   return (
     <a
       className={`${
-        newtheme === Etheme.light ? style.light : style.dark
-      } text-color-2 button-secondary font-oswald justify-center rounded-r-2xl h-8 p-2 text-center my-3 lg:my-6 small-style ${
-        style.button_secondary
-      } ${className}`}
+        newtheme === Etheme.light ? "light" : "dark"
+      } text-color-2 button-secondary font-oswald justify-center rounded-r-2xl h-8 p-2 text-center my-3 lg:my-6 small-style ${"button_secondary"} ${className}`}
       href={href}
     >
       {buttonContent} {children}

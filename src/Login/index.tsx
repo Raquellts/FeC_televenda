@@ -111,7 +111,7 @@ function Login() {
               />
             </div>
             <InputPrimary
-              name=""
+              name="UserEmail"
               type="email"
               placeholder="Email ou Usuário"
               value={formData.username}
@@ -142,7 +142,7 @@ function Login() {
               />
             </div>
             <InputPrimary
-              name=""
+              name="UserPassword"
               type="password"
               placeholder="Senha"
               value={formData.password}

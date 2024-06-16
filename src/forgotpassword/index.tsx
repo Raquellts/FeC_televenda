@@ -80,6 +80,7 @@ function ForgotPassword() {
             </div>
             <InputPrimary
               required
+              autocomplete="on"
               name="email"
               type="email"
               placeholder="Email"

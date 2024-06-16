@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../Hooks/updateTheme";
-import style from "./Loading.module.css";
+import "./Loading.css";
 
 const Loading = (theme: { theme: Etheme }) => {
   /*THEME*/ const themes = theme.theme;
@@ -9,14 +9,14 @@ const Loading = (theme: { theme: Etheme }) => {
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
   return (
     <div>
-      <div className={style.loader}>
+      <div className="loader">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="371"
           height="484"
           fill="none"
           viewBox="0 0 371 484"
-          className={`${style.logo} ${
+          className={`logo ${
             newtheme === Etheme.light ? "dark_filter" : "light_filter"
           }`}
         >

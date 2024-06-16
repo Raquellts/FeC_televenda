@@ -4,6 +4,7 @@ import useUpdateTheme from "../Hooks/updateTheme";
 
 interface InputPrimaryProps {
   required?: boolean;
+  autocomplete?: string;
   name?: string;
   type?: string;
   placeholder?: string;
@@ -16,6 +17,7 @@ interface InputPrimaryProps {
 }
 const InputPrimary: React.FC<InputPrimaryProps> = ({
   required,
+  autocomplete,
   name,
   type,
   placeholder,
@@ -33,6 +35,7 @@ const InputPrimary: React.FC<InputPrimaryProps> = ({
   return (
     <input
       required={required}
+      autoComplete={autocomplete}
       name={name}
       type={type}
       placeholder={placeholder}

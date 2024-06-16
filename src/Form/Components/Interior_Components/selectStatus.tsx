@@ -19,6 +19,8 @@ const SelectStatus: React.FC<SelectStatusProps> = ({ cnpj, theme }) => {
     setClicked(!clicked);
   };
 
+  const status = cnpj.status;
+
   /*CLASSES REPETIDAS*/ const spanSelects =
     "w-full rounded-2xl border-b-2 border-transparent hover:border-tertiary";
   /*CLASSES REPETIDAS*/ const classSelects = `${
@@ -30,31 +32,41 @@ const SelectStatus: React.FC<SelectStatusProps> = ({ cnpj, theme }) => {
   return (
     cnpj && (
       <div>
-        <label className={`flex items-center my-2 font-oswald ${spanSelects}`}>
+        <div
+          className={`flex items-center my-2 font-oswald ${spanSelects} border-2 border-b-4 ${
+            status === 2
+              ? "border-green-500"
+              : status === 3
+              ? "border-yellow-500"
+              : status === 4
+              ? "border-red-500"
+              : "border-tertiary"
+          } rounded-2xl`}
+        >
           <select
             className={`w-full truncate ${classSelects} ${
               clicked ? "p-3" : "p-0"
             }`}
             onClick={handleClick}
+            value={status}
           >
-            <option value={1}>Pendente</option>
-            <option value={2}>Aprovado</option>
-            <option value={3}>Suspenso</option>
-            <option value={4}>Rejeitado</option>
-
             <option value="" disabled defaultChecked>
-              {cnpj.status === 1
+              {status === 1
                 ? "Pendente"
-                : cnpj.status === 2
+                : status === 2
                 ? "Confirmado"
-                : cnpj.status === 3
+                : status === 3
                 ? "Suspenso"
-                : cnpj.status === 4
+                : status === 4
                 ? "Rejeitado"
                 : "Sem status"}
             </option>
+            <option value={1}>Pendente</option>
+            <option value={2}>Confirmado</option>
+            <option value={3}>Suspenso</option>
+            <option value={4}>Rejeitado</option>
           </select>
-        </label>
+        </div>
       </div>
     )
   );

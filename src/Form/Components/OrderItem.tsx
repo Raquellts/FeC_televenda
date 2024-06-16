@@ -8,9 +8,11 @@ import OrderItemView from "./Interior_Components/OrderItemView";
 const OrderItem = ({
   theme,
   Order,
+  Index,
 }: {
   theme: { theme: Etheme };
   Order: CnpjOrder;
+  Index: number;
 }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -25,35 +27,36 @@ const OrderItem = ({
       <form
         className={`${
           newtheme === Etheme.light ? "text-text" : "text-dark-text"
-        }px-2 py-2 rounded-2xl bg-opacity-50`}
+        } w-full px-2 py-2 rounded-2xl bg-opacity-50`}
         key={"form1" + Order.id}
       >
         {/* --------------- NOME DA EMPRESA --- SVG BADGE ---------------- */}
         <div
           className={`${
             newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
-          } flex justify-between items-center`}
+          } flex justify-between items-center md:px-8 py-2 px-2 w-full`}
         >
-          <p className="ml-4 truncate font-style-xlg">
+          <p className="truncate font-style-xlg">Pedido {Index + 1}</p>
+          <p className="truncate font-style-xlg">
             <span>ID do pedido: </span>
             {String(Order.id)}
           </p>
           {/* --------------- OrderStatus: Pendente, Cancelado, Suspenso, Pago ---------------- */}
-          <span className="font-style-xlg md:ml-[28%] sm:ml-[18%]">
-            Status:{" "}
-          </span>
-          <div
-            className={`border-2 border-b-4 mr-4 ${
-              Order.status === "PAID"
-                ? "border-GREEN"
-                : Order.status === "SUSPENDED"
-                ? "border-YELLOW"
-                : Order.status === "CANCELLED"
-                ? "border-RED"
-                : "border-tertiary"
-            } rounded-2xl`}
-          >
-            <OrderStatus theme={theme} Order={Order.status} />
+          <div className="flex items-center">
+            <span className="font-style-xlg mr-2">Atualizar status:</span>
+            <div
+              className={`border-2 border-b-4 ${
+                Order.status === "PAID"
+                  ? "border-green-500"
+                  : Order.status === "SUSPENDED"
+                  ? "border-yellow-500"
+                  : Order.status === "CANCELLED"
+                  ? "border-red-500"
+                  : "border-tertiary"
+              } rounded-2xl`}
+            >
+              <OrderStatus theme={theme} Order={Order.status} />
+            </div>
           </div>
         </div>
 

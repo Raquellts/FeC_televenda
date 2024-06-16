@@ -55,7 +55,7 @@ class InfoTelemarking extends React.Component<
         {user && (
           <>
             {/*---- informações do Vendedor ----*/}
-            <form
+            <div
               className={`flex flex-wrap w-100 px-5 py-2 my-0.5 ml-0.5 font-inter font-style-lg ${
                 this.props.theme === Etheme.light
                   ? "text-primary"
@@ -77,7 +77,7 @@ class InfoTelemarking extends React.Component<
                 <span className={spans}>Usuario:</span>
                 <p className={Pclasses}>{user.name || ""}</p>
               </label>
-            </form>
+            </div>
           </>
         )}
       </div>

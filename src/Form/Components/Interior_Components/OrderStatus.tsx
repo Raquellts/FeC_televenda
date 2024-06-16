@@ -18,16 +18,23 @@ const OrderStatus = ({
       : "text-dark-text bg-dark-container"
   } w-full hover:text-opacity-100 rounded-2xl h-inputsize text-center px-2 font-oswald`;
 
-  console.log(Order);
   return (
     <select
       className={classSelects}
       name="Order"
       id="Order"
       value={Order.toString()}
+      onChange={(e) => console.log(e.target.value)}
     >
       <option value={Order} disabled defaultChecked>
-        {Order}
+        {Order === "PENDING"
+          ? "Pendente"
+          : Order === "PAID"
+          ? "Pago"
+          : Order === "SUSPENDED"
+          ? "Suspenso"
+          : "Cancelado"}{" "}
+        ⤸
       </option>
 
       <option value="PENDING">Pendente</option>

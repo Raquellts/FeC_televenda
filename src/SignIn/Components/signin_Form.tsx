@@ -105,6 +105,7 @@ const SigninForm: React.FC<signinInterface> = ({
           </div>
           <InputPrimary
             required
+            autocomplete="on"
             name="name"
             type="text"
             placeholder="Nome"
@@ -116,6 +117,7 @@ const SigninForm: React.FC<signinInterface> = ({
           {/*INPUT DE SOBRENOME -------------- */}
           <InputPrimary
             required
+            autocomplete="on"
             name="surname"
             type="text"
             placeholder="Sobrenome"
@@ -180,6 +182,7 @@ const SigninForm: React.FC<signinInterface> = ({
           </div>
           <InputPrimary
             required
+            autocomplete="on"
             name="email"
             type="email"
             placeholder="Email"

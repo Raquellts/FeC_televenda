@@ -32,7 +32,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
       {cnpj && (
         <>
           {/*---- informações do cliente ----*/}
-          <form
+          <div
             className={`flex flex-wrap w-100 px-5 py-2 my-0.5 ml-0.5 font-oswald ${
               newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
             }`}
@@ -163,7 +163,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
                 className={`${inputTextareas}`}
               />
             </label>
-          </form>
+          </div>
         </>
       )}
     </div>

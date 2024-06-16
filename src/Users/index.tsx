@@ -66,8 +66,8 @@ class Users extends React.Component<iUsers, iUsers> {
           <Cabecalho theme={{ theme }} pageName={pageName} />
         </div>
         <div className="px-4 pb-4 lg:ml-64">
-          {data.map((data) => (
-            <InfosUSER data={data} theme={theme} />
+          {data.map((data, index) => (
+            <InfosUSER data={data} theme={theme} key={"users" + index} />
           ))}
         </div>
         <div className="fixed bottom-5 right-4">

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import style from "../..//Home/Components/InfosCnpj.module.css";
 import SVGEmail from "../../components/SVGs/CONTACT/SVGEmail";
 import SVGUser from "../../components/SVGs/USER/SVGUser";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../../components/Hooks/updateTheme";
 import { User } from "../../API/API_utils";
+import "../..//Home/Components/InfosCnpj.css";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -67,8 +67,8 @@ const InfoUSERItem = ({
           {/*EMAIL 01*/}
           <p
             className={`${
-              newtheme === Etheme.light ? style.light : style.dark
-            } ml-1 justify-start flex ${style.cnpj_contact}`}
+              newtheme === Etheme.light ? "light" : "dark"
+            } ml-1 justify-start flex cnpj_contact`}
           >
             <span>{data.email}</span>
           </p>

@@ -1,5 +1,4 @@
 import React from "react";
-//import style from "./buttonTertiary.module.css";
 
 interface ButtonSecondaryProps {
   buttonContent?: string;

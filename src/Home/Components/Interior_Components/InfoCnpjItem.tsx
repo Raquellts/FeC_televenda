@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Etheme } from "../../../themeConsts";
 import SVGBadge from "../../../components/SVGs/USER/SVGBadge";
 import Status from "./partStatus";
-import style from "../infosCnpj.module.css";
 import DateToCall from "./partDateCall";
 import EditButton from "./partEditButton";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
@@ -11,6 +10,7 @@ import SVGPhoneCall from "../../../components/SVGs/PHONE/SVGPhoneCall";
 import ClipboardButton from "../../../components/buttons/Clipboard";
 import SVGEmail from "../../../components/SVGs/CONTACT/SVGEmail";
 import { Cnpj } from "../../../API/API_utils";
+import "../InfosCnpj.css";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -32,6 +32,10 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
+  const pClass = `${
+    newtheme === Etheme.light ? "light" : "dark"
+  } ml-1 justify-start flex cnpj_contact`;
+
   return (
     <div
       className={`${
@@ -51,7 +55,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
         key={"form1" + cnpj.cnpj}
       >
         {/* --------------- NOME DA EMPRESA --- SVG BADGE ---------------- */}
-        <div className={`flex justify-between items-center ${style.cnpj_name}`}>
+        <div className={`flex justify-between items-center cnpj_name`}>
           <div
             className={`${
               newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
@@ -90,21 +94,13 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
               fill_two={fill_Two_svg}
             />
             {/*CONTATO 01*/}
-            <p
-              className={`${
-                newtheme === Etheme.light ? style.light : style.dark
-              } ml-1 justify-start flex ${style.cnpj_contact}`}
-            >
+            <p className={pClass}>
               <span>{cnpj.phone1}</span>
               <ClipboardButton textToCopy={cnpj.phone1} theme={theme} />
             </p>
 
             {/*CONTATO 02*/}
-            <p
-              className={`${
-                newtheme === Etheme.light ? style.light : style.dark
-              } ml-1 justify-start flex ${style.cnpj_contact}`}
-            >
+            <p className={pClass}>
               <span>{cnpj.phone2}</span>
               <ClipboardButton textToCopy={cnpj.phone2} theme={theme} />
             </p>
@@ -119,11 +115,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
               fill_two={fill_Two_svg}
             />
             {/*EMAIL 01*/}
-            <p
-              className={`${
-                newtheme === Etheme.light ? style.light : style.dark
-              } ml-1 justify-start flex ${style.cnpj_contact}`}
-            >
+            <p className={pClass}>
               <span>{cnpj.email}</span>
               <ClipboardButton textToCopy={cnpj.email} theme={theme} />
             </p>
@@ -136,7 +128,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
             newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
           }`}
         >
-          <p className={`ml-6 font-inter truncate ${style.cnpj_atividade}`}>
+          <p className={`ml-6 font-inter truncate cnpj_atividade`}>
             {cnpj.activity}
           </p>
         </div>

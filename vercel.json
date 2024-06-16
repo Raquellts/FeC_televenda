@@ -1,3 +1,17 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "routes": [
+    { "src": "/login", "dest": "/login" },
+    { "src": "/signin", "dest": "/signin" },
+    { "src": "/recovery", "dest": "/recovery" },
+    { "src": "/forgot", "dest": "/forgot" },
+    { "src": "/", "dest": "/" },
+    { "src": "/Pending", "dest": "/Pending" },
+    { "src": "/Suspended", "dest": "/Suspended" },
+    { "src": "/Approved", "dest": "/Approved" },
+    { "src": "/Rejected", "dest": "/Rejected" },
+    { "src": "/form", "dest": "/form" },
+    { "src": "/order", "dest": "/order" },
+    { "src": "/Users", "dest": "/Users" },
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }

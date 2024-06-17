@@ -75,23 +75,28 @@ select {
 /*--------------- COLORS ----------------*/
 
 .GREEN {
-  color: #00b400;
+  color: #22c55e;
+  border-color: #22c55e;
 }
 
 .RED {
-  color: #ff0000;
+  color: #ef4444;
+  border-color: #ef4444;
 }
 
 .YELLOW {
-  color: #e0a500;
+  color: #eab308;
+  border-color: #eab308;
 }
 
 .GREY {
   color: #808080;
+  border-color: #808080;
 }
 
 .PURPLE {
   color: #708dd9;
+  border-color: #708dd9;
 }
 
 .TEXT_WHITE {
@@ -136,4 +141,26 @@ select {
 .dark_filter {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
     hue-rotate(0deg) brightness(102%) contrast(102%);
+}
+
+/*--------------- DATE PICKER ----------------*/
+
+.custom-date-picker::-webkit-inner-spin-button,
+.custom-date-picker::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-date-picker {
+  appearance: none;
+  background-color: #ded8ff30;
+  border: 1px solid;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.custom-date-picker:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(118, 106, 240, 0.5);
 }

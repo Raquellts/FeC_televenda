@@ -19,13 +19,15 @@ const CompleteForm: React.FC<CompleteFormProps> = ({ theme, cnpj }) => {
       <div
         className={`${
           newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-        } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full bg-opacity-50`}
+        } shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full`}
       >
         {/*---- Botão de gerar PDF----*/}
         {/* <div className={`fixed lg:ml-64 left-3 bottom-0 mb-6`}>
           <PDFComponent cnpj={cnpj} />
         </div> */}
-        <div className={`divide-y divide-secondary divide-opacity-50 p-2`}>
+        <div
+          className={`w-100 divide-y divide-secondary divide-opacity-50 p-2`}
+        >
           <FormCliente theme={theme} cnpj={cnpj} />
         </div>
       </div>

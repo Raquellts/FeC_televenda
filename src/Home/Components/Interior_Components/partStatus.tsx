@@ -48,7 +48,7 @@ const Status: React.FC<StatusProps> = ({ status, theme }) => {
           : status === 4
           ? "RED"
           : "PURPLE"
-      } flex flex-col items-center justify-center font-oswald text-text text-[13px] w-100 h-100 font-style-lg`}
+      } flex flex-col items-center justify-center font-oswald text-text text-[13px] w-full h-full font-style-lg`}
     >
       {SVGComponent && (
         <Tooltip
@@ -74,7 +74,7 @@ const Status: React.FC<StatusProps> = ({ status, theme }) => {
           />
         </Tooltip>
       )}
-      <span className="hidden sm:block">
+      <span className="hidden sm:block truncate">
         {status === 1
           ? "Pendente"
           : status === 2

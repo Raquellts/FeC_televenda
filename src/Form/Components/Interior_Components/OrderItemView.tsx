@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Etheme } from "../../../themeConsts";
 import { Item } from "../../../API/API_utils";
@@ -23,15 +23,21 @@ const OrderItemView = ({
       throw new Error("O parâmetro fornecido não é um objeto Date válido.");
     }
 
-    const dia = String(data.getDate()).padStart(2, "0"); // Obtém o dia do mês
+    const dia = String(data.getDate() + 1).padStart(2, "0"); // Obtém o dia do mês
     const mes = String(data.getMonth() + 1).padStart(2, "0"); // Obtém o mês (0-11) e ajusta para (1-12)
     const ano = data.getFullYear(); // Obtém o ano
 
     return `${dia}/${mes}/${ano}`;
   };
 
-  const date = new Date(Item.dueDate);
-  const newDate = formatarData(date);
+  const newDate = useMemo(() => {
+    try {
+      const parsedDate = new Date(Item.dueDate);
+      return formatarData(parsedDate);
+    } catch (error) {
+      return "Data inválida";
+    }
+  }, [Item.dueDate]);
 
   return (
     <div className="w-full lg:justify-around flex flex-row flex-wrap my-4">

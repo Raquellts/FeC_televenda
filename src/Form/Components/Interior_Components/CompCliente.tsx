@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Etheme } from "../../../themeConsts";
-import InputPrimary from "../../../components/Elements_for_Forms/InputPrimary";
-import TextareaPrimary from "../../../components/Elements_for_Forms/textareaPrimary";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Cnpj } from "../../../API/API_utils";
 
@@ -15,14 +13,36 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
-  /*CLASSES REPETIDAS*/ const labelSelects_md =
-    "flex w-full sm:w-1/2 items-center my-2";
-  /*CLASSES REPETIDAS*/ const labelSelects_sm =
-    "flex w-full sm:w-1/2 md:w-1/3 lg:w-1/4 items-center";
-  /*CLASSES REPETIDAS*/ const inputTextareas = "mx-2 w-full truncate";
-  /*CLASSES REPETIDAS*/ const spans = `${
-    newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
-  }`;
+  const pClass = `${
+    newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
+  } py-2 font-inter font-style-xlg text-[15px] truncate`;
+  const spans = `px-1 font-style-md truncate`;
+
+  const formatarData = (data: Date) => {
+    if (!(data instanceof Date)) {
+      throw new Error("O parâmetro fornecido não é um objeto Date válido.");
+    }
+
+    const dia = String(data.getDate() + 1).padStart(2, "0"); // Obtém o dia do mês
+    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Obtém o mês (0-11) e ajusta para (1-12)
+    const ano = data.getFullYear(); // Obtém o ano
+
+    return `${dia}/${mes}/${ano}`;
+  };
+
+  const date = cnpj.dateForCall;
+  const formattedDate = useMemo(() => {
+    try {
+      const parsedDate = date ? new Date(date) : null;
+      if (parsedDate instanceof Date && !isNaN(parsedDate.getTime())) {
+        return formatarData(parsedDate);
+      } else {
+        throw new Error("Data inválida");
+      }
+    } catch (error) {
+      return "Data inválida";
+    }
+  }, [date]);
 
   return (
     <div>
@@ -30,141 +50,71 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
         {cnpj && cnpj.razaoSocial}
       </p>
       {cnpj && (
-        <>
+        <div>
           {/*---- informações do cliente ----*/}
-          <div
-            className={`flex flex-wrap w-100 px-5 py-2 my-0.5 ml-0.5 font-oswald ${
-              newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
-            }`}
-          >
-            {/* NOME DA EMPRESA ------------*/}
-            <label className={labelSelects_md}>
-              <span className={spans}>Nome:</span>
-              <TextareaPrimary
-                theme={theme}
-                name={"clientName"}
-                value={cnpj.clientName || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-                maxRows={1}
-              />
-            </label>
-            {/* ATIVIDADES DA EMPRESA -----*/}
-            <label className={labelSelects_md}>
-              <span className={spans}>Atividades:</span>
-              <TextareaPrimary
-                theme={theme}
-                name={"activity"}
-                value={cnpj.activity}
-                onChange={() => {}}
-                className={inputTextareas}
-                maxRows={1}
-              />
-            </label>
-            {/* TELEFONE 01 -----------*/}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Telefone 01:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={""}
-                value={cnpj.phone1 || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-              />
-            </label>
-            {/* TELEFONE 02 -----------*/}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Telefone 02:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={""}
-                value={cnpj.phone2 || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-              />
-            </label>
-            {/* EMAIL -----------*/}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Email:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={"email"}
-                value={cnpj.email || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-              />
-            </label>
-            {/* PROXIMA LIGAÇÃO CASO ADIADA */}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Proxima ligação:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={"date"}
-                value={cnpj.dateForCall || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-              />
-            </label>
-            {/* CNPJ EM NUMERO.TOSTRING() */}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Cnpj:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={""}
-                value={cnpj.cnpj.toString() || ""}
-                onChange={() => {}}
-                className={`${inputTextareas}`}
-              />
-            </label>
-            {/* CNAE EM NUMERO.TOSTRING() */}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Cnae:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={""}
-                value={cnpj.cnae.toString() || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-              />
-            </label>
-            {/* PORTE DA EMPRESA */}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Porte:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={""}
-                value={cnpj.porte || ""}
-                onChange={() => {}}
-                className={inputTextareas}
-              />
-            </label>
-            {/* MATRIZ OU FILIAL */}
-            <label className={labelSelects_sm}>
-              <span className={spans}>Tipo:</span>
-              <InputPrimary
-                theme={theme}
-                name={""}
-                type={""}
-                value={
-                  cnpj.identificadorMatrizFilial === 1
-                    ? "Matriz"
-                    : cnpj.identificadorMatrizFilial === 2
-                    ? "Filial"
-                    : "Sem porte"
-                }
-                onChange={() => {}}
-                className={`${inputTextareas}`}
-              />
-            </label>
+          <div className="w-full lg:justify-between flex flex-row flex-wrap my-5 px-4">
+            <div>
+              {/* NOME DA EMPRESA ------------*/}
+              <p className={pClass}>
+                <span className={spans}>Nome:</span>
+                {cnpj.razaoSocial || "Não informado"}
+              </p>
+              {/* ATIVIDADES DA EMPRESA -----*/}
+              <p className={pClass}>
+                <span className={spans}>Atividades:</span>
+                {cnpj.activity || "Não informado"}
+              </p>
+            </div>
+            <div>
+              {/* TELEFONE 01 -----------*/}
+              <p className={pClass}>
+                <span className={spans}>Telefone 01:</span>
+                {cnpj.phone1 || "Não informado"}
+              </p>
+              {/* TELEFONE 02 -----------*/}
+              <p className={pClass}>
+                <span className={spans}>Telefone 02:</span>
+                {cnpj.phone2 || "Não informado"}
+              </p>
+              {/* ------ EMAIL ------*/}
+              <p className={pClass}>
+                <span className={spans}>Email:</span>
+                {cnpj.email || "Não informado"}
+              </p>
+              {/* ------ PROXIMA LIGACAO --------*/}
+              <p className={pClass}>
+                <span className={spans}>Proxima ligação:</span>
+                {formattedDate || "Não informado"}
+              </p>
+            </div>
+            <div>
+              {/* ------ CNPJ ------*/}
+              <p className={pClass}>
+                <span className={spans}>Cnpj:</span>
+                {cnpj.cnpj || "Não informado"}
+              </p>
+              {/* ------ CNAE ------*/}
+              <p className={pClass}>
+                <span className={spans}>Cnae:</span>
+                {cnpj.cnae || "Não informado"}
+              </p>
+              {/* ------ PORTE ------*/}
+              <p className={pClass}>
+                <span className={spans}>Porte:</span>
+                {cnpj.porte || "Não informado"}
+              </p>
+              {/* ------ TIPO ------*/}
+              <p className={pClass}>
+                <span className={spans}>Tipo:</span>
+                {cnpj.identificadorMatrizFilial === 1
+                  ? "Matriz"
+                  : cnpj.identificadorMatrizFilial === 2
+                  ? "Filial"
+                  : "Sem porte" || "Não informado"}
+              </p>
+            </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

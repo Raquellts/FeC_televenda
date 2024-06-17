@@ -82,3 +82,26 @@ export const getAllCommonUser = async (): Promise<User[]> => {
   const response = await axiosWithAuth.get(baseURL + "/user/ByRole");
   return response.data.body;
 };
+
+//STATUS UPDATERS ------  status do pedido
+export const putStatusOrder = async (
+  orderId: string,
+  status: string
+): Promise<any> => {
+  await axiosWithAuth.put(baseURL + "/order/status/" + orderId, { status });
+};
+
+//STATUS UPDATERS ------  status do CNPJ
+export const putStatusCnpj = async (
+  cnpjId: string,
+  status: number,
+  datetocall: string | null
+): Promise<any> => {
+  await axiosWithAuth.put(baseURL + "/lead/status/" + cnpjId, {
+    status,
+    datetocall,
+  });
+  {
+    /*3 - suspenso | 4 - cancelado*/
+  }
+};

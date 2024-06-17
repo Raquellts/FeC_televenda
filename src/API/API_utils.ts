@@ -1,11 +1,16 @@
 const baseURL: string = import.meta.env.VITE_BASE_URL_API;
 export default baseURL;
 
-/* Status 
+/* Status CNPJ:
     PENDING(1),//padrao
     CONFIRMED(2),//criação de pedido
     SUSPENDED(3),//data para ligar
     REFUSED(4);//recusou o produto 
+
+  Status ORDER:
+    "PENDING" -> PENDENTE;
+    "CANCELLED" -> CANCELADO;
+    "PAID" -> PAGO;
     
 //roles
     1- user comum

@@ -59,12 +59,16 @@ const CompVeiculo: React.FC<CompVeiculoProps> = ({ theme, cnpj }) => {
     setItemData({ ...itemData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    postOrderByCnpjsId(cnpj.id, itemData).then(() => {
-      alert("Veículo Cadastrado!");
-    });
+  const handleBack = () => {
+    window.history.back();
   };
 
+  const handleSubmit = () => {
+    postOrderByCnpjsId(cnpj.id, itemData).then(() => {
+      alert("Veículo Cadastrado!");
+      handleBack();
+    });
+  };
   /*CLASSES REPETIDAS*/ const labelSelects_md =
     "flex w-full sm:w-1/2 items-center";
   /*CLASSES REPETIDAS*/ const labelSelects_sm =

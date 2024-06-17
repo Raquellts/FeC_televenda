@@ -43,8 +43,8 @@ class InfoTelemarking extends React.Component<
     const labelSelects_sm = "flex w-full items-center my-0 text-[14px]";
     const spans =
       this.props.theme === Etheme.light
-        ? "text-text opacity-80 mr-2"
-        : "text-dark-text opacity-80 mr-2";
+        ? "text-primary opacity-80 mr-2"
+        : "text-dark-primary opacity-80 mr-2";
     const Pclasses = "font-style-xlg";
 
     return (
@@ -65,17 +65,17 @@ class InfoTelemarking extends React.Component<
               {/*  */}
               <label className={labelSelects_sm}>
                 <span className={spans}>ID do usuario:</span>
-                <p className={Pclasses}>{user.id || ""}</p>
+                <p className={Pclasses}>{user.id || "Não informado"}</p>
               </label>
               {/*  */}
               <label className={labelSelects_sm}>
                 <span className={spans}>Email do usuario:</span>
-                <p className={Pclasses}>{user.email || ""}</p>
+                <p className={Pclasses}>{user.email || "Não informado"}</p>
               </label>
               {/*  */}
               <label className={labelSelects_sm}>
                 <span className={spans}>Usuario:</span>
-                <p className={Pclasses}>{user.name || ""}</p>
+                <p className={Pclasses}>{user.name || "Não informado"}</p>
               </label>
             </div>
           </>

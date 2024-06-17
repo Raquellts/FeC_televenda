@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Tooltip from "../../../components/containers/separated/tooltip";
 import SVGDateConfirmed from "../../../components/SVGs/DATE/SVGDateConfirmed";
 import SVGDateNeed from "../../../components/SVGs/DATE/SVGDateNeed";
@@ -17,6 +17,27 @@ const DateToCall: React.FC<DateProps> = ({ status, date, theme }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme({ theme }, setNewtheme);
 
+  const formatarData = (data: Date) => {
+    if (!(data instanceof Date)) {
+      throw new Error("O parâmetro fornecido não é um objeto Date válido.");
+    }
+
+    const dia = String(data.getDate() + 1).padStart(2, "0"); // Obtém o dia do mês
+    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Obtém o mês (0-11) e ajusta para (1-12)
+    const ano = data.getFullYear(); // Obtém o ano
+
+    return `${dia}/${mes}/${ano}`;
+  };
+
+  const formattedDate = useMemo(() => {
+    try {
+      const parsedDate = new Date(date);
+      return formatarData(parsedDate);
+    } catch (error) {
+      return "Data inválida";
+    }
+  }, [date]);
+
   return (
     <div
       className={`${
@@ -33,7 +54,7 @@ const DateToCall: React.FC<DateProps> = ({ status, date, theme }) => {
               fill_two={"currentColor"}
             />
           </Tooltip>
-          <p className="hidden sm:block">{date}</p>
+          <p className="hidden sm:block">{formattedDate}</p>
         </>
       ) : status === 3 && date === null ? (
         <>

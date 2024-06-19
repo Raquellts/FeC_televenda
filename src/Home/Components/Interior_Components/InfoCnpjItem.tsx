@@ -93,17 +93,29 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
               fill_one="none"
               fill_two={fill_Two_svg}
             />
-            {/*CONTATO 01*/}
-            <p className={pClass}>
-              <span>{cnpj.phone1}</span>
-              <ClipboardButton textToCopy={cnpj.phone1} theme={theme} />
-            </p>
 
-            {/*CONTATO 02*/}
-            <p className={pClass}>
-              <span>{cnpj.phone2}</span>
-              <ClipboardButton textToCopy={cnpj.phone2} theme={theme} />
-            </p>
+            {/*CONTATO 01*/}
+            {cnpj.phone1 || cnpj.phone2 ? (
+              <>
+                {cnpj.phone1 && (
+                  <p className={pClass}>
+                    <span>{cnpj.phone1}</span>
+                    <ClipboardButton textToCopy={cnpj.phone1} theme={theme} />
+                  </p>
+                )}
+
+                {cnpj.phone2 && (
+                  <p className={pClass}>
+                    <span>{cnpj.phone2}</span>
+                    <ClipboardButton textToCopy={cnpj.phone2} theme={theme} />
+                  </p>
+                )}
+              </>
+            ) : (
+              <p className={`${pClass} text-[10px] font-oswald`}>
+                Não informado
+              </p>
+            )}
           </div>
 
           {/* --------------- LINHA DE CONTATO --- EMAILS ---------------- */}
@@ -115,10 +127,16 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
               fill_two={fill_Two_svg}
             />
             {/*EMAIL 01*/}
-            <p className={pClass}>
-              <span>{cnpj.email}</span>
-              <ClipboardButton textToCopy={cnpj.email} theme={theme} />
-            </p>
+            {cnpj.email ? (
+              <p className={pClass}>
+                <span>{cnpj.email}</span>
+                <ClipboardButton textToCopy={cnpj.email} theme={theme} />
+              </p>
+            ) : (
+              <p className={`${pClass} text-[10px] font-oswald`}>
+                Não informado
+              </p>
+            )}
           </div>
         </div>
 

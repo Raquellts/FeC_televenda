@@ -1,13 +1,15 @@
 const baseURL: string = import.meta.env.VITE_BASE_URL_API;
 export default baseURL;
 
-/* Status CNPJ:
+/* //INFORMAÇÕES GERAIS:
+
+//Status CNPJ:
     PENDING(1),//padrao
     CONFIRMED(2),//criação de pedido
     SUSPENDED(3),//data para ligar
     REFUSED(4);//recusou o produto 
 
-  Status ORDER:
+//Status ORDER:
     "PENDING" -> PENDENTE;
     "CANCELLED" -> CANCELADO;
     "PAID" -> PAGO;
@@ -17,6 +19,13 @@ export default baseURL;
     2- admin
     3- supervisor
     4- vendedor
+
+//roles as strings
+    "user"
+    "admin"
+    "supervisor"
+    "vendedor"
+
     */
 
 //Interfaces
@@ -34,7 +43,7 @@ export interface User {
   credentialsNonExpired: boolean;
   authorities: { authority: string }[];
   accountNonLocked: boolean;
-  roleAsString: string | null;
+  roleAsString: roleNames;
 }
 
 export interface Response<T> {
@@ -95,3 +104,4 @@ export interface Item {
 }
 
 type OrderStatus = "PENDING" | "CANCELLED" | "SUSPENDED" | "PAID";
+type roleNames = "user" | "admin" | "supervisor" | "vendedor";

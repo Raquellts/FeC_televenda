@@ -1,0 +1,29 @@
+---- status do pedido >>> editavel pelo vendedor NÂO editavel pelo telemarketing
+---- mudar aparencia do status confirmed para o vendedor final
+---- mudar botão edita para o vendedor final
+
+
+
+//INFORMAÇÕES GERAIS:
+    //Status CNPJ:
+        PENDING(1),//padrao
+        CONFIRMED(2),//criação de pedido
+        SUSPENDED(3),//data para ligar
+        REFUSED(4);//recusou o produto 
+
+    //Status ORDER:
+        "PENDING" -> PENDENTE;
+        "CANCELLED" -> CANCELADO;
+        "PAID" -> PAGO;
+        
+    //roles
+        1- user comum
+        2- admin
+        3- supervisor
+        4- vendedor
+
+    //roles as strings
+        "user"
+        "ADMIN"
+        "supervisor"
+        "vendedor"

@@ -52,7 +52,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
       {cnpj && (
         <div>
           {/*---- informações do cliente ----*/}
-          <div className="w-full lg:justify-between flex flex-row flex-wrap my-5 px-4">
+          <div className="w-full justify-between flex flex-row flex-wrap my-5 px-4">
             <div>
               {/* NOME DA EMPRESA ------------*/}
               <p className={pClass}>

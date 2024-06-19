@@ -10,6 +10,7 @@ import SVGCancel from "../../components/SVGs/CIRCLE/SVGCancel";
 import SVGCheck from "../../components/SVGs/CIRCLE/SVGCheck";
 import ConfirmationModal from "../../components/containers/separated/modalConfirmSave";
 import { putStatusOrder } from "../../API/API_cnpj";
+import { usePrintState } from "../../components/Hooks/isPrinting";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -24,6 +25,8 @@ const OrderItem = ({
   Order: CnpjOrder;
   Index: number;
 }) => {
+  const { isPrinting } = usePrintState();
+
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
@@ -67,7 +70,9 @@ const OrderItem = ({
     <div
       className={`${
         newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-      } w-full shadow-md flex flex-col items-center justify-between p-1 rounded-2xl h-full`}
+      } w-full flex flex-col items-center justify-between p-1 rounded-2xl h-full ${
+        isPrinting ? "" : "shadow-md"
+      }`}
     >
       {/* PRIMEIRA parte do container VVV */}
       <form
@@ -109,7 +114,7 @@ const OrderItem = ({
           </p>
 
           {/* --------------- BOTOES DE ACOES ---------------- */}
-          <div className="flex items-center">
+          <div className={`flex items-center ${isPrinting ? "hidden" : ""}`}>
             {/* suspended */}
             <Tooltip
               message={"Pedido encerrado e pago"}

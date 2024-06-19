@@ -64,7 +64,7 @@ class EditButton extends React.Component<EditButtonProps, EditButtonState> {
       >
         <Link to="/form" state={{ cnpj, id }}>
           {/* verificação de permissão */}
-          {user?.role === 4 ? (
+          {user?.roleAsString === "admin" ? (
             <>
               <SVGpdf
                 width={42}

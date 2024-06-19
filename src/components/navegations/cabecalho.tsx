@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../Hooks/updateTheme";
 import TitleBar from "./titlebar";
+import { usePrintState } from "../Hooks/isPrinting";
 
 interface cabecalhoProps {
   theme: { theme: Etheme };
@@ -9,6 +10,7 @@ interface cabecalhoProps {
 }
 
 const Cabecalho = ({ theme, pageName }: cabecalhoProps) => {
+  const { isPrinting } = usePrintState();
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -22,7 +24,9 @@ const Cabecalho = ({ theme, pageName }: cabecalhoProps) => {
       <p className="w-90 ml-10 uppercase">- {pageName} -</p>
 
       <div className="w-10">
-        <TitleBar theme={themes} />
+        <div className={isPrinting ? "hidden" : ""}>
+          <TitleBar theme={themes} />
+        </div>
       </div>
     </div>
   );

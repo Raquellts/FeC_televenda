@@ -13,6 +13,7 @@ import SVGCancel from "../../components/SVGs/CIRCLE/SVGCancel";
 import { putStatusCnpj } from "../../API/API_cnpj";
 import ModalDateToCall from "../../components/containers/separated/modalDateToCall";
 import Tooltip from "../../components/containers/separated/tooltip";
+import { usePrintState } from "../../components/Hooks/isPrinting";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -24,6 +25,8 @@ interface FormClienteProps {
 }
 
 const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
+  const { isPrinting } = usePrintState();
+
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -77,7 +80,9 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
               <Status theme={newtheme} status={cnpj.status} />
             </div>
             <div
-              className={`flex md:flex-col lg:flex-row justify-center items-center`}
+              className={`flex md:flex-col lg:flex-row justify-center items-center ${
+                isPrinting ? "hidden" : ""
+              }`}
             >
               {/* BUTTONS STATUS */}
               {/* suspended */}
@@ -135,7 +140,11 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
             <InfoTelemarking theme={theme.theme} />
           </div>
 
-          <Link to="/order" state={{ cnpj }} className="flex justify-end">
+          <Link
+            to="/order"
+            state={{ cnpj }}
+            className={`flex justify-end ${isPrinting ? "hidden" : ""}`}
+          >
             <ButtonTertiary
               className={`border-transparent bg-tertiary text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-4`}
             >

@@ -6,8 +6,10 @@ import Cabecalho from "../components/navegations/cabecalho";
 import CompleteForm from "./Components/CompleteForm";
 import { useLocation } from "react-router-dom";
 import MapOrders from "./Components/MapOrders";
+import { usePrintState } from "../components/Hooks/isPrinting";
 
 function Form() {
+  const { isPrinting } = usePrintState();
   const [theme, setTheme] = useState(themes.activeTheme);
   const pageName = "Formulario do pedido";
   const location = useLocation();
@@ -28,14 +30,14 @@ function Form() {
       >
         <Cabecalho theme={{ theme }} pageName={pageName} />
       </div>
-      <div className="px-4 pb-4 lg:ml-64">
+      <div className={`pb-4 lg:ml-64 ${isPrinting ? "" : "px-4"}`}>
         {/* FORMULARIO DE PEDIDO*/}
         <CompleteForm theme={{ theme }} cnpj={cnpj} />
         {/* LISTA DE PEDIDOS */}
         <MapOrders theme={theme} cnpj={cnpj} />
       </div>
 
-      <div className="fixed bottom-5 right-4">
+      <div className={`fixed bottom-5 right-4 ${isPrinting ? "hidden" : ""}`}>
         <ButtonTheme theme={theme} setTheme={setTheme} />
       </div>
     </div>

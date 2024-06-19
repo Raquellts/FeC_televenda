@@ -4,8 +4,10 @@ import SideNavbar from "./sideNavbar";
 import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
 import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
 import useUpdateTheme from "../Hooks/updateTheme";
+import { usePrintState } from "../Hooks/isPrinting";
 
 const ModalSideNav = (theme: { theme: Etheme }) => {
+  const { isPrinting } = usePrintState();
   const screenSize = 1024;
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
@@ -29,7 +31,7 @@ const ModalSideNav = (theme: { theme: Etheme }) => {
   };
 
   return (
-    <>
+    <div className={`relative ${isPrinting ? "hidden" : ""}`}>
       {windowWidth < screenSize && (
         <div
           className={`pt-2 pl-3 fixed z-50 ${isSidebarOpen ? "hidden" : ""}`}
@@ -81,7 +83,7 @@ const ModalSideNav = (theme: { theme: Etheme }) => {
         )}
         <SideNavbar theme={newtheme} />
       </aside>
-    </>
+    </div>
   );
 };
 

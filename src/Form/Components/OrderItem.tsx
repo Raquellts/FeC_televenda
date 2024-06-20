@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Etheme } from "../../themeConsts";
 import useUpdateTheme from "../../components/Hooks/updateTheme";
-import { CnpjOrder } from "../../API/API_utils";
+import { CnpjOrder, User } from "../../API/API_utils";
 import OrderStatus from "./Interior_Components/OrderStatus";
 import OrderItemView from "./Interior_Components/OrderItemView";
 import Tooltip from "../../components/containers/separated/tooltip";
@@ -20,10 +20,12 @@ const OrderItem = ({
   theme,
   Order,
   Index,
+  user,
 }: {
   theme: { theme: Etheme };
   Order: CnpjOrder;
   Index: number;
+  user: User;
 }) => {
   const { isPrinting } = usePrintState();
 
@@ -114,7 +116,11 @@ const OrderItem = ({
           </p>
 
           {/* --------------- BOTOES DE ACOES ---------------- */}
-          <div className={`flex items-center ${isPrinting ? "hidden" : ""}`}>
+          <div
+            className={`flex items-center ${isPrinting ? "hidden" : ""} ${
+              user.roleAsString === "USER" ? "hidden" : ""
+            }`}
+          >
             {/* suspended */}
             <Tooltip
               message={"Pedido encerrado e pago"}

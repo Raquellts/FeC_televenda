@@ -1,8 +1,8 @@
 import React from "react";
 import InfoCnpjItem from "./Interior_Components/InfoCnpjItem";
 import { Etheme, themes } from "../../themeConsts";
-import { Cnpj } from "../../API/API_utils";
-import { getCnpjs } from "../../API/API_cnpj";
+import { Cnpj, User } from "../../API/API_utils";
+import { getCnpjs, getCommonUser } from "../../API/API_cnpj";
 
 interface iInfosCnpj {
   statusNumber: number | null;
@@ -12,6 +12,7 @@ interface iInfosCnpj {
 interface iCnpj {
   theme: Etheme;
   data: Cnpj[];
+  user: User | undefined;
 }
 
 class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
@@ -21,14 +22,21 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
     super(props);
 
     this.state = {
+      user: undefined,
       theme: themes.activeTheme,
       data: [],
     };
   }
 
+  handleDataUpdate = async () => {
+    const data = await getCommonUser();
+    this.setState({ user: data });
+  };
+
   componentDidMount(): void {
     if (this.loading === false) {
       this.loading = true;
+      this.handleDataUpdate();
       getCnpjs()
         .then((data) => {
           this.setState({ data });
@@ -48,23 +56,18 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
 
   render() {
     const { statusNumber, theme } = this.props;
-    const { data } = this.state;
+    const { data, user } = this.state;
 
     return (
       <div className={`${theme}`}>
         {data?.map((cnpj, index) => {
           if (!statusNumber || cnpj.status === statusNumber) {
-            const handleDataUpdate = (updatedData: Cnpj[]) => {
-              this.setState({ data: updatedData });
-            };
-
             return (
               <InfoCnpjItem
                 cnpj={cnpj}
                 theme={theme}
-                data={data}
-                setData={handleDataUpdate}
                 key={"InfosCnpj" + index}
+                user={user}
               />
             );
           }

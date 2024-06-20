@@ -9,7 +9,7 @@ import ModalComments from "../../../components/containers/separated/modalComment
 import SVGPhoneCall from "../../../components/SVGs/PHONE/SVGPhoneCall";
 import ClipboardButton from "../../../components/buttons/Clipboard";
 import SVGEmail from "../../../components/SVGs/CONTACT/SVGEmail";
-import { Cnpj } from "../../../API/API_utils";
+import { Cnpj, User } from "../../../API/API_utils";
 import "../InfosCnpj.css";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
@@ -19,16 +19,10 @@ import "../InfosCnpj.css";
 interface InfoCnpjItemProps {
   cnpj: Cnpj;
   theme: { theme: Etheme };
-  data: Cnpj[];
-  setData: any;
+  user: User | undefined;
 }
 
-const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
-  cnpj,
-  theme,
-  data,
-  setData,
-}) => {
+const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
@@ -73,11 +67,10 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
           </div>
           <ModalComments
             theme={theme}
-            comments={cnpj.comments || ""}
-            cnpj={cnpj}
-            data={data}
-            setData={setData}
+            comment={cnpj.comments || ""}
+            cpnjId={cnpj.id}
           />
+          {}
         </div>
 
         {/* --------------- LINHA DE CONTATO --- TELEFONES ---------------- */}
@@ -186,7 +179,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({
         } rounded-e-2xl`}
         key={"form4" + cnpj.cnpj}
       >
-        <EditButton theme={theme} cnpj={cnpj} id={cnpj.userId} />
+        <EditButton user={user} theme={newtheme} cnpj={cnpj} />
       </form>
     </div>
   );

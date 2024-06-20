@@ -61,7 +61,7 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
             <CompCliente theme={theme} cnpj={cnpj} />
           </div>
           <div className={`w-20 md:w-10 pr-1`}>
-            <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5 pb-2">
+            <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5 pb-5">
               Status
             </p>
             <div

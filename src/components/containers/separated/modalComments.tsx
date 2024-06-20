@@ -5,78 +5,45 @@ import TextareaPrimary from "../../Elements_for_Forms/textareaPrimary";
 import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../Hooks/updateTheme";
 import SVGComments from "../../SVGs/INFO/SVGComments";
-import { Cnpj } from "../../../API/API_utils";
 import ConfirmationModal from "./modalConfirmSave";
-import { postUpdateCnpj } from "../../../API/API_cnpj";
+import { postCommentCnpj } from "../../../API/API_cnpj";
 
 const ModalComments: React.FC<{
   theme: { theme: Etheme };
-  cnpj: { cnpj: number };
-  data?: Cnpj[];
-  setData?: React.Dispatch<React.SetStateAction<Cnpj[]>>;
-  comments: string | null;
-}> = ({ cnpj, data, setData, comments, theme }) => {
+  comment: string;
+  cpnjId: string;
+}> = ({ theme, comment, cpnjId }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
   const [isModalOpen, setIsModalOpen] = useState(false); //modal comments
   const [isConfirmSave, setConfirmSaveOpen] = useState(false); //modal confirmation of changes
-  const [textareaValue, setTextareaValue] = useState(comments); // comments on text area
+  const [comments, setComments] = useState("");
 
-  const handleCommentChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setTextareaValue(event.target.value);
+  const handleSubmit = () => {
+    postCommentCnpj(cpnjId, comments);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleSave = () => {
-    // Show confirmation modal
     setConfirmSaveOpen(true);
   };
 
   const handleCancelSave = () => {
-    // Close confirmation modal
     setConfirmSaveOpen(false);
   };
 
-  const handleCloseModal = () => {
-    // Update the comments state with the latest value
-    setTextareaValue(comments);
-    setIsModalOpen(false);
-  };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (cnpj && cnpj.cnpj) {
-      postUpdateCnpj(cnpj.cnpj.toString(), {
-        comments: textareaValue,
-      }).then();
-    }
-    setTextareaValue(comments);
-    setIsModalOpen(false);
-  };
-
   const handleConfirmSave = () => {
-    // Save changes
-    setData
-      ? data?.map((c) => {
-          if (c.cnpj === cnpj.cnpj) {
-            return {
-              ...c,
-              comments: textareaValue,
-            };
-          } else {
-            return c;
-          }
-        })
-      : null;
     setIsModalOpen(false);
     setConfirmSaveOpen(false);
   };
 
   return (
-    <div>
+    <div className="font-oswald text-[14px]">
       {/*------ botão para abrir o modal ------*/}
       <ButtonTertiary
         buttonContent=""
@@ -138,9 +105,10 @@ const ModalComments: React.FC<{
                 <TextareaPrimary
                   theme={theme}
                   name="comments"
-                  value={textareaValue || ""}
-                  onChange={handleCommentChange}
+                  value={comments}
+                  placeholder={comment}
                   className="w-full rounded-xl"
+                  onChange={(event) => setComments(event.target.value)}
                   minRows={3}
                   maxRows={8}
                 />

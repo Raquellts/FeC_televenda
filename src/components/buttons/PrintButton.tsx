@@ -14,7 +14,7 @@ const PrintButton: React.FC = () => {
     <ButtonTertiary
       buttonContent="Imprimir"
       onClick={startPrinting}
-      className="py-2 pl-2 pr-3 bg-accent hover:bg-primary text-text hover:text-text-dark font-oswald uppercase flex items-center justify-center"
+      className="py-2 pl-2 pr-3 bg-accent hover:bg-primary text-text hover:text-text-dark font-oswald uppercase flex items-center justify-center border-b-2 border-transparent hover:border-tertiary"
     >
       <SVGpdfDownload
         width={width_svg}

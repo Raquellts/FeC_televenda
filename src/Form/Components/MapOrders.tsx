@@ -1,6 +1,6 @@
 import React from "react";
 import { getOrderByCnpjsId } from "../../API/API_cnpj";
-import { Cnpj, CnpjOrder } from "../../API/API_utils";
+import { Cnpj, CnpjOrder, User } from "../../API/API_utils";
 import { Etheme, themes } from "../../themeConsts";
 import OrderItem from "./OrderItem";
 
@@ -12,6 +12,7 @@ interface MapOrdersState {
 interface MapOrdersProps {
   theme: Etheme;
   cnpj: Cnpj;
+  user: User;
 }
 
 class MapOrders extends React.Component<MapOrdersProps, MapOrdersState> {
@@ -38,7 +39,7 @@ class MapOrders extends React.Component<MapOrdersProps, MapOrdersState> {
   }
 
   render() {
-    const { theme } = this.props;
+    const { theme, user } = this.props;
     const { Order } = this.state;
 
     return (
@@ -56,6 +57,7 @@ class MapOrders extends React.Component<MapOrdersProps, MapOrdersState> {
                 Order={order}
                 theme={{ theme }}
                 Index={index}
+                user={user}
               />
             </div>
           ))}

@@ -13,7 +13,7 @@ function Form() {
   const [theme, setTheme] = useState(themes.activeTheme);
   const pageName = "Formulario do pedido";
   const location = useLocation();
-  const { cnpj } = location.state || {};
+  const { cnpj, user } = location.state || {};
 
   return (
     <div
@@ -34,7 +34,7 @@ function Form() {
         {/* FORMULARIO DE PEDIDO*/}
         <CompleteForm theme={{ theme }} cnpj={cnpj} />
         {/* LISTA DE PEDIDOS */}
-        <MapOrders theme={theme} cnpj={cnpj} />
+        <MapOrders theme={theme} cnpj={cnpj} user={user} />
       </div>
 
       <div className={`fixed bottom-5 right-4 ${isPrinting ? "hidden" : ""}`}>

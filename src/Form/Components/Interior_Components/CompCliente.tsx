@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Cnpj } from "../../../API/API_utils";
+import ModalComments from "../../../components/containers/separated/modalComments";
 
 interface CompClienteProps {
   cnpj: Cnpj;
@@ -46,9 +47,17 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
 
   return (
     <div>
-      <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5">
+      <div className="flex justify-between w-100 font-oswald text-[20px] text-primary pt-5">
+        <div className="self-center ml-5">
+          <ModalComments
+            theme={theme}
+            cpnjId={cnpj.id}
+            comment={cnpj.comments || ""}
+          />
+        </div>
         {cnpj && cnpj.razaoSocial}
-      </p>
+        <div></div>
+      </div>
       {cnpj && (
         <div>
           {/*---- informações do cliente ----*/}

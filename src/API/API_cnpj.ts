@@ -56,6 +56,16 @@ export const postUpdateCnpj = async (id: string, data: any): Promise<any> => {
   return response.data.body;
 };
 
+export const postCommentCnpj = async (
+  id: string,
+  comments: string
+): Promise<any> => {
+  const response = await axiosWithAuth.post(baseURL + "/lead/comment/" + id, {
+    comment: comments,
+  });
+  return response.data.body;
+};
+
 //PEGAR PEDIDOS DE CLIENTES-CNPJS ----- Order
 export const getOrderByCnpjsId = async (id: string): Promise<CnpjOrder[]> => {
   const response = await axiosWithAuth.get(baseURL + "/order/lead/" + id);

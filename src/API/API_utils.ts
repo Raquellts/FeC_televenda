@@ -1,6 +1,5 @@
 const baseURL: string = import.meta.env.VITE_BASE_URL_API;
 export default baseURL;
-
 /* //INFORMAÇÕES GERAIS:
 
 //Status CNPJ:
@@ -21,10 +20,10 @@ export default baseURL;
     4- vendedor
 
 //roles as strings
-    "user"
-    "admin"
-    "supervisor"
-    "vendedor"
+    USER(1),
+    ADMIN(2),
+    SUPERVISOR(3),
+    SELLER(4);
 
     */
 
@@ -104,4 +103,4 @@ export interface Item {
 }
 
 type OrderStatus = "PENDING" | "CANCELLED" | "SUSPENDED" | "PAID";
-type roleNames = "user" | "admin" | "supervisor" | "vendedor";
+type roleNames = "USER" | "ADMIN" | "SUPERVISOR" | "SELLER";

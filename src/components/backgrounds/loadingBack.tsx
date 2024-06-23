@@ -1,23 +1,24 @@
-import { useState } from "react";
 import { Etheme } from "../../themeConsts";
-import useUpdateTheme from "../Hooks/updateTheme";
 import "./Loading.css";
 
 const Loading = (theme: { theme: Etheme }) => {
-  /*THEME*/ const themes = theme.theme;
-  /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
-  /*THEME*/ useUpdateTheme(theme, setNewtheme);
+  const Theme = theme.theme;
+
   return (
     <div>
-      <div className="loader">
+      <div
+        className={`${
+          Theme === Etheme.light ? "bg-background" : "bg-dark-background"
+        } loader`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="371"
           height="484"
           fill="none"
           viewBox="0 0 371 484"
-          className={`logo ${
-            newtheme === Etheme.light ? "dark_filter" : "light_filter"
+          className={`loaderLogo ${
+            Theme === Etheme.light ? "dark_filter" : "light_filter"
           }`}
         >
           <path

@@ -1,14 +1,18 @@
 .loader {
   overflow: visible;
-  height: fit-content;
-  width: fit-content;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
 }
 
-.logo {
+.loaderLogo {
   width: 150px;
   height: 150px;
   fill: none;

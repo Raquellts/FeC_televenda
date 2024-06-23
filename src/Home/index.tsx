@@ -4,6 +4,7 @@ import InfosCnpj from "./Components/infosCnpj";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/navegations/cabecalho";
+
 interface HomeProps {
   filter: number | null;
   pageName: string;
@@ -13,33 +14,35 @@ const Home: React.FC<HomeProps> = ({ filter, pageName }) => {
   /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
 
   return (
-    <div
-      className={`${
-        theme === Etheme.light ? "bg-background" : "bg-dark-background"
-      } Flex h-full min-h-screen`}
-    >
-      <ModalSideNav theme={theme} />
-
-      {/* CABECALHO E TITLEBAR */}
+    <>
       <div
-        className={`sticky top-0 z-10 lg:ml-64 pb-[1px] pt-2 px-4 ${
+        className={`${
           theme === Etheme.light ? "bg-background" : "bg-dark-background"
-        }`}
+        } Flex h-full min-h-screen`}
       >
-        <Cabecalho theme={{ theme }} pageName={pageName} />
-      </div>
+        <ModalSideNav theme={theme} />
 
-      {/* INFOSCNPJ */}
+        {/* CABECALHO E TITLEBAR */}
+        <div
+          className={`sticky top-0 z-10 lg:ml-64 pb-[1px] pt-2 px-4 ${
+            theme === Etheme.light ? "bg-background" : "bg-dark-background"
+          }`}
+        >
+          <Cabecalho theme={{ theme }} pageName={pageName} />
+        </div>
 
-      <div className="px-4 lg:ml-64">
-        <InfosCnpj statusNumber={filter} theme={{ theme }} />
-      </div>
+        {/* INFOSCNPJ */}
 
-      {/* THEME BUTTON */}
-      <div className="fixed bottom-5 right-4">
-        <ButtonTheme theme={theme} setTheme={setTheme} />
+        <div className="px-4 lg:ml-64">
+          <InfosCnpj statusNumber={filter} theme={{ theme }} />
+        </div>
+
+        {/* THEME BUTTON */}
+        <div className="fixed bottom-5 right-4">
+          <ButtonTheme theme={theme} setTheme={setTheme} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -165,7 +165,7 @@ function Login() {
 
             {/* BOTOES recuperar senha e criar conta VVVV */}
             <ButtonSecondary
-              href="/forgot"
+              href="/Forgot"
               buttonContent="Esqueci a senha!"
               theme={{ theme: theme }}
               className="lg:mx-30 lg:my-0"
@@ -175,7 +175,7 @@ function Login() {
           <p className="text-secondary font-oswald">
             Não tem uma conta?
             <ButtonSecondary
-              href="/signin"
+              href="/Signin"
               buttonContent="CRIAR CONTA"
               theme={{ theme: theme }}
             />

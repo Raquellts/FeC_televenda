@@ -3,6 +3,7 @@ import { getOrderByCnpjsId } from "../../API/API_cnpj";
 import { Cnpj, CnpjOrder, User } from "../../API/API_utils";
 import { Etheme, themes } from "../../themeConsts";
 import OrderItem from "./OrderItem";
+import Loading from "../../components/backgrounds/loadingBack";
 
 interface MapOrdersState {
   theme: Etheme;
@@ -30,11 +31,13 @@ class MapOrders extends React.Component<MapOrdersProps, MapOrdersState> {
   componentDidMount(): void {
     if (this.loading === false) {
       this.loading = true;
-      getOrderByCnpjsId(this.props.cnpj.id)
-        .then((Order) => {
-          this.setState({ Order });
-        })
-        .finally(() => (this.loading = false));
+      if (this.props.cnpj?.id) {
+        getOrderByCnpjsId(this.props.cnpj?.id)
+          .then((Order) => {
+            this.setState({ Order });
+          })
+          .finally(() => (this.loading = false));
+      }
     }
   }
 
@@ -42,26 +45,33 @@ class MapOrders extends React.Component<MapOrdersProps, MapOrdersState> {
     const { theme, user } = this.props;
     const { Order } = this.state;
 
+    const loading = this.loading;
+
     return (
-      <div
-        className={`${
-          theme === Etheme.light ? "text-primary" : "text-dark-primary"
-        } flex flex-col w-full items-center font-oswald mb-2 mt-6`}
-      >
-        <p>Pedidos Associados</p>
-        {Order &&
-          Order.map((order, index) => (
-            <div key={index} className="mt-4 w-full">
-              <OrderItem
-                key={"mapOrders" + index}
-                Order={order}
-                theme={{ theme }}
-                Index={index}
-                user={user}
-              />
-            </div>
-          ))}
-      </div>
+      <>
+        {loading && <Loading theme={theme} />}
+        {Order ? (
+          <div
+            className={`${
+              theme === Etheme.light ? "text-primary" : "text-dark-primary"
+            } flex flex-col w-full items-center font-oswald mb-2 mt-6`}
+          >
+            <p>Pedidos Associados</p>
+            {Order &&
+              Order.map((order, index) => (
+                <div key={index} className="mt-4 w-full">
+                  <OrderItem
+                    key={"mapOrders" + index}
+                    Order={order}
+                    theme={{ theme }}
+                    Index={index}
+                    user={user}
+                  />
+                </div>
+              ))}
+          </div>
+        ) : null}
+      </>
     );
   }
 }

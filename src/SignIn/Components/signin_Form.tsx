@@ -238,7 +238,7 @@ const SigninForm: React.FC<signinInterface> = ({
 
         <p className="my-2 small-style">
           <ButtonSecondary
-            href="/login"
+            href="/Login"
             buttonContent="Já tenho uma conta"
             theme={theme}
           />

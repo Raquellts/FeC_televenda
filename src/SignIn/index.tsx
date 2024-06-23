@@ -68,7 +68,7 @@ class Signin extends React.Component<any, State> {
       if (this.state.formData) {
         const data = await postCommonUser(this.state.formData);
         if (data) {
-          this.props.history.push("/login");
+          this.props.history.push("/Login");
         }
       }
     } catch (err: unknown) {

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Etheme, themes } from "../themeConsts";
 import ButtonTheme from "../themeButton";
 import Cabecalho from "../components/navegations/cabecalho";
 import ModalSideNav from "../components/navegations/modalSideNav";
 import CompVeiculo from "./Components/CompVeiculo";
+import Loading from "../components/backgrounds/loadingBack";
 
 const FormPedido = () => {
   /*THEME*/ const [theme, setTheme] = useState(themes.activeTheme);
@@ -16,9 +17,17 @@ const FormPedido = () => {
     userId: "",
   };
   const pageName = "Criar pedido";
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 250);
+  }, []);
 
   return (
     <>
+      {loading && <Loading theme={theme} />}
       <div
         className={`${
           theme === Etheme.light ? "bg-background" : "bg-dark-background"

@@ -144,7 +144,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
             </a>
             {/*----- LOGOUT - VOLTAR AO LOGIN ------*/}
             <a
-              href="/login"
+              href="/Login"
               onClick={handleLogout}
               className="flex items-center lg:justify-start justify-center p-2 rounded-lg hover:text-text hover:bg-tertiary group"
             >

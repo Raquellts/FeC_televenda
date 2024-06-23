@@ -77,7 +77,7 @@ function RecoveryPassword() {
 
             <p className="my-5">
               <ButtonSecondary
-                href="/login"
+                href="/Login"
                 buttonContent="Retornar ao Login"
                 theme={{ theme: theme }}
               />

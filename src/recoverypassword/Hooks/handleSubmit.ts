@@ -20,7 +20,7 @@ export const hookHandleSubmit = async (
       postResetPassword(dados);
       setSuccess(true); // show success message
       setTimeout(() => {
-        navigate("/login");
+        navigate("/Login");
       }, 1000); // redirect after 1 second
     } else {
       setErrorMessage("As senhas precisam ser iguais ⤴");

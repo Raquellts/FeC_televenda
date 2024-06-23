@@ -46,35 +46,35 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <ProtectRoute component={All} />,
+    element: <ProtectRoute element={<All />} />,
   },
   {
     path: "/Pending",
-    element: <ProtectRoute component={Pending} />,
+    element: <ProtectRoute element={<Pending />} />,
   },
   {
     path: "/Suspended",
-    element: <ProtectRoute component={Suspended} />,
+    element: <ProtectRoute element={<Suspended />} />,
   },
   {
     path: "/Approved",
-    element: <ProtectRoute component={Confirmed} />,
+    element: <ProtectRoute element={<Confirmed />} />,
   },
   {
     path: "/Rejected",
-    element: <ProtectRoute component={Rejected} />,
+    element: <ProtectRoute element={<Rejected />} />,
   },
   {
     path: "/form",
-    element: <ProtectRoute component={Form} />,
+    element: <ProtectRoute element={<Form />} />,
   },
   {
     path: "/order",
-    element: <ProtectRoute component={Order} />,
+    element: <ProtectRoute element={<Order />} />,
   },
   {
     path: "/Users",
-    element: <ProtectRoute component={Users} />,
+    element: <ProtectRoute element={<Users />} />,
   },
 ]);
 

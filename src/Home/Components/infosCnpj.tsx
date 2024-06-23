@@ -3,6 +3,7 @@ import InfoCnpjItem from "./Interior_Components/InfoCnpjItem";
 import { Etheme, themes } from "../../themeConsts";
 import { Cnpj, User } from "../../API/API_utils";
 import { getCnpjs, getCommonUser } from "../../API/API_cnpj";
+import Loading from "../../components/backgrounds/loadingBack";
 
 interface iInfosCnpj {
   statusNumber: number | null;
@@ -57,22 +58,26 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
   render() {
     const { statusNumber, theme } = this.props;
     const { data, user } = this.state;
+    const { loading } = this;
 
     return (
-      <div className={`${theme}`}>
-        {data?.map((cnpj, index) => {
-          if (!statusNumber || cnpj.status === statusNumber) {
-            return (
-              <InfoCnpjItem
-                cnpj={cnpj}
-                theme={theme}
-                key={"InfosCnpj" + index}
-                user={user}
-              />
-            );
-          }
-        })}
-      </div>
+      <>
+        {loading && <Loading theme={theme.theme} />}
+        <div className={`${theme}`}>
+          {data?.map((cnpj, index) => {
+            if (!statusNumber || cnpj.status === statusNumber) {
+              return (
+                <InfoCnpjItem
+                  cnpj={cnpj}
+                  theme={theme}
+                  key={"InfosCnpj" + index}
+                  user={user}
+                />
+              );
+            }
+          })}
+        </div>
+      </>
     );
   }
 }

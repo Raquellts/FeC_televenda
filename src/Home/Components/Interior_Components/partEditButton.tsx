@@ -24,7 +24,7 @@ const EditButton = ({ theme, cnpj, user }: iPartEditButton) => {
           : "text-dark-tertiary hover:text-text"
       } flex flex-col items-center justify-center text-center font-oswald text-[13px] w-100 h-100 font-style-lg`}
     >
-      <Link to="/form" state={{ cnpj, user }}>
+      <Link to="/Form" state={{ cnpj, user }}>
         <div className={user?.roleAsString === "USER" ? "hidden" : ""}>
           <SVGpdf
             width={42}

@@ -105,7 +105,7 @@ function ForgotPassword() {
           <p className="my-5 text-secondary font-oswald">
             Retornar para:
             <ButtonSecondary
-              href="/login"
+              href="/Login"
               buttonContent="LOGIN"
               theme={{ theme: theme }}
             />

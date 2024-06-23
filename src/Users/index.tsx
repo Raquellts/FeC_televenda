@@ -6,6 +6,7 @@ import InfosUSER from "./Components/infosUSER";
 import Cabecalho from "../components/navegations/cabecalho";
 import { getAllCommonUser } from "../API/API_cnpj";
 import { User } from "../API/API_utils";
+import Loading from "../components/backgrounds/loadingBack";
 
 interface iUsers {
   data: User[];
@@ -13,7 +14,7 @@ interface iUsers {
   pageName: string;
 }
 
-class Users extends React.Component<iUsers, iUsers> {
+class Users extends React.Component<any, iUsers> {
   loading: boolean = false;
 
   constructor(props: iUsers) {
@@ -48,32 +49,35 @@ class Users extends React.Component<iUsers, iUsers> {
 
   render(): React.ReactNode {
     const { theme, pageName, data } = this.state;
-    const { setTheme } = this;
+    const { setTheme, loading } = this;
 
     return (
-      <div
-        className={`${
-          theme === Etheme.light ? "bg-background" : "bg-dark-background"
-        } Flex min-h-screen h-full`}
-      >
-        <ModalSideNav theme={theme} />
-        {/* CABECALHO E TITLEBAR */}
+      <>
+        {loading && <Loading theme={theme} />}
         <div
-          className={`sticky top-0 z-10 lg:ml-64 pb-[1px] pt-2 px-4 ${
+          className={`${
             theme === Etheme.light ? "bg-background" : "bg-dark-background"
-          }`}
+          } Flex min-h-screen h-full`}
         >
-          <Cabecalho theme={{ theme }} pageName={pageName} />
+          <ModalSideNav theme={theme} />
+          {/* CABECALHO E TITLEBAR */}
+          <div
+            className={`sticky top-0 z-10 lg:ml-64 pb-[1px] pt-2 px-4 ${
+              theme === Etheme.light ? "bg-background" : "bg-dark-background"
+            }`}
+          >
+            <Cabecalho theme={{ theme }} pageName={pageName} />
+          </div>
+          <div className="px-4 pb-4 lg:ml-64">
+            {data.map((data, index) => (
+              <InfosUSER data={data} theme={theme} key={"users" + index} />
+            ))}
+          </div>
+          <div className="fixed bottom-5 right-4">
+            <ButtonTheme theme={theme} setTheme={setTheme} />
+          </div>
         </div>
-        <div className="px-4 pb-4 lg:ml-64">
-          {data.map((data, index) => (
-            <InfosUSER data={data} theme={theme} key={"users" + index} />
-          ))}
-        </div>
-        <div className="fixed bottom-5 right-4">
-          <ButtonTheme theme={theme} setTheme={setTheme} />
-        </div>
-      </div>
+      </>
     );
   }
 }

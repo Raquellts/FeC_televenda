@@ -3,6 +3,7 @@ import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Cnpj } from "../../../API/API_utils";
 import ModalComments from "../../../components/containers/separated/modalComments";
+import { usePrintState } from "../../../components/Hooks/isPrinting";
 
 interface CompClienteProps {
   cnpj: Cnpj;
@@ -10,6 +11,8 @@ interface CompClienteProps {
 }
 
 const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
+  const { isPrinting } = usePrintState();
+
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
@@ -48,7 +51,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
   return (
     <div>
       <div className="flex justify-between w-100 font-oswald text-[20px] text-primary pt-5">
-        <div className="self-center ml-5">
+        <div className={`self-center ml-5 ${isPrinting ? "hidden" : ""}`}>
           <ModalComments
             theme={theme}
             cpnjId={cnpj.id}

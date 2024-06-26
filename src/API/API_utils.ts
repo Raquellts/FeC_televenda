@@ -62,7 +62,9 @@ export interface CommonUser {
 }
 
 export interface Cnpj {
+  porte: string;
   identificadorMatrizFilial: number;
+  cnpj: number;
   razaoSocial: string;
   clientName: string;
   activity: string;
@@ -70,12 +72,10 @@ export interface Cnpj {
   dateForCall: string | null;
   comments: string | null;
   userId: string;
-  cnpj: number;
   cnae: number;
-  phone1: string;
-  porte: string;
-  phone2: string;
   email: string;
+  phone1: string;
+  phone2: string;
   id: string;
 }
 

@@ -7,19 +7,21 @@ import useUpdateTheme from "../../Hooks/updateTheme";
 import SVGComments from "../../SVGs/INFO/SVGComments";
 import ConfirmationModal from "./modalConfirmSave";
 import { postCommentCnpj } from "../../../API/API_cnpj";
+import Tooltip from "./tooltip";
 
 const ModalComments: React.FC<{
   theme: { theme: Etheme };
   comment: string;
   cpnjId: string;
-}> = ({ theme, comment, cpnjId }) => {
+  setCommentsOut?: React.Dispatch<React.SetStateAction<string>>;
+}> = ({ theme, comment, cpnjId, setCommentsOut }) => {
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
   const [isModalOpen, setIsModalOpen] = useState(false); //modal comments
   const [isConfirmSave, setConfirmSaveOpen] = useState(false); //modal confirmation of changes
-  const [comments, setComments] = useState("");
+  const [comments, setComments] = useState<string>(comment); //comments state();
 
   const handleSubmit = () => {
     postCommentCnpj(cpnjId, comments);
@@ -40,6 +42,16 @@ const ModalComments: React.FC<{
   const handleConfirmSave = () => {
     setIsModalOpen(false);
     setConfirmSaveOpen(false);
+  };
+
+  const handleCommentsChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setComments(event.target.value);
+
+    if (setCommentsOut) {
+      setCommentsOut(event.target.value);
+    }
   };
 
   return (
@@ -83,19 +95,36 @@ const ModalComments: React.FC<{
           >
             {/*------ header ------*/}
             <h3 className="text-xl font-semibold">Comentarios</h3>
-            <button
-              type="button"
-              className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide`}
-              onClick={handleCloseModal}
-            >
-              <span className="mx-1 uppercase">Voltar</span>
-              <SVGCancel
-                width={24}
-                height={24}
-                fill_one="none"
-                fill_two="currentColor"
-              />
-            </button>
+            <div className="flex">
+              <Tooltip
+                message="Retorna ao último comentário salvo"
+                theme={newtheme}
+                className="bottom-12 left-0"
+              >
+                <button
+                  type="button"
+                  className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide mx-1`}
+                  onClick={() => setComments(comment)}
+                >
+                  <span>Reiniciar</span>
+                  <span className="text-[20px] font-montserrat font-style-xlg ml-1">
+                    ↩
+                  </span>
+                </button>
+              </Tooltip>
+              <button
+                type="button"
+                className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide`}
+                onClick={handleCloseModal}
+              >
+                <SVGCancel
+                  width={24}
+                  height={24}
+                  fill_one="none"
+                  fill_two="currentColor"
+                />
+              </button>
+            </div>
           </div>
 
           {/*------ conteudo ------*/}
@@ -106,9 +135,8 @@ const ModalComments: React.FC<{
                   theme={theme}
                   name="comments"
                   value={comments}
-                  placeholder={comment}
                   className="w-full rounded-xl"
-                  onChange={(event) => setComments(event.target.value)}
+                  onChange={handleCommentsChange}
                   minRows={3}
                   maxRows={8}
                 />

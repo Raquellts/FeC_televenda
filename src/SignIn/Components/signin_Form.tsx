@@ -118,7 +118,7 @@ const SigninForm: React.FC<signinInterface> = ({
           <InputPrimary
             required
             autocomplete="on"
-            name="surname"
+            name="lastName"
             type="text"
             placeholder="Sobrenome"
             value={formData?.surname}

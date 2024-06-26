@@ -4,6 +4,7 @@ import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Cnpj } from "../../../API/API_utils";
 import ModalComments from "../../../components/containers/separated/modalComments";
 import { usePrintState } from "../../../components/Hooks/isPrinting";
+import CnaeConverter from "../../../components/Elements_for_Forms/CnaeConverter";
 
 interface CompClienteProps {
   cnpj: Cnpj;
@@ -12,15 +13,11 @@ interface CompClienteProps {
 
 const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
   const { isPrinting } = usePrintState();
+  const [comments, setComments] = useState<string>(cnpj.comments || "");
 
   /*THEME*/ const themes = theme.theme;
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
-
-  const pClass = `${
-    newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
-  } py-2 font-inter font-style-xlg text-[15px] truncate`;
-  const spans = `px-1 font-style-md truncate`;
 
   const formatarData = (data: Date) => {
     if (!(data instanceof Date)) {
@@ -48,14 +45,20 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
     }
   }, [date]);
 
+  const pClass = `${
+    newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
+  } py-2 font-inter font-style-xlg text-[15px] text-balance flex flex-row items-center`;
+  const spans = `px-1 font-style-md truncate`;
+
   return (
-    <div>
+    <div className="w-full">
       <div className="flex justify-between w-100 font-oswald text-[20px] text-primary pt-5">
         <div className={`self-center ml-5 ${isPrinting ? "hidden" : ""}`}>
           <ModalComments
             theme={theme}
             cpnjId={cnpj.id}
-            comment={cnpj.comments || ""}
+            comment={comments}
+            setCommentsOut={setComments}
           />
         </div>
         {cnpj && cnpj.razaoSocial}
@@ -68,13 +71,13 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
             <div>
               {/* NOME DA EMPRESA ------------*/}
               <p className={pClass}>
-                <span className={spans}>Nome:</span>
+                <span className={spans}>Empresa:</span>
                 {cnpj.razaoSocial || "Não informado"}
               </p>
               {/* ATIVIDADES DA EMPRESA -----*/}
               <p className={pClass}>
                 <span className={spans}>Atividades:</span>
-                {cnpj.activity || "Não informado"}
+                <CnaeConverter cnaeNumber={cnpj.cnae} />
               </p>
             </div>
             <div>
@@ -124,6 +127,18 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
                   ? "Filial"
                   : "Sem porte" || "Não informado"}
               </p>
+            </div>
+
+            {/* COMENTÁRIOS -----*/}
+            <div
+              className={`${
+                newtheme === Etheme.light
+                  ? "text-primary"
+                  : "text-dark-primary "
+              } py-2 font-inter font-style-xlg text-[15px] text-balance items-center`}
+            >
+              <span className={spans}>Comentários:</span>
+              <p className="ml-1">{comments || "Sem comentários"}</p>
             </div>
           </div>
         </div>

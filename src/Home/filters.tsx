@@ -1,5 +1,10 @@
 import Home from ".";
 
+//PENDING (1) //padrao
+//CONFIRMED (2) //criação de pedido
+//SUSPENDED (3) //data para ligar
+//REFUSED (4) //recusou o produto
+
 export const All = () => {
   const filter = null;
   const pageName = "Todas as empresas";
@@ -21,16 +26,16 @@ export const Confirmed = () => {
   return <Home filter={filter} pageName={pageName} />;
 };
 
-export const Rejected = () => {
+export const Suspended = () => {
   const filter = 3;
-  const pageName = "Rejeitadas";
+  const pageName = "Suspensos";
 
   return <Home filter={filter} pageName={pageName} />;
 };
 
-export const Suspended = () => {
+export const Rejected = () => {
   const filter = 4;
-  const pageName = "Suspensos";
+  const pageName = "Rejeitadas";
 
   return <Home filter={filter} pageName={pageName} />;
 };

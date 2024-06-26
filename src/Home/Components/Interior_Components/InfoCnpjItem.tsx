@@ -11,6 +11,7 @@ import ClipboardButton from "../../../components/buttons/Clipboard";
 import SVGEmail from "../../../components/SVGs/CONTACT/SVGEmail";
 import { Cnpj, User } from "../../../API/API_utils";
 import "../InfosCnpj.css";
+import CnaeConverter from "../../../components/Elements_for_Forms/CnaeConverter";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -140,7 +141,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
           }`}
         >
           <p className={`ml-6 font-inter truncate cnpj_atividade`}>
-            {cnpj.activity}
+            <CnaeConverter cnaeNumber={cnpj.cnae} />
           </p>
         </div>
       </form>

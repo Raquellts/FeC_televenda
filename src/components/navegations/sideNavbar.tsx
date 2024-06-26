@@ -104,7 +104,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 fill_two={fill_Two_svg}
               />
               <span className="hidden lg:block flex-1 ms-3 whitespace-nowrap">
-                Compras Aprovadas
+                Aprovados
               </span>
             </a>
             {/*-----  REJECTED - REJEITARAM A COMPRA ------*/}

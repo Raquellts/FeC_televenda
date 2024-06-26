@@ -60,7 +60,7 @@ const CompVeiculo: React.FC<CompVeiculoProps> = ({ theme, cnpj }) => {
   };
 
   const handleBack = () => {
-    window.history.back();
+    window.location.href = "/";
   };
 
   const handleSubmit = () => {

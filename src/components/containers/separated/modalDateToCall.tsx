@@ -44,7 +44,7 @@ const ModalDateToCall: React.FC<ModalProps> = ({
   };
 
   return (
-    <form
+    <div
       id="static-modal"
       data-modal-backdrop="static"
       tabIndex={-1}
@@ -92,7 +92,7 @@ const ModalDateToCall: React.FC<ModalProps> = ({
           />
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 

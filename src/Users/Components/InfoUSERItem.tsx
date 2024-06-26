@@ -33,7 +33,7 @@ const InfoUSERItem = ({
       <form
         className={`${
           newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
-        } w-80 px-2 py-2 rounded-s-2xl font-roboto`}
+        } w-100 px-2 py-2 rounded-2xl font-roboto`}
       >
         {/* --------------- NOME E SOBRENOME --- USUARIO ---------------- */}
         <div className={`flex justify-start items-center ml-1`}>
@@ -76,7 +76,7 @@ const InfoUSERItem = ({
       </form>
 
       {/* SEGUNDA parte do container VVV */}
-      {/*--- STATUS ---*/}
+      {/*--- STATUS ---
       <form
         className={`w-10 ${
           newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
@@ -84,16 +84,13 @@ const InfoUSERItem = ({
       >
         <p className="ml-1 truncate font-style-xlg">ALGUMA INFO</p>
       </form>
-
-      {/* TERCEIRA parte do container VVV */}
-      {/*--- STATUS ---*/}
       <form
         className={`w-10 ${
           newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
         } rounded-e-2xl`}
       >
         <p className="ml-1 truncate font-style-xlg">ALGUMA INFO</p>
-      </form>
+      </form>*/}
     </div>
   );
 };

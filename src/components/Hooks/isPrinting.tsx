@@ -22,6 +22,7 @@ export const usePrintState = () => {
     isPrinting = true;
     notifyListeners();
     setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "instant" });
       window.print();
       isPrinting = false;
       notifyListeners();

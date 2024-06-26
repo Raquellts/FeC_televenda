@@ -143,7 +143,7 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
             <Link
               to="/Order"
               state={{ cnpj }}
-              className={`flex justify-end ${isPrinting ? "hidden" : ""}`}
+              className={`flex justify-end mr-1 ${isPrinting ? "hidden" : ""}`}
             >
               <ButtonTertiary
                 className={`border-transparent bg-tertiary text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-4`}

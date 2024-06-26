@@ -19,7 +19,7 @@ const ButtonTertiary: React.FC<ButtonSecondaryProps> = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`block text-primary border-b-2 hover:text-background rounded-lg text-xs px-2 text-center z-10 ${className}`}
+      className={`block text-primary border-b-2 hover:text-background rounded-lg text-xs px-2 text-center ${className}`}
       type="button"
     >
       {children}

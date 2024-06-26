@@ -106,11 +106,11 @@ const OrderItem = ({
             </div>
 
             {/* --------------- NOME DA EMPRESA ---------------- */}
-            <p className="pl-4 truncate font-style-xlg">Pedido {Index + 1}</p>
+            <p className="pl-4 break-all font-style-xlg">Pedido {Index + 1}</p>
           </div>
 
           {/* --------------- ID DO PEDIDO ---------------- */}
-          <p className="truncate font-style-xlg">
+          <p className="break-all font-style-xlg">
             <span>ID do pedido: </span>
             {String(Order.id)}
           </p>

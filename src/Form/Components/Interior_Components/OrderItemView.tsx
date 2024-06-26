@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Etheme } from "../../../themeConsts";
 import { Item } from "../../../API/API_utils";
+import { usePrintState } from "../../../components/Hooks/isPrinting";
 
 const OrderItemView = ({
   theme,
@@ -12,6 +13,7 @@ const OrderItemView = ({
 }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState<Etheme>(theme.theme);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
+  const { isPrinting } = usePrintState();
 
   const pClass = `${
     newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
@@ -40,7 +42,11 @@ const OrderItemView = ({
   }, [Item.dueDate]);
 
   return (
-    <div className="w-full lg:justify-around flex flex-row flex-wrap my-4">
+    <div
+      className={`w-full flex flex-wrap my-4 ${
+        isPrinting ? "justify-between" : "lg:justify-around flex-row"
+      }`}
+    >
       <div>
         {/* ------ MARCA ------*/}
         <p className={pClass}>

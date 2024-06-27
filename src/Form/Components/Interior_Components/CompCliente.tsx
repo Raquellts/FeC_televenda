@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Etheme } from "../../../themeConsts";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
 import { Cnpj } from "../../../API/API_utils";
 import ModalComments from "../../../components/containers/separated/modalComments";
 import { usePrintState } from "../../../components/Hooks/isPrinting";
 import CnaeConverter from "../../../components/Elements_for_Forms/CnaeConverter";
+import formatarData from "../../../components/Elements_for_Forms/DateFormatter";
 
 interface CompClienteProps {
   cnpj: Cnpj;
@@ -19,31 +20,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
   /*THEME*/ const [newtheme, setNewtheme] = useState(themes);
   /*THEME*/ useUpdateTheme(theme, setNewtheme);
 
-  const formatarData = (data: Date) => {
-    if (!(data instanceof Date)) {
-      throw new Error("O parâmetro fornecido não é um objeto Date válido.");
-    }
-
-    const dia = String(data.getDate() + 1).padStart(2, "0"); // Obtém o dia do mês
-    const mes = String(data.getMonth() + 1).padStart(2, "0"); // Obtém o mês (0-11) e ajusta para (1-12)
-    const ano = data.getFullYear(); // Obtém o ano
-
-    return `${dia}/${mes}/${ano}`;
-  };
-
-  const date = cnpj.dateForCall;
-  const formattedDate = useMemo(() => {
-    try {
-      const parsedDate = date ? new Date(date) : null;
-      if (parsedDate instanceof Date && !isNaN(parsedDate.getTime())) {
-        return formatarData(parsedDate);
-      } else {
-        throw new Error("Data inválida");
-      }
-    } catch (error) {
-      return "Sem data";
-    }
-  }, [date]);
+  const callDate = cnpj.dateForCall;
 
   const pClass = `${
     newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
@@ -103,7 +80,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
               {/* ------ PROXIMA LIGACAO --------*/}
               <p className={pClass}>
                 <span className={spans}>Proxima ligação:</span>
-                {formattedDate || "Não informado"}
+                {callDate ? formatarData(callDate) : "Não informado"}
               </p>
             </div>
             <div className="lg:w-1/4">

@@ -1,5 +1,12 @@
 import axios from "axios";
-import baseURL, { Cnpj, CnpjOrder, CommonUser, Item, User } from "./API_utils";
+import baseURL, {
+  Cnpj,
+  CnpjOrder,
+  CnpjPaginationResponse,
+  CommonUser,
+  Item,
+  User,
+} from "./API_utils";
 import axiosWithAuth from "../midleware/axiosWithAuth";
 
 const config = {
@@ -114,4 +121,18 @@ export const putStatusCnpj = async (
   {
     /*3 - suspenso | 4 - cancelado*/
   }
+};
+
+//PAGINAÇÃO DE CLIENTES-CNPJS
+export const getCnpjsPagination = async (
+  page: number,
+  limit?: number
+): Promise<CnpjPaginationResponse> => {
+  const response = await axiosWithAuth.get(
+    baseURL + `/lead/status/?page=${page}?size=${1}`,
+    {
+      params: { page, limit },
+    }
+  );
+  return response.data.body;
 };

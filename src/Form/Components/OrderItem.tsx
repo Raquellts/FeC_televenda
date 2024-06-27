@@ -11,6 +11,7 @@ import SVGCheck from "../../components/SVGs/CIRCLE/SVGCheck";
 import ConfirmationModal from "../../components/containers/separated/modalConfirmSave";
 import { putStatusOrder } from "../../API/API_cnpj";
 import { usePrintState } from "../../components/Hooks/isPrinting";
+import formatarData from "../../components/Elements_for_Forms/DateFormatter";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -62,6 +63,9 @@ const OrderItem = ({
   const handleReload = () => {
     window.location.reload();
   };
+
+  const createdAt = Order.orderCreatedAt;
+  const closedAt = Order.orderClosedAt;
 
   const buttonStatusChange = `border-transparent text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-3 text-[16px] mx-0.5 lg:mx-1 mt-2`;
   const tooltip = `top-12 left-0 h-[50px] ${
@@ -184,6 +188,21 @@ const OrderItem = ({
               Pedido pago e encerrado
             </p>
           ) : null}
+        </div>
+        <div
+          className={`w-full flex flex-col items-end justify-end py-2 px-4 text-[12px] ${
+            newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
+          }`}
+        >
+          <p>Criado em:&nbsp;{formatarData(new Date(createdAt))}</p>
+          {closedAt ? (
+            <p>
+              Encerrado em:&nbsp;
+              {formatarData(new Date(closedAt))}
+            </p>
+          ) : (
+            "Pedido em andamento"
+          )}
         </div>
       </form>
     </div>

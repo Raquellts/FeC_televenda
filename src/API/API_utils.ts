@@ -61,19 +61,52 @@ export interface CommonUser {
   role: number;
 }
 
+export interface CnpjPaginationResponse {
+  msg: string;
+  status: string;
+  body: {
+    totalPages: number;
+    totalElements: number;
+    pageable: {
+      pageNumber: number;
+      pageSize: number;
+      sort: {
+        sorted: boolean;
+        empty: boolean;
+        unsorted: boolean;
+      };
+      offset: number;
+      paged: boolean;
+      unpaged: boolean;
+    };
+    size: number;
+    content: Cnpj[];
+    number: number;
+    sort: {
+      sorted: boolean;
+      empty: boolean;
+      unsorted: boolean;
+    };
+    numberOfElements: number;
+    first: boolean;
+    last: boolean;
+    empty: boolean;
+  };
+}
+
 export interface Cnpj {
   porte: string;
-  identificadorMatrizFilial: number;
-  cnpj: number;
+  identificadorMatrizFilial: number | null;
+  cnpj: number | null;
   razaoSocial: string;
-  clientName: string;
+  clientName: string | null;
   activity: string;
   status: number;
-  dateForCall: string | null;
+  dateForCall: Date | null;
   comments: string | null;
   userId: string;
   cnae: number;
-  email: string;
+  email: string | null;
   phone1: string;
   phone2: string;
   id: string;
@@ -85,6 +118,8 @@ export interface CnpjOrder {
   userId: string;
   status: OrderStatus;
   orderItem: Item;
+  orderCreatedAt: Date;
+  orderClosedAt: Date | null;
 }
 
 export interface Item {
@@ -93,7 +128,7 @@ export interface Item {
   color: string;
   year: string;
   version: string;
-  dueDate: string;
+  dueDate: Date;
   amount: number;
   payment: string;
   purchaseReason: string;

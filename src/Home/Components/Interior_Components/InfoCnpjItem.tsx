@@ -29,7 +29,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
 
   const pClass = `${
     newtheme === Etheme.light ? "light" : "dark"
-  } ml-1 justify-start flex cnpj_contact`;
+  } ml-1 justify-start flex cnpj_contact text-[10px] font-roboto`;
 
   return (
     <div
@@ -93,22 +93,32 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
               <>
                 {cnpj.phone1 && (
                   <p className={pClass}>
-                    <span>{cnpj.phone1}</span>
-                    <ClipboardButton textToCopy={cnpj.phone1} theme={theme} />
+                    <span>
+                      {cnpj.phone1 === "nullnull"
+                        ? "Não informado"
+                        : cnpj.phone1}
+                    </span>
+                    {cnpj.phone1 !== "nullnull" && (
+                      <ClipboardButton textToCopy={cnpj.phone2} theme={theme} />
+                    )}
                   </p>
                 )}
 
                 {cnpj.phone2 && (
                   <p className={pClass}>
-                    <span>{cnpj.phone2}</span>
-                    <ClipboardButton textToCopy={cnpj.phone2} theme={theme} />
+                    <span>
+                      {cnpj.phone2 === "nullnull"
+                        ? "Não informado"
+                        : cnpj.phone2}
+                    </span>
+                    {cnpj.phone2 !== "nullnull" && (
+                      <ClipboardButton textToCopy={cnpj.phone2} theme={theme} />
+                    )}
                   </p>
                 )}
               </>
             ) : (
-              <p className={`${pClass} text-[10px] font-oswald`}>
-                Não informado
-              </p>
+              <p className={`${pClass}`}>Não informado</p>
             )}
           </div>
 
@@ -123,21 +133,23 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
             {/*EMAIL 01*/}
             {cnpj.email ? (
               <p className={pClass}>
-                <span>{cnpj.email}</span>
+                <span>
+                  {cnpj.email === null ? "Não informado" : cnpj.email}
+                </span>
                 <ClipboardButton textToCopy={cnpj.email} theme={theme} />
               </p>
             ) : (
-              <p className={`${pClass} text-[10px] font-oswald`}>
-                Não informado
-              </p>
+              <p className={`${pClass}`}>Não informado</p>
             )}
           </div>
         </div>
 
         {/* --------------- LINHA DE ATIVIDADES --- CNAE DESC.. ---------------- */}
         <div
-          className={`flex opacity-70 text-xs lowercase ${
-            newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
+          className={`flex lowercase ${
+            newtheme === Etheme.light
+              ? "bg-container opacity-80"
+              : "bg-dark-container"
           }`}
         >
           <p className={`ml-6 font-inter truncate cnpj_atividade`}>

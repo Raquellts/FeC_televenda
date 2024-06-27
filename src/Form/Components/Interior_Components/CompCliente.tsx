@@ -41,19 +41,23 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
         throw new Error("Data inválida");
       }
     } catch (error) {
-      return "Data inválida";
+      return "Sem data";
     }
   }, [date]);
 
   const pClass = `${
     newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
-  } py-2 font-inter font-style-xlg text-[15px] text-balance flex flex-row items-center`;
-  const spans = `px-1 font-style-md truncate`;
+  } py-2 font-inter font-style-xlg text-[15px] text-wrap flex flex-row items-center`;
+  const spans = `px-1 font-style-md text-balance`;
 
   return (
-    <div className="w-full">
-      <div className="flex justify-between w-100 font-oswald text-[20px] text-primary pt-5">
-        <div className={`self-center ml-5 ${isPrinting ? "hidden" : ""}`}>
+    <div className="w-full flex flex-col">
+      <div
+        className={`${
+          isPrinting ? "hidden" : ""
+        } flex justify-between w-100 font-oswald text-[20px] text-primary pt-5`}
+      >
+        <div className={`self-center ml-5`}>
           <ModalComments
             theme={theme}
             cpnjId={cnpj.id}
@@ -68,7 +72,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
         <div>
           {/*---- informações do cliente ----*/}
           <div className="w-full justify-between flex flex-row flex-wrap my-5 px-4">
-            <div>
+            <div className="lg:w-2/4">
               {/* NOME DA EMPRESA ------------*/}
               <p className={pClass}>
                 <span className={spans}>Empresa:</span>
@@ -79,22 +83,22 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
                 <span className={spans}>Atividades:</span>
                 <CnaeConverter cnaeNumber={cnpj.cnae} />
               </p>
-            </div>
-            <div>
+            </div>{" "}
+            <div className="lg:w-1/4">
               {/* TELEFONE 01 -----------*/}
               <p className={pClass}>
                 <span className={spans}>Telefone 01:</span>
-                {cnpj.phone1 || "Não informado"}
+                {cnpj.phone1 === "nullnull" ? "Não informado" : cnpj.phone1}
               </p>
               {/* TELEFONE 02 -----------*/}
               <p className={pClass}>
                 <span className={spans}>Telefone 02:</span>
-                {cnpj.phone2 || "Não informado"}
+                {cnpj.phone2 === "nullnull" ? "Não informado" : cnpj.phone2}
               </p>
               {/* ------ EMAIL ------*/}
               <p className={pClass}>
                 <span className={spans}>Email:</span>
-                {cnpj.email || "Não informado"}
+                {cnpj.email === null ? "Não informado" : cnpj.email}
               </p>
               {/* ------ PROXIMA LIGACAO --------*/}
               <p className={pClass}>
@@ -102,7 +106,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
                 {formattedDate || "Não informado"}
               </p>
             </div>
-            <div>
+            <div className="lg:w-1/4">
               {/* ------ CNPJ ------*/}
               <p className={pClass}>
                 <span className={spans}>Cnpj:</span>
@@ -128,21 +132,18 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
                   : "Sem porte" || "Não informado"}
               </p>
             </div>
-
-            {/* COMENTÁRIOS -----*/}
-            <div
-              className={`${
-                newtheme === Etheme.light
-                  ? "text-primary"
-                  : "text-dark-primary "
-              } py-2 font-inter font-style-xlg text-[15px] text-balance items-center`}
-            >
-              <span className={spans}>Comentários:</span>
-              <p className="ml-1">{comments || "Sem comentários"}</p>
-            </div>
           </div>
         </div>
       )}
+      {/* COMENTÁRIOS -----*/}
+      <div
+        className={`${
+          newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
+        } py-2 px-4 font-inter font-style-xlg text-[15px] text-balance items-center`}
+      >
+        <span className={spans}>Comentários:</span>
+        <p className="ml-1">{comments || "Sem comentários"}</p>
+      </div>
     </div>
   );
 };

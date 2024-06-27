@@ -12,6 +12,7 @@ import SVGMenu from "../SVGs/CIRCLE/SVGMenu";
 import SVGCheck from "../SVGs/CIRCLE/SVGCheck";
 import SVGCancel from "../SVGs/CIRCLE/SVGCancel";
 import SVGUser from "../SVGs/USER/SVGUser";
+import Tooltip from "../containers/separated/tooltip";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 24;
@@ -158,6 +159,18 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 Logout
               </span>
             </a>
+            <div className="flex justify-center px-2 pt-2 group text-[11px]">
+              <Tooltip
+                message={
+                  "Todos os dias a partir das 23:00 o servidor ficara inativo para backup e pode demorar alguns minutos para regularizar."
+                }
+                theme={newtheme}
+              >
+                <span className="opacity-50">
+                  Inatividade a partir das 23:00<span className="ml-1">⚠︎</span>
+                </span>
+              </Tooltip>
+            </div>
           </li>
         </ul>
       </div>

@@ -180,7 +180,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
         <DateToCall
           status={cnpj.status}
           theme={newtheme}
-          date={cnpj.dateForCall || ""}
+          date={cnpj.dateForCall || null}
         />
       </form>
 

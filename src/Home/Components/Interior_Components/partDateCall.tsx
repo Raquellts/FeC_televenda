@@ -9,7 +9,7 @@ import formatarData from "../../../components/Elements_for_Forms/DateFormatter";
 
 type DateProps = {
   status: number;
-  date: string;
+  date: Date | null;
   theme: Etheme;
 };
 
@@ -26,7 +26,11 @@ const DateToCall: React.FC<DateProps> = ({ status, date, theme }) => {
     >
       {status === 3 && date !== null ? (
         <>
-          <Tooltip message={date} theme={newtheme} className="sm:hidden block">
+          <Tooltip
+            message={date ? formatarData(new Date(date)) : ""}
+            theme={newtheme}
+            className="sm:hidden block"
+          >
             <SVGDateConfirmed
               width={40}
               height={40}

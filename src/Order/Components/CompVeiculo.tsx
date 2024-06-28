@@ -46,7 +46,7 @@ const CompVeiculo: React.FC<CompVeiculoProps> = ({ theme, cnpj }) => {
     color: "",
     year: "",
     version: "",
-    dueDate: "",
+    dueDate: new Date(),
     amount: 1,
     payment: "",
     purchaseReason: "",

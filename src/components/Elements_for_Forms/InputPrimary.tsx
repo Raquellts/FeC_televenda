@@ -8,7 +8,7 @@ interface InputPrimaryProps {
   name?: string;
   type?: string;
   placeholder?: string;
-  value?: string;
+  value?: any;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   theme: { theme: Etheme };

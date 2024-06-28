@@ -1,8 +1,8 @@
 import React from "react";
 import InfoCnpjItem from "./Interior_Components/InfoCnpjItem";
 import { Etheme, themes } from "../../themeConsts";
-import { Cnpj, User } from "../../API/API_utils";
-import { getCnpjs, getCommonUser } from "../../API/API_cnpj";
+import { CnpjPaginationResponse, User } from "../../API/API_utils";
+import { getCnpjsPagination, getCommonUser } from "../../API/API_cnpj";
 import Loading from "../../components/backgrounds/loadingBack";
 import ButtonTertiary from "../../components/buttons/ButtonTertiary";
 
@@ -13,8 +13,11 @@ interface iInfosCnpj {
 
 interface iCnpj {
   theme: Etheme;
-  data: Cnpj[];
+  data: CnpjPaginationResponse;
   user: User | undefined;
+  page: number;
+  size: number;
+  maxpages: number;
 }
 
 class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
@@ -26,25 +29,11 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
     this.state = {
       user: undefined,
       theme: themes.activeTheme,
-      data: [],
+      data: {} as CnpjPaginationResponse,
+      page: 0,
+      size: 1,
+      maxpages: 0,
     };
-  }
-
-  handleDataUpdate = async () => {
-    const data = await getCommonUser();
-    this.setState({ user: data });
-  };
-
-  componentDidMount(): void {
-    if (this.loading === false) {
-      this.loading = true;
-      this.handleDataUpdate();
-      getCnpjs()
-        .then((data) => {
-          this.setState({ data });
-        })
-        .finally(() => (this.loading = false));
-    }
   }
 
   setTheme = (theme: Etheme) => {
@@ -56,10 +45,58 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
     this.setTheme(selectedTheme);
   };
 
+  handleDataUpdate = async () => {
+    const data = await getCommonUser();
+    this.setState({ user: data });
+  };
+
+  handleGetData = async () => {
+    const data = await getCnpjsPagination(this.state.page, this.state.size);
+    this.setState({ data });
+    this.setState({ maxpages: data.body.totalPages });
+  };
+
+  componentDidMount(): void {
+    if (this.loading === false) {
+      this.loading = true;
+      this.handleDataUpdate();
+      this.handleGetData()
+        .catch((error) => {
+          console.error("Error retrieving data:", error);
+        })
+        .finally(() => (this.loading = false));
+    }
+  }
+
+  pageBack = () => {
+    console.log("pageBack");
+    if (this.state.page > 0) {
+      this.setState(
+        (prevState) => ({ page: prevState.page - 1 }),
+        () => {
+          this.componentDidMount();
+        }
+      );
+    }
+  };
+
+  pageForward = () => {
+    console.log("pageForward");
+    if (this.state.page < this.state.maxpages - 1) {
+      this.setState(
+        (prevState) => ({ page: prevState.page + 1 }),
+        () => {
+          this.componentDidMount();
+        }
+      );
+    }
+  };
+
   render() {
     const { statusNumber, theme } = this.props;
-    const { data, user } = this.state;
-    const { loading } = this;
+    const { user, page, maxpages, data } = this.state;
+    const { loading, pageBack, pageForward } = this;
+
     const buttonClass = `m-2 pb-2 pt-1 py-1 border-2 border-secondary rounded-2xl hover:bg-tertiary hover:border-tertiary hover:text-white font-oswald ${
       theme.theme === Etheme.light ? "text-primary" : "text-tertiary"
     }`;
@@ -68,72 +105,68 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
     return (
       <div className={`${theme} flex flex-col w-100 h-100`}>
         {loading && <Loading theme={theme.theme} />}
-        <div>
+        {data && data.body && (
           <div>
-            {data?.map((cnpj, index) => {
-              if (!statusNumber || cnpj.status === statusNumber) {
-                return (
-                  <InfoCnpjItem
-                    cnpj={cnpj}
-                    theme={theme}
-                    key={"InfosCnpj" + index}
-                    user={user}
-                  />
-                );
-              }
-            })}
-          </div>
-          <div
-            className={`footer ${
-              theme.theme === Etheme.light
-                ? "bg-background"
-                : "bg-dark-background"
-            }`}
-          >
-            <div className="flex lg:ml-64 justify-center items-center">
-              {/* BOTOES DE PAGINACAO */}
-              {/* anterior */}
-              <ButtonTertiary
-                className={buttonClass}
-                onClick={() => window.location.reload()}
-              >
-                <p>
-                  <span className={spanClass}>⇦</span> Anterior
-                </p>
-              </ButtonTertiary>
-              {/* informações */}
-              <div className="text-center text-[12px] text-primary font-oswald">
-                Pagina atual:&nbsp;
-                <span
-                  className={`${spanClass} ${
-                    theme.theme === Etheme.light
-                      ? "text-primary"
-                      : "text-secondary"
-                  }`}
-                >
-                  1
-                </span>
-                &nbsp;de&nbsp;
-                <span
-                  className={`${spanClass} ${
-                    theme.theme === Etheme.light
-                      ? "text-primary"
-                      : "text-secondary"
-                  }`}
-                >
-                  1
-                </span>
-              </div>
-              {/* proximo */}
-              <ButtonTertiary
-                className={buttonClass}
-                onClick={() => window.location.reload()}
-              >
-                <p>
-                  Proximo <span className={spanClass}>⇨</span>
-                </p>
-              </ButtonTertiary>
+            <div>
+              {data.body.content.map((cnpj, index) => {
+                if (!statusNumber || cnpj.status === statusNumber) {
+                  return (
+                    <InfoCnpjItem
+                      cnpj={cnpj}
+                      theme={theme}
+                      key={"InfosCnpj" + index}
+                      user={user}
+                    />
+                  );
+                }
+              })}
             </div>
+          </div>
+        )}
+        <div
+          className={`footer ${
+            theme.theme === Etheme.light
+              ? "bg-background"
+              : "bg-dark-background"
+          }`}
+        >
+          <div className="flex lg:ml-64 justify-center items-center">
+            {/* BOTOES DE PAGINACAO */}
+            {/* anterior */}
+            <ButtonTertiary className={buttonClass} onClick={pageBack}>
+              <p>
+                <span className={spanClass}>⇦</span> Anterior
+              </p>
+            </ButtonTertiary>
+            {/* informações */}
+            <div className="text-center text-[12px] text-primary font-oswald">
+              Pagina atual:&nbsp;
+              <span
+                className={`${spanClass} ${
+                  theme.theme === Etheme.light
+                    ? "text-primary"
+                    : "text-secondary"
+                }`}
+              >
+                {page + 1}
+              </span>
+              &nbsp;de&nbsp;
+              <span
+                className={`${spanClass} ${
+                  theme.theme === Etheme.light
+                    ? "text-primary"
+                    : "text-secondary"
+                }`}
+              >
+                {maxpages}
+              </span>
+            </div>
+            {/* proximo */}
+            <ButtonTertiary className={buttonClass} onClick={pageForward}>
+              <p>
+                Proximo <span className={spanClass}>⇨</span>
+              </p>
+            </ButtonTertiary>
           </div>
         </div>
       </div>

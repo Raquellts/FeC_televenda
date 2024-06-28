@@ -126,13 +126,10 @@ export const putStatusCnpj = async (
 //PAGINAÇÃO DE CLIENTES-CNPJS
 export const getCnpjsPagination = async (
   page: number,
-  limit?: number
+  size: number
 ): Promise<CnpjPaginationResponse> => {
   const response = await axiosWithAuth.get(
-    baseURL + `/lead/status/?page=${page}?size=${1}`,
-    {
-      params: { page, limit },
-    }
+    baseURL + `/lead/?page=${page}&size=${size}`
   );
-  return response.data.body;
+  return response.data;
 };

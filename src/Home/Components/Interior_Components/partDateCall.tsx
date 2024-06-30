@@ -22,7 +22,7 @@ const DateToCall: React.FC<DateProps> = ({ status, date, theme }) => {
     <div
       className={`${
         newtheme === Etheme.dark ? "text-tertiary" : "text-dark-tertiary"
-      } flex flex-col items-center justify-center text-center font-oswald text-[13px] w-100 h-100 font-style-lg`}
+      } flex flex-col items-center justify-center text-center font-oswald text-size-sm w-100 h-100 font-style-lg`}
     >
       {status === 3 && date !== null ? (
         <>

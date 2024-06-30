@@ -41,8 +41,8 @@ const SideNavbar = (theme: { theme: Etheme }) => {
           <div className="flex justify-center items-center">
             <img src={logo} alt="logo" className="h-14 my-5 logo_filter" />
             <div className="hidden lg:block pl-2">
-              <p className={`font-oswald text-[20px]`}>Freitas & Coutinho</p>
-              <p className={`font-inter text-[11.8px] font-style-lg`}>
+              <p className={`font-oswald text-size-lg`}>Freitas & Coutinho</p>
+              <p className={`font-inter text-size-xsm font-style-lg`}>
                 inteligência comercial
               </p>
             </div>
@@ -159,7 +159,7 @@ const SideNavbar = (theme: { theme: Etheme }) => {
                 Logout
               </span>
             </a>
-            <div className="flex justify-center px-2 pt-2 group text-[11px]">
+            <div className="flex justify-center px-2 pt-2 group text-size-2xsm">
               <Tooltip
                 message={
                   "Todos os dias a partir das 23:00 o servidor ficara inativo para backup e pode demorar alguns minutos para regularizar."

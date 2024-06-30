@@ -26,7 +26,24 @@ body::-webkit-scrollbar-corner {
     color: black;
     margin: 0;
     padding: 0;
-    font-size: 12pt;
+    font-size: 10pt;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Oswald", "Inter", "Montserrat", "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 10px;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 

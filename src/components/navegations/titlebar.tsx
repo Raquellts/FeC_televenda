@@ -33,14 +33,23 @@ const TitleBar = (theme: { theme: Etheme }) => {
       }`}
     >
       <div className={`window-controls flex flex-row justify-end w-full`}>
-        <button onClick={handleBack} className={`${buttonClasses}`}>
+        <button
+          onClick={handleBack}
+          className={`${buttonClasses} text-size-md`}
+        >
           <p style={{ paddingBottom: "4px" }}>←</p>
         </button>
-        <button onClick={handleReload} className={`${buttonClasses}`}>
+        <button
+          onClick={handleReload}
+          className={`${buttonClasses} text-size-sm`}
+        >
           <p>⟲</p>
         </button>
-        <button onClick={handleGoToHref} className={`${buttonClasses}`}>
-          <p style={{ paddingBottom: "5px", fontSize: "22px" }}>⌂</p>
+        <button
+          onClick={handleGoToHref}
+          className={`${buttonClasses} text-size-lg`}
+        >
+          <p style={{ paddingBottom: "5px" }}>⌂</p>
         </button>
       </div>
     </div>

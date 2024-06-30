@@ -67,7 +67,7 @@ const OrderItem = ({
   const createdAt = Order.orderCreatedAt;
   const closedAt = Order.orderClosedAt;
 
-  const buttonStatusChange = `border-transparent text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-3 text-[16px] mx-0.5 lg:mx-1 mt-2`;
+  const buttonStatusChange = `border-transparent text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-3 text-size-md mx-0.5 lg:mx-1 mt-2`;
   const tooltip = `top-12 left-0 h-[50px] ${
     newtheme === Etheme.light ? "bg-container" : "bg-dark-container"
   }`;
@@ -190,7 +190,7 @@ const OrderItem = ({
           ) : null}
         </div>
         <div
-          className={`w-full flex flex-col items-end justify-end py-2 px-4 text-[12px] ${
+          className={`w-full flex flex-col items-end justify-end py-2 px-4 text-size-xsm ${
             newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
           }`}
         >

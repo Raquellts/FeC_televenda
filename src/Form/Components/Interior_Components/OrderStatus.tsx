@@ -15,7 +15,7 @@ const OrderStatus = ({
   return (
     <div className="flex items-center">
       <span
-        className={`${newtheme} font-oswald font-style-lg text-[15px] truncate p-2 ${
+        className={`${newtheme} font-oswald font-style-lg text-size-sm truncate p-2 ${
           Order === "PENDING" ? "PURPLE" : Order === "PAID" ? "GREEN" : "RED"
         }`}
       >

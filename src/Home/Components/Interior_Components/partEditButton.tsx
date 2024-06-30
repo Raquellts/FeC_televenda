@@ -22,7 +22,7 @@ const EditButton = ({ theme, cnpj, user }: iPartEditButton) => {
         newtheme === Etheme.dark
           ? "text-tertiary hover:text-accent"
           : "text-dark-tertiary hover:text-text"
-      } flex flex-col items-center justify-center text-center font-oswald text-[13px] w-100 h-100 font-style-lg`}
+      } flex flex-col items-center justify-center text-center font-oswald text-size-sm w-100 h-100 font-style-lg`}
     >
       <Link to="/Form" state={{ cnpj, user }}>
         <div className={user?.roleAsString === "USER" ? "hidden" : ""}>

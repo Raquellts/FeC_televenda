@@ -271,7 +271,7 @@ const CompVeiculo: React.FC<CompVeiculoProps> = ({ theme, cnpj }) => {
                   !areInputsFilled()
                     ? "bg-primary cursor-not-allowed"
                     : "bg-green-700"
-                } border-transparent text-text hover:border-secondary hover:bg-primary font-oswald px-4 py-2 text-[16px]`}
+                } border-transparent text-text hover:border-secondary hover:bg-primary font-oswald px-4 py-2 text-size-md`}
               >
                 <div className="flex flex-row">
                   <SVGCheck

@@ -100,7 +100,7 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
     const buttonClass = `m-2 pb-2 pt-1 py-1 border-2 border-secondary rounded-2xl hover:bg-tertiary hover:border-tertiary hover:text-white font-oswald ${
       theme.theme === Etheme.light ? "text-primary" : "text-tertiary"
     }`;
-    const spanClass = `text-[16.1px] font-style-lg`;
+    const spanClass = `text-size-md font-style-lg`;
 
     return (
       <div className={`${theme} flex flex-col w-100 h-100`}>
@@ -139,7 +139,7 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
               </p>
             </ButtonTertiary>
             {/* informações */}
-            <div className="text-center text-[12px] text-primary font-oswald">
+            <div className="text-center text-size-xsm text-primary font-oswald">
               Pagina atual:&nbsp;
               <span
                 className={`${spanClass} ${

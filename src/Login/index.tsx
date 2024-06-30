@@ -198,7 +198,7 @@ function Login() {
           }`}
         />
         <p
-          className={`font-inter text-3xl font-style-xlg ${
+          className={`font-inter text-size-3xlg font-style-xlg ${
             theme === Etheme.light ? "text-dark-text" : "text-text"
           }`}
         >

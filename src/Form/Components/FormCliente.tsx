@@ -46,7 +46,7 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
     setIsModalOpen(true);
   };
 
-  const buttonStatusChange = `border-transparent text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-3 text-[16px] mx-0.5 lg:mx-1 mt-2`;
+  const buttonStatusChange = `border-transparent text-text hover:border-secondary hover:bg-primary font-oswald py-2 px-3 text-size-md mx-0.5 lg:mx-1 mt-2`;
   const tooltip = "top-12 left-0";
 
   return (
@@ -61,7 +61,7 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
               <CompCliente theme={theme} cnpj={cnpj} />
             </div>
             <div className={`w-20 md:w-10 pr-1`}>
-              <p className="flex justify-center w-100 font-oswald text-[20px] text-primary pt-5 pb-5">
+              <p className="flex justify-center w-100 font-oswald text-size-lg text-primary pt-5 pb-5">
                 Status
               </p>
               <div
@@ -155,7 +155,7 @@ const FormCliente: React.FC<FormClienteProps> = ({ theme, cnpj }) => {
                     width={width_svg}
                     height={height_svg}
                   />
-                  <p className="flex flex-row w-full uppercase text-[12px]">
+                  <p className="flex flex-row w-full uppercase text-size-xsm">
                     <span>Add</span>&nbsp;
                     <span>Pedido</span>
                   </p>

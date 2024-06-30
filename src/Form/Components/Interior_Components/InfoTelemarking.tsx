@@ -40,7 +40,7 @@ class InfoTelemarking extends React.Component<
 
   render() {
     const { user } = this.state;
-    const labelSelects_sm = "flex w-full items-center my-0 text-[14px]";
+    const labelSelects_sm = "flex w-full items-center my-0 text-size-xs";
     const spans =
       this.props.theme === Etheme.light
         ? "text-primary opacity-80 mr-2"
@@ -49,7 +49,7 @@ class InfoTelemarking extends React.Component<
 
     return (
       <div>
-        <p className="flex justify-start w-100 font-oswald text-[16px] text-primary pt-5 pl-5">
+        <p className="flex justify-start w-100 font-oswald text-size-md text-primary pt-5 pl-5">
           Ligação efetuada por:
         </p>
         {user && (

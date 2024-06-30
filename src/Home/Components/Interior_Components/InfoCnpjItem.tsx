@@ -29,7 +29,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
 
   const pClass = `${
     newtheme === Etheme.light ? "light" : "dark"
-  } ml-1 justify-start flex cnpj_contact text-[10px] font-roboto`;
+  } ml-1 justify-start flex cnpj_contact text-size-2xsm font-roboto`;
 
   return (
     <div

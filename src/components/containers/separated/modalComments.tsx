@@ -55,7 +55,7 @@ const ModalComments: React.FC<{
   };
 
   return (
-    <div className="font-oswald text-[14px]">
+    <div className="font-oswald text-size-xs">
       {/*------ botão para abrir o modal ------*/}
       <ButtonTertiary
         buttonContent=""
@@ -94,7 +94,7 @@ const ModalComments: React.FC<{
             className={`flex items-center justify-between pl-1 pb-1 border-b rounded-t`}
           >
             {/*------ header ------*/}
-            <h3 className="text-xl font-semibold">Comentarios</h3>
+            <h3 className="text-size-lg font-semibold">Comentarios</h3>
             <div className="flex">
               <Tooltip
                 message="Retorna ao último comentário salvo"
@@ -103,18 +103,18 @@ const ModalComments: React.FC<{
               >
                 <button
                   type="button"
-                  className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide mx-1`}
+                  className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-size-xsm p-2 text-center tracking-wide mx-1`}
                   onClick={() => setComments(comment)}
                 >
                   <span>Reiniciar</span>
-                  <span className="text-[20px] font-montserrat font-style-xlg ml-1">
+                  <span className="text-size-lg font-montserrat font-style-xlg ml-1">
                     ↩
                   </span>
                 </button>
               </Tooltip>
               <button
                 type="button"
-                className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-xs p-2 text-center tracking-wide`}
+                className={`flex items-center justify-center bg-accent border-background text-primary border-b-2 border-tertiary hover:bg-primary hover:text-background rounded-lg text-size-xsm p-2 text-center tracking-wide`}
                 onClick={handleCloseModal}
               >
                 <SVGCancel

@@ -18,7 +18,7 @@ const OrderItemView = ({
 
   const pClass = `${
     newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
-  } py-2 mx-6 font-inter font-style-xlg text-[15px] truncate`;
+  } py-2 mx-6 font-inter font-style-xlg text-size-sm truncate`;
   const spanClass = `px-1 font-style-md truncate`;
 
   const dueDate = Item.dueDate;

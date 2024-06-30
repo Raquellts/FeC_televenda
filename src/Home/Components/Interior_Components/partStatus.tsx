@@ -48,7 +48,7 @@ const Status: React.FC<StatusProps> = ({ status, theme }) => {
           : status === 4
           ? "RED"
           : "PURPLE"
-      } flex flex-col items-center justify-center font-oswald text-text text-[13px] w-full h-full font-style-lg`}
+      } flex flex-col items-center justify-center font-oswald text-text text-size-sm w-full h-full font-style-lg`}
     >
       {SVGComponent && (
         <Tooltip

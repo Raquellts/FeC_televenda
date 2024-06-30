@@ -47,7 +47,7 @@ const InfoUSERItem = ({
             {data.name + " " + data.lastName}
           </p>
 
-          <p className="ml-1 truncate text-[12px] font-style-xlg">
+          <p className="ml-1 truncate text-size-xsm font-style-xlg">
             / username: {data.username}
           </p>
         </div>

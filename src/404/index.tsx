@@ -15,11 +15,11 @@ function Page404() {
       <h1
         className={`${
           theme === Etheme.light ? "text-text" : "text-dark-text"
-        } md:text-[200px] text-[150px] font-extrabold tracking-widest`}
+        } md:text-screen-header text-screen-subheader  font-extrabold tracking-widest`}
       >
         404
       </h1>
-      <div className="md:text-[20px] text-[18px] bg-accent px-2 text-white rounded absolute font-oswald uppercase mb-8 mr-4">
+      <div className="md:text-size-lg text-size-xmd bg-accent px-2 text-white rounded absolute font-oswald uppercase mb-8 mr-4">
         Página não encontrada
       </div>
       <a href="/">

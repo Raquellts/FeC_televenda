@@ -11,7 +11,7 @@
 .font-oswald {
   font-family: "Oswald", sans-serif;
   font-style: normal;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.2px;
 }
 
 .font-montserrat {
@@ -35,10 +35,6 @@
   text-align: center;
 }
 
-.small-size {
-  font-size: 16px;
-}
-
 /* style for font weight */
 .font-style-xsm {
   font-weight: 200;
@@ -56,6 +52,85 @@
   font-weight: 600;
 }
 
+/* style for text sizes */
+.text-screen-header {
+  font-size: 200px;
+}
+
+.text-screen-subheader {
+  font-size: 150px;
+}
+
+.text-size-3xlg {
+  font-size: 30px;
+}
+
+.text-size-xlg {
+  font-size: 24px;
+}
+
+.text-size-lg {
+  font-size: 20px;
+}
+
+.text-size-xmd {
+  font-size: 18px;
+}
+
+.text-size-md {
+  font-size: 16px;
+}
+
+.text-size-sm {
+  font-size: 14px;
+}
+
 .text-size-xsm {
   font-size: 12px;
+}
+
+.text-size-2xsm {
+  font-size: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .text-screen-header {
+    font-size: 150px;
+  }
+
+  .text-screen-subheader {
+    font-size: 100px;
+  }
+
+  .text-size-3xlg {
+    font-size: 26px;
+  }
+
+  .text-size-xlg {
+    font-size: 20px;
+  }
+
+  .text-size-lg {
+    font-size: 18px;
+  }
+
+  .text-size-xmd {
+    font-size: 16px;
+  }
+
+  .text-size-md {
+    font-size: 14px;
+  }
+
+  .text-size-sm {
+    font-size: 12px;
+  }
+
+  .text-size-xsm {
+    font-size: 10px;
+  }
+
+  .text-size-2xsm {
+    font-size: 8px;
+  }
 }

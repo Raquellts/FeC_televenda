@@ -6,7 +6,6 @@ import ModalComments from "../../../components/containers/separated/modalComment
 import { usePrintState } from "../../../components/Hooks/isPrinting";
 import CnaeConverter from "../../../components/Elements_for_Forms/CnaeConverter";
 import formatarData from "../../../components/Elements_for_Forms/DateFormatter";
-
 interface CompClienteProps {
   cnpj: Cnpj;
   theme: { theme: Etheme };
@@ -24,7 +23,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
 
   const pClass = `${
     newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
-  } py-2 font-inter font-style-xlg text-[15px] text-wrap flex flex-row items-center`;
+  } py-2 font-inter font-style-xlg text-size-sm text-wrap flex flex-row items-center`;
   const spans = `px-1 font-style-md text-balance`;
 
   return (
@@ -32,7 +31,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
       <div
         className={`${
           isPrinting ? "hidden" : ""
-        } flex justify-between w-100 font-oswald text-[20px] text-primary pt-5`}
+        } flex justify-between w-100 font-oswald text-size-lg text-primary pt-5`}
       >
         <div className={`self-center ml-5`}>
           <ModalComments
@@ -116,7 +115,7 @@ const CompCliente: React.FC<CompClienteProps> = ({ cnpj, theme }) => {
       <div
         className={`${
           newtheme === Etheme.light ? "text-primary" : "text-dark-primary "
-        } py-2 px-4 font-inter font-style-xlg text-[15px] text-balance items-center`}
+        } py-2 px-4 font-inter font-style-xlg text-size-sm text-balance items-center`}
       >
         <span className={spans}>Comentários:</span>
         <p className="ml-1">{comments || "Sem comentários"}</p>

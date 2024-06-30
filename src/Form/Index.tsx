@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import MapOrders from "./Components/MapOrders";
 import { usePrintState } from "../components/Hooks/isPrinting";
 import Loading from "../components/backgrounds/loadingBack";
+import LogosForPrint from "../components/Elements_for_Forms/LogosForPrint";
 
 function Form() {
   const { isPrinting } = usePrintState();
@@ -42,9 +43,17 @@ function Form() {
         </div>
         <div className={`pb-4 lg:ml-64 ${isPrinting ? "" : "px-4"}`}>
           {/* FORMULARIO DE PEDIDO*/}
+          {/* LOGOS for print */}
+          <div className="pb-2">
+            <LogosForPrint theme={theme} />
+          </div>
           <CompleteForm theme={{ theme }} cnpj={cnpj} />
           {/* LISTA DE PEDIDOS */}
           <MapOrders theme={theme} cnpj={cnpj} user={user} />
+          {/* LOGOS for print */}
+          <div className="pt-2">
+            <LogosForPrint theme={theme} />
+          </div>
         </div>
 
         <div className={`fixed bottom-5 right-4 ${isPrinting ? "hidden" : ""}`}>

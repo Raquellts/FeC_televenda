@@ -118,7 +118,7 @@ export interface CnpjOrder {
   userId: string;
   status: OrderStatus;
   orderItem: Item;
-  orderCreatedAt: Date;
+  orderCreatedAt: Date | null;
   orderClosedAt: Date | null;
 }
 
@@ -128,7 +128,7 @@ export interface Item {
   color: string;
   year: string;
   version: string;
-  dueDate: Date;
+  dueDate: Date | null;
   amount: number;
   payment: string;
   purchaseReason: string;

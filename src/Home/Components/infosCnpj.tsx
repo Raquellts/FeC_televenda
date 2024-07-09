@@ -31,7 +31,7 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
       theme: themes.activeTheme,
       data: {} as CnpjPaginationResponse,
       page: 0,
-      size: 1,
+      size: 10,
       maxpages: 0,
     };
   }
@@ -133,40 +133,50 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
           <div className="flex lg:ml-64 justify-center items-center">
             {/* BOTOES DE PAGINACAO */}
             {/* anterior */}
-            <ButtonTertiary className={buttonClass} onClick={pageBack}>
-              <p>
-                <span className={spanClass}>⇦</span> Anterior
-              </p>
-            </ButtonTertiary>
+            {page > 0 ? (
+              <ButtonTertiary className={buttonClass} onClick={pageBack}>
+                <p>
+                  <span className={spanClass}>⇦</span> Anterior
+                </p>
+              </ButtonTertiary>
+            ) : null}
+
             {/* informações */}
-            <div className="text-center text-size-xsm text-primary font-oswald">
-              Pagina atual:&nbsp;
-              <span
-                className={`${spanClass} ${
-                  theme.theme === Etheme.light
-                    ? "text-primary"
-                    : "text-secondary"
-                }`}
+            {!statusNumber || statusNumber === 0 ? (
+              <div
+                className={`text-center text-size-xsm text-primary font-oswald`}
               >
-                {page + 1}
-              </span>
-              &nbsp;de&nbsp;
-              <span
-                className={`${spanClass} ${
-                  theme.theme === Etheme.light
-                    ? "text-primary"
-                    : "text-secondary"
-                }`}
-              >
-                {maxpages}
-              </span>
-            </div>
+                Pagina atual:&nbsp;
+                <span
+                  className={`${spanClass} ${
+                    theme.theme === Etheme.light
+                      ? "text-primary"
+                      : "text-secondary"
+                  }`}
+                >
+                  {page + 1}
+                </span>
+                &nbsp;de&nbsp;
+                <span
+                  className={`${spanClass} ${
+                    theme.theme === Etheme.light
+                      ? "text-primary"
+                      : "text-secondary"
+                  }`}
+                >
+                  {maxpages}
+                </span>
+              </div>
+            ) : null}
+
             {/* proximo */}
-            <ButtonTertiary className={buttonClass} onClick={pageForward}>
-              <p>
-                Proximo <span className={spanClass}>⇨</span>
-              </p>
-            </ButtonTertiary>
+            {page < maxpages - 1 ? (
+              <ButtonTertiary className={buttonClass} onClick={pageForward}>
+                <p>
+                  Proximo <span className={spanClass}>⇨</span>
+                </p>
+              </ButtonTertiary>
+            ) : null}
           </div>
         </div>
       </div>

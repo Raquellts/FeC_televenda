@@ -93,7 +93,7 @@ const App = () => {
     window.addEventListener("load", handleLoading);
     setTimeout(() => {
       setComponentsLoaded(true);
-    }, 2500);
+    }, 0);
     return () => {
       window.removeEventListener("load", handleLoading);
     };

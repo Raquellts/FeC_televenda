@@ -74,6 +74,14 @@ body {
   left: 0;
   width: 100%;
 }
+
+.transitionOn {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
 /*--------------- logos ----------------*/
 .logo {
   width: auto;
@@ -197,4 +205,40 @@ select {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+/**
+ * ----------------------------------------
+ * animation fade-in-bottom
+ * ----------------------------------------
+ */
+
+.fade-in-bottom {
+  -webkit-animation: fade-in-bottom 1s ease-in-out both;
+  animation: fade-in-bottom 1s ease-in-out both;
+}
+
+@-webkit-keyframes fade-in-bottom {
+  0% {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-bottom {
+  0% {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

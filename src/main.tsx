@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./presets.css";
@@ -20,8 +20,6 @@ import { Pending, Suspended, Confirmed, Rejected, All } from "./Home/filters";
 import Form from "./Form/Index";
 import Order from "./Order/index";
 import Users from "./Users";
-import Loading from "./components/backgrounds/loadingBack";
-import { themes } from "./themeConsts";
 
 //HashRoutes
 
@@ -82,36 +80,9 @@ const router = createBrowserRouter([
 
 // eslint-disable-next-line react-refresh/only-export-components
 const App = () => {
-  const [isReady, setIsReady] = useState(false);
-  const [componentsLoaded, setComponentsLoaded] = useState(false);
-
-  const handleLoading = () => {
-    setIsReady(true);
-  };
-
-  useEffect(() => {
-    window.addEventListener("load", handleLoading);
-    setTimeout(() => {
-      setComponentsLoaded(true);
-    }, 0);
-    return () => {
-      window.removeEventListener("load", handleLoading);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (componentsLoaded) {
-      setIsReady(false);
-    }
-  }, [componentsLoaded]);
-
   return (
     <React.StrictMode>
-      {isReady ? (
-        <Loading theme={themes.activeTheme} />
-      ) : (
-        <RouterProvider router={router} />
-      )}
+      <RouterProvider router={router} />
     </React.StrictMode>
   );
 };

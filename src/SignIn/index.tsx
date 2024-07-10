@@ -10,6 +10,7 @@ import "../assets/font.css";
 import { Etheme, themes } from "../themeConsts";
 import ButtonTheme from "../themeButton";
 import SigninForm from "./Components/signin_Form.tsx";
+import Loading from "../components/backgrounds/loadingBack.tsx";
 
 interface State {
   theme: Etheme;
@@ -101,36 +102,43 @@ class Signin extends React.Component<any, State> {
   };
 
   render() {
+    const { loading } = this;
+
     return (
-      <div
-        className={`full-div overflow-hidden flex items-center justify-center lg:justify-start`}
-      >
-        <Background />
-        <SigninForm
-          theme={{ theme: this.state.theme }}
-          error={this.state.error}
-          formData={this.state.formData}
-          handleChange={this.handleChange}
-          handlesubmit={this.handlesubmit}
-          setFormData={this.setFormData}
-          Supervisors={this.Supervisors}
-          supervisor={this.state.supervisor}
-        />
-        <div className="fixed bottom-3 right-4 z-10">
-          <ButtonTheme theme={this.state.theme} setTheme={this.setTheme} />
-        </div>
-        {/*--------- LOGOS ----------*/}
-        {/*--------- logo de tela grande ------*/}
-        <div className="mx-auto hidden lg:block text-center">
-          <img
-            src={logo}
-            alt="logo"
-            className={`logo ${
-              this.state.theme === Etheme.light ? "light_filter" : "dark_filter"
-            }`}
+      <>
+        {loading && <Loading theme={this.state.theme} />}
+        <div
+          className={`full-div overflow-hidden flex items-center justify-center lg:justify-start`}
+        >
+          <Background />
+          <SigninForm
+            theme={{ theme: this.state.theme }}
+            error={this.state.error}
+            formData={this.state.formData}
+            handleChange={this.handleChange}
+            handlesubmit={this.handlesubmit}
+            setFormData={this.setFormData}
+            Supervisors={this.Supervisors}
+            supervisor={this.state.supervisor}
           />
+          <div className="fixed bottom-3 right-4 z-10">
+            <ButtonTheme theme={this.state.theme} setTheme={this.setTheme} />
+          </div>
+          {/*--------- LOGOS ----------*/}
+          {/*--------- logo de tela grande ------*/}
+          <div className="mx-auto hidden lg:block text-center">
+            <img
+              src={logo}
+              alt="logo"
+              className={`logo ${
+                this.state.theme === Etheme.light
+                  ? "light_filter"
+                  : "dark_filter"
+              }`}
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

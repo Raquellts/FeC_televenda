@@ -194,7 +194,12 @@ const OrderItem = ({
             newtheme === Etheme.light ? "text-primary" : "text-dark-primary"
           }`}
         >
-          <p>Criado em:&nbsp;{formatarData(new Date(createdAt))}</p>
+          <p>
+            Criado em:&nbsp;
+            {createdAt
+              ? formatarData(new Date(createdAt))
+              : "Data de criação não disponível"}
+          </p>
           {closedAt ? (
             <p>
               Encerrado em:&nbsp;

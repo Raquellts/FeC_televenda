@@ -1,6 +1,6 @@
-const formatarData = (data: Date) => {
-  if (!(data instanceof Date)) {
-    return;
+const formatarData = (data: Date | null): string | undefined => {
+  if (data === null) {
+    return undefined;
   }
 
   const dia = String(data.getDate()).padStart(2, "0"); // Obtém o dia do mês

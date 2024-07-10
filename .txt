@@ -1,9 +1,3 @@
----- status do pedido >>> editavel pelo vendedor NÂO editavel pelo telemarketing
----- mudar aparencia do status confirmed para o vendedor final
----- mudar botão edita para o vendedor final
-
-
-
 //INFORMAÇÕES GERAIS:
     //Status CNPJ:
         PENDING(1),//padrao

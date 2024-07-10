@@ -3,7 +3,7 @@ import useUpdateTheme from "../../Hooks/updateTheme";
 import { Etheme } from "../../../themeConsts";
 
 type TooltipProps = {
-  message: string;
+  message: any;
   children: JSX.Element;
   theme: Etheme;
   className?: string;

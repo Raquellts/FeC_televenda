@@ -5,13 +5,13 @@ import Status from "./partStatus";
 import DateToCall from "./partDateCall";
 import EditButton from "./partEditButton";
 import useUpdateTheme from "../../../components/Hooks/updateTheme";
-import ModalComments from "../../../components/containers/separated/modalComments";
 import SVGPhoneCall from "../../../components/SVGs/PHONE/SVGPhoneCall";
 import ClipboardButton from "../../../components/buttons/Clipboard";
 import SVGEmail from "../../../components/SVGs/CONTACT/SVGEmail";
 import { Cnpj, User } from "../../../API/API_utils";
 import "../InfosCnpj.css";
 import CnaeConverter from "../../../components/Elements_for_Forms/CnaeConverter";
+import ModalShowComment from "../../../components/containers/separated/modaShowComment";
 
 /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
 /*SVG CONSTS*/ const width_svg = 20;
@@ -66,11 +66,7 @@ const InfoCnpjItem: React.FC<InfoCnpjItemProps> = ({ cnpj, theme, user }) => {
 
             {/* --------------- MODAL DE COMENTARIOS ---------------- */}
           </div>
-          <ModalComments
-            theme={theme}
-            comment={cnpj.comments || ""}
-            cpnjId={cnpj.id}
-          />
+          <ModalShowComment theme={theme} comment={cnpj.comments || ""} />
           {}
         </div>
 

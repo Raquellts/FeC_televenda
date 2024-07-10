@@ -15,8 +15,6 @@ const Loading = (theme: { theme: Etheme }) => {
     return () => clearTimeout(timerId);
   }, []);
 
-  console.log(timer);
-
   return (
     <div>
       <div

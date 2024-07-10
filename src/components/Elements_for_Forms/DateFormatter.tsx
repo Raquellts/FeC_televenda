@@ -1,5 +1,5 @@
 const formatarData = (data: Date | null): string | undefined => {
-  if (data === null) {
+  if (!(data instanceof Date) || isNaN(data.getTime())) {
     return undefined;
   }
 

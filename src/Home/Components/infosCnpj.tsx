@@ -107,7 +107,7 @@ class InfosCnpj extends React.Component<iInfosCnpj, iCnpj> {
         {loading && <Loading theme={theme.theme} />}
         {data && data.body && (
           <div>
-            <div>
+            <div className="pb-14">
               {data.body.content.map((cnpj, index) => {
                 if (!statusNumber || cnpj.status === statusNumber) {
                   return (

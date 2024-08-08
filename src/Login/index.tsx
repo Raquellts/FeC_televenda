@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import Cookies from "js-cookie";
 import axiosWithAuth from "../midleware/axiosWithAuth";
 import ApiError from "../APIError";
@@ -18,10 +19,6 @@ import { Etheme, themes } from "../themeConsts";
 import SVGUser from "../components/SVGs/USER/SVGUser";
 import SVGKey from "../components/SVGs/USER/SVGKey";
 import Tooltip from "../components/containers/separated/tooltip";
-
-/*SVG CONSTS*/ const fill_Two_svg = "currentColor";
-/*SVG CONSTS*/ const width_svg = 24;
-/*SVG CONSTS*/ const height_svg = 24;
 
 interface loginInterface {
   username: string;
@@ -58,6 +55,17 @@ function Login() {
       }
     }
   };
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  /*SVG CONSTS*/ const fill_Two_svg = "currentColor";
+  /*SVG CONSTS*/ let width_svg = 23;
+  /*SVG CONSTS*/ let height_svg = 23;
+
+  if (isMobile) {
+    width_svg = 16;
+    height_svg = 16;
+  }
 
   return (
     <div
@@ -155,20 +163,22 @@ function Login() {
           </div>
 
           {/*------------- BOTÃO DE LOGIN --- ENTRAR -------------*/}
-          <div className="flex flex-row lg:flex-col font-oswald mx-3 lg:mx-0">
-            <ButtonPrimary
-              buttonContent="Entrar"
-              theme={{ theme: theme }}
-              className="w-full"
-              type="submit"
-            />
+          <div className="flex flex-col lg:flex-col font-oswald md:mx-3 mx-14 lg:mx-0">
+            <div className={`w-full text-xs md:text-sm`}>
+              <ButtonPrimary
+                buttonContent="Entrar"
+                theme={{ theme: theme }}
+                className="w-full"
+                type="submit"
+              />
+            </div>
 
             {/* BOTOES recuperar senha e criar conta VVVV */}
             <ButtonSecondary
               href="/Forgot"
               buttonContent="Esqueci a senha!"
               theme={{ theme: theme }}
-              className="lg:mx-30 lg:my-0"
+              className="mx-30 my-0"
             />
           </div>
 
